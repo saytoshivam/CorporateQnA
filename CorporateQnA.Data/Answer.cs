@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CorporateQnA.Services.Data
+namespace CorporateQnA.Data
 {
     [Table("Answers")]
     public class Answer

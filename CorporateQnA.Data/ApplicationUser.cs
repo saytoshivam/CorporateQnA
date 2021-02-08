@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Text;
 
-namespace CorporateQnA.Services.Data
+namespace CorporateQnA.Data
 {
     public class ApplicationUser:IdentityUser<int>
     {

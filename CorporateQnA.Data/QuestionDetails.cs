@@ -5,9 +5,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CorporateQnA.Services.Data
+namespace CorporateQnA.Data
 {
-    [Table("QuestionView")]
+    [Table("QuestionsView")]
     public class QuestionDetails
     {
         public int Id { get; set; }
@@ -17,6 +17,7 @@ namespace CorporateQnA.Services.Data
         public DateTime AskedOn { get; set; }
         public int AskedBy { get; set; }
         public string UserImage { get; set; }
+        public int AnswerCount { get; set; }
         public string ViewedBy { get; set; }
         public string VotedBy { get; set; }
         public string ReportedBy { get; set; }
