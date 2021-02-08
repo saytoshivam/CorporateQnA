@@ -1,5 +1,5 @@
-CREATE PROCEDURE [SpGetQuestionsDetailsByUserId]
-@UserId [int]
+CREATE PROCEDURE [GetQuestionsDetailsByUserId]
+@UserId [INT]
 AS
 BEGIN
 SELECT [Questions].[Id],[Head],[Description],[AskedOn],

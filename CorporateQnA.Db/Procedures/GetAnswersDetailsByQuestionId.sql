@@ -1,5 +1,5 @@
-CREATE PROCEDURE [SpGetAnswersDetailsByQuestionId]
-@QuestionId [int]
+CREATE PROCEDURE [GetAnswersDetailsByQuestionId]
+@QuestionId [INT]
 AS
 BEGIN
 SELECT [Answers].[Id],[Answer],[AnsweredOn],[IsBestSolution],[Users].[FullName],[Users].[ProfileImage]

@@ -1,11 +1,11 @@
 --This table will be autogenereted using Identity
  CREATE TABLE [AspNetUsers](
-	[Id] [int] IDENTITY(1,1) PRIMARY KEY CLUSTERED,
-	[FullName] [nvarchar](max) NULL,
-	[ProfileImage] [nvarchar](max) NULL,
-	[Designation] [nvarchar](max) NULL,
-	[Department] [nvarchar](max) NULL,
-	[JobLocation] [nvarchar](max) NULL,
-	[UserName] [nvarchar](256) NOT NULL,
-	[Password] [nvarchar](max) NOT NULL
+	[Id] [INT] IDENTITY(1,1) PRIMARY KEY CLUSTERED,
+	[FullName] [NVARCHAR](MAX) NULL,
+	[ProfileImage] [NVARCHAR](MAX) NULL,
+	[Designation] [NVARCHAR](MAX) NULL,
+	[Department] [NVARCHAR](MAX) NULL,
+	[JobLocation] [NVARCHAR](MAX) NULL,
+	[UserName] [NVARCHAR](MAX) NOT NULL,
+	[Password] [NVARCHAR](MAX) NOT NULL
 );

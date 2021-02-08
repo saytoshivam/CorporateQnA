@@ -1,6 +1,6 @@
 CREATE TABLE [Categories](
-	[Id] [int] IDENTITY(1,1) PRIMARY KEY CLUSTERED,
-	[Name] [nvarchar](max) NOT NULL,
-	[Description] [nvarchar](max) NULL,
-	[CreatedOn] [datetime] NOT NULL
+	[Id] [INT] IDENTITY(1,1) PRIMARY KEY CLUSTERED,
+	[Name] [NVARCHAR](MAX) NOT NULL,
+	[Description] [NVARCHAR](MAX) NULL,
+	[CreatedOn] [DATETIME] NOT NULL
  );
