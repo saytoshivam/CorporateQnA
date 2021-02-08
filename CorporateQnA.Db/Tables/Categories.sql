@@ -1,0 +1,6 @@
+CREATE TABLE [Categories](
+	[Id] [INT] IDENTITY(1,1) PRIMARY KEY CLUSTERED,
+	[Name] [NVARCHAR](MAX) NOT NULL,
+	[Description] [NVARCHAR](MAX) NULL,
+	[CreatedOn] [DATETIME] NOT NULL
+ );
