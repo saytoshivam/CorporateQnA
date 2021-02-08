@@ -19,6 +19,5 @@ namespace CorporateQnA.Models.Core
         public int QuestionsSolved { get; set; }
         public int Likes { get; set; }
         public int DisLikes { get; set; }
-
     }
 }

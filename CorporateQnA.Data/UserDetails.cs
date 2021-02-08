@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace CorporateQnA.Data
 {
-    [Table("UserView")]
+    [Table("UsersView")]
     public class UserDetails
     {
         public int Id { get; set; }

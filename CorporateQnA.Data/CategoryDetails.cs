@@ -5,7 +5,7 @@ using System.Text;
 
 namespace CorporateQnA.Data
 {
-    [Table("CategoryDetailsView")]
+    [Table("CategoriesView")]
     public class CategoryDetails
     {
         public int Id { get; set; }
