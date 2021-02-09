@@ -4,11 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CorporateQnA.Models.Core
+namespace CorporateQnA.Data
 {
     public class LikeDislike
     {
-        public IEnumerable<int> LikedBy { get; set; }
-        public IEnumerable<int> DisLikedBy { get; set; }
+        public string LikedBy { get; set; }
+        public string DisLikedBy { get; set; }
     }
 }

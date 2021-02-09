@@ -14,6 +14,6 @@ namespace CorporateQnA.Data
         [Column("Answer")]
         public string QuestionsAnswer { get; set; }
         public int AnsweredBy { get; set; }
-        public DateTime AnsweredOn { get; set; } = DateTime.Now;
+        public DateTime AnsweredOn { get; set; }
     }
 }

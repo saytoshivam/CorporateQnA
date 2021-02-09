@@ -9,6 +9,6 @@ namespace CorporateQnA.Models.Core
         public string Description { get; set; }
         public int CategoryId { get; set; }
         public int AskedBy { get; set; }
-        public DateTime AskedOn { get; set; } = DateTime.Now;
+        public DateTime AskedOn { get; set; }
     }
 }
