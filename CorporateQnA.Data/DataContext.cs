@@ -12,6 +12,7 @@ namespace CorporateQnA.Data
         {
 
         }
+
         public DbSet<ApplicationUser> ApplicationUsers { get; set; }
     }
 }

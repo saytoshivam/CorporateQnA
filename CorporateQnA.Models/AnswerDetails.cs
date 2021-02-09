@@ -9,14 +9,23 @@ namespace CorporateQnA.Models.Core
     public class AnswerDetails
     {
         public int Id { get; set; }
+
         public string FullName { get; set; }
+
         public string Answer { get; set; }
+
         public string UserImage { get; set; }
+
         public DateTime AnsweredOn { get; set; }
+
         public int TotalLikes { get; set; }
+
         public int TotalDislikes { get; set; }
+
         public bool IsBestSolution { get; set; }
+
         public bool IsLiked { get; set; }
+
         public bool IsDisliked { get; set; }
 
     }

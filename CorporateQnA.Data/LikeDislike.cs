@@ -9,6 +9,7 @@ namespace CorporateQnA.Data
     public class LikeDislike
     {
         public string LikedBy { get; set; }
+
         public string DisLikedBy { get; set; }
     }
 }

@@ -9,9 +9,13 @@ namespace CorporateQnA.Models.Core
     public class Answer
     {
         public int QuestionId { get; set; }
+
         public string QuestionsAnswer { get; set; }
+
         public int AnsweredBy { get; set; }
+
         public DateTime AnsweredOn { get; set; }
+
 
     }
 }

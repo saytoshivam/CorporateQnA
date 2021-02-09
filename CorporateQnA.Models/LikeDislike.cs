@@ -9,6 +9,7 @@ namespace CorporateQnA.Models.Core
     public class LikeDislike
     {
         public IEnumerable<int> LikedBy { get; set; }
+
         public IEnumerable<int> DisLikedBy { get; set; }
     }
 }
