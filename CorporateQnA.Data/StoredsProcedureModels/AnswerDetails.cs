@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CorporateQnA.Data
+namespace CorporateQnA.Data.StoredProcedureModels
 {
     public class AnswerDetails
     {
@@ -24,6 +24,5 @@ namespace CorporateQnA.Data
         public string LikedBy { get; set; }
 
         public string DislikedBy { get; set; }
-
     }
 }

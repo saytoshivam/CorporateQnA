@@ -27,6 +27,5 @@ namespace CorporateQnA.Models
         public bool IsLiked { get; set; }
 
         public bool IsDisliked { get; set; }
-
     }
 }

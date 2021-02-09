@@ -19,6 +19,5 @@ namespace CorporateQnA.Data
         public int TagsThisWeek { get; set; }
 
         public int TagsThisMonth { get; set; }
-
     }
 }

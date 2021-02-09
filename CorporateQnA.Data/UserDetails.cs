@@ -14,7 +14,7 @@ namespace CorporateQnA.Data
 
         public string FullName { get; set; }
 
-        public string ProfileImage { get; set; }
+        public string UserImage { get; set; }
 
         public string Designation { get; set; }
 
@@ -31,6 +31,5 @@ namespace CorporateQnA.Data
         public string LikedBy { get; set; }
 
         public string DislikedBy { get; set; }
-
     }
 }

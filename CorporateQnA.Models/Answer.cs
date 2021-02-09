@@ -15,7 +15,5 @@ namespace CorporateQnA.Models
         public int AnsweredBy { get; set; }
 
         public DateTime AnsweredOn { get; set; }
-
-
     }
 }

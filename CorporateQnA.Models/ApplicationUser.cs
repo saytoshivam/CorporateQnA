@@ -14,7 +14,7 @@ namespace CorporateQnA.Models
 
         public string FullName { get; set; }
 
-        public string ProfileImage { get; set; }
+        public string UserImage { get; set; }
 
         public string Designation { get; set; }
 
