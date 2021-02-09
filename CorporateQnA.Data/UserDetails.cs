@@ -27,5 +27,10 @@ namespace CorporateQnA.Data
         public int QuestionsAnswered { get; set; }
 
         public int QuestionsSolved { get; set; }
+
+        public string LikedBy { get; set; }
+
+        public string DislikedBy { get; set; }
+
     }
 }
