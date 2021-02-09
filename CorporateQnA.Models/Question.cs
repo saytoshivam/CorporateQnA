@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace CorporateQnA.Models.Core
+namespace CorporateQnA.Models
 {
     public class Question
     {
