@@ -29,12 +29,6 @@ namespace CorporateQnA.Models
 
         public int AnswerCount { get; set; }
 
-        public bool IsViewed { get; set; }
-
-        public bool IsUpVoted { get; set; }
-
-        public bool IsReported { get; set; }
-
         public bool IsResolved { get; set; }
     }
 }

@@ -23,9 +23,5 @@ namespace CorporateQnA.Models
         public int TotalDislikes { get; set; }
 
         public bool IsBestSolution { get; set; }
-
-        public bool IsLiked { get; set; }
-
-        public bool IsDisliked { get; set; }
     }
 }
