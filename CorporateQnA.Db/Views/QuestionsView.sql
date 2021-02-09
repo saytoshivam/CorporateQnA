@@ -1,6 +1,6 @@
 CREATE VIEW [QuestionsView]
 AS
-SELECT [Questions].[Id],[Questions].[Head],[Questions].[Description],[CategoryId],
+SELECT [Questions].[Id],[Questions].[Title],[Questions].[Description],[CategoryId],
 [AskedOn],[AskedBy],[ViewedBy],[VotedBy],[ReportedBy],(
 SELECT [ProfileImage] FROM [AspNetUsers] AS [User] WHERE [User].[Id]=[AskedBy]
 ) AS [UserImage],(
