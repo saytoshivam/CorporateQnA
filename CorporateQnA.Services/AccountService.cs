@@ -1,10 +1,10 @@
 ﻿using AutoMapper;
-using CorporateQnA.Models.Core;
 using Microsoft.AspNetCore.Identity;
 using System;
 using System.Threading.Tasks;
 using CorporateQnA.Services.Interfaces;
 using Microsoft.EntityFrameworkCore;
+using CorporateQnA.Models;
 
 namespace CorporateQnA.Services
 {
@@ -13,13 +13,12 @@ namespace CorporateQnA.Services
         private readonly ITokenService TokenRepository;
         private readonly UserManager<Data.ApplicationUser> UserManager;
         private readonly IMapper Mapper;
-
-            public AccountService(ITokenService tokenRepository,IMapper mapper, UserManager<Data.ApplicationUser> userManager)
-            {
-                UserManager = userManager;
-                Mapper = mapper;
+        public AccountService(ITokenService tokenRepository,IMapper mapper, UserManager<Data.ApplicationUser> userManager)
+        {
+            UserManager = userManager;
+            Mapper = mapper;
             TokenRepository = tokenRepository;
-            }
+        }
 
             public async Task<Object> PostApplicationUser(ApplicationUser model)
             {

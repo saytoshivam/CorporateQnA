@@ -1,4 +1,4 @@
-﻿using CorporateQnA.Models.Core;
+﻿using CorporateQnA.Models;
 using CorporateQnA.Services.Interfaces;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;

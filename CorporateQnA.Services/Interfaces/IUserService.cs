@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using CorporateQnA.Models.Core;
+using CorporateQnA.Models;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;

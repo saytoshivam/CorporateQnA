@@ -19,7 +19,7 @@ namespace CorporateQnA.Services.Extensions
           //  services.AddScoped<ICategoryService, CategoryService>();
           //  services.AddScoped<IQuestionService, QuestionService>();
             services.AddScoped<IUserService, UserService>();
-         //   services.AddScoped<IDbConnectionService, DbConnectionService>();
+           services.AddScoped<IDbConnectionService, DbConnectionService>();
           //  services.AddScoped<IAnswerService, AnswerService>();
          
             services.AddAutoMapper(typeof(AutoMapperProfile));

@@ -1,4 +1,4 @@
-﻿using CorporateQnA.Models.Core;
+﻿using CorporateQnA.Models;
 using CorporateQnA.Services.Interfaces;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
@@ -17,18 +17,20 @@ namespace CorporateQnA.Controllers
         {
             AccountService = accountService;
         }
-        [HttpPost]
+        [Route("register")]
         public async Task<Object> PostApplicationUser(ApplicationUser model)
         {
             return await AccountService.PostApplicationUser(model);
         }
 
-        [HttpGet]
-        public string GetString()
+       
+        [Route("testing")]
+        [Authorize]
+        public string ForTesting()
         {
-            return "for testing purpose";
+            return "Working Fine";
         }
-        [HttpPost]
+
         [Route("login")]
         public async Task<string> Login(Login userCredentials)
         {

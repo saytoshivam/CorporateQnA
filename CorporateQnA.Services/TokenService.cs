@@ -1,4 +1,4 @@
-﻿using CorporateQnA.Services.Data;
+﻿using CorporateQnA.Data;
 using CorporateQnA.Services.Interfaces;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;

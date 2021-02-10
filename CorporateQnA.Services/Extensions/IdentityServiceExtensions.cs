@@ -1,4 +1,5 @@
-﻿using CorporateQnA.Services.Data;
+﻿using CorporateQnA.Data;
+using CorporateQnA.Services;
 using CorporateQnA.Services.Interfaces;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;

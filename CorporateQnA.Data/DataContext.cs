@@ -6,7 +6,7 @@ using System.Text;
 
 namespace CorporateQnA.Data
 {
-    class DataContext : IdentityDbContext<ApplicationUser,AppRole,int>
+    public class DataContext : IdentityDbContext<ApplicationUser,AppRole,int>
     {
         public DataContext(DbContextOptions<DataContext> options) : base(options)
         {

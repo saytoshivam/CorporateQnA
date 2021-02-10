@@ -1,4 +1,4 @@
-﻿using CorporateQnA.Models.Core;
+﻿using CorporateQnA.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
