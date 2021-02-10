@@ -1,6 +1,10 @@
 CREATE VIEW [CategoriesView]
 AS
-SELECT [Categories].[Id],[Categories].[Name],[Categories].[Description],[Categories].[CreatedOn],
+SELECT
+[Categories].[Id],
+[Categories].[Name],
+[Categories].[Description],
+[Categories].[CreatedOn],
 COUNT(CategoryId) AS [TotalTags],
 (
 SELECT COUNT(*) FROM [Questions] WHERE [Categoryid]= [Categories].[Id] AND DATEDIFF(DAY,AskedOn,GETDATE())<=6
