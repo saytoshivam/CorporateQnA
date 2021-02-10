@@ -16,11 +16,11 @@ namespace CorporateQnA.Services.Extensions
         {
             services.AddScoped<ITokenService, TokenService>();
             services.AddScoped<IAccountService, AccountService>();
-          //  services.AddScoped<ICategoryService, CategoryService>();
-          //  services.AddScoped<IQuestionService, QuestionService>();
+            services.AddScoped<ICategoryService, CategoryService>();
+            services.AddScoped<IQuestionService, QuestionService>();
             services.AddScoped<IUserService, UserService>();
-           services.AddScoped<IDbConnectionService, DbConnectionService>();
-          //  services.AddScoped<IAnswerService, AnswerService>();
+            services.AddScoped<IDbConnectionService, DbConnectionService>();
+            services.AddScoped<IAnswerService, AnswerService>();
          
             services.AddAutoMapper(typeof(AutoMapperProfile));
             services.AddDbContext<DataContext>(options =>
