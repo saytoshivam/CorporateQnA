@@ -1,9 +1,9 @@
 ﻿using CorporateQnA.Models;
-using CorporateQnA.Data;
 using System;
 using System.Collections.Generic;
 using System.Text;
 using AutoMapper;
+using Newtonsoft.Json;
 
 namespace CorporateQnA.Services
 {
@@ -11,14 +11,17 @@ namespace CorporateQnA.Services
     {
         public AutoMapperProfile()
         {
-            CreateMap<Data.Answer, Models.Answer>().ReverseMap();
-            CreateMap<Data.ApplicationUser, Models.ApplicationUser>().ReverseMap();
-            CreateMap<Data.Category, Models.Category>().ReverseMap();
-            CreateMap<Data.CategoryDetails, Models.CategoryDetails>().ReverseMap();
-            CreateMap<Data.Question, Models.Question>().ReverseMap();
-            CreateMap<Data.QuestionDetails, Models.QuestionDetails>().ReverseMap();
-            CreateMap<Data.Answer, Models.Answer>().ReverseMap();
-            CreateMap<Data.UserDetails, Models.UserDetails>().ReverseMap();
+            CreateMap<Data.Answer, Answer>().ReverseMap();
+            CreateMap<Data.ApplicationUser, ApplicationUser>().ReverseMap();
+            CreateMap<Data.Category, Category>().ReverseMap();
+            CreateMap<Data.CategoryDetails, CategoryDetails>().ReverseMap();
+            CreateMap<Data.Question, Question>().ReverseMap();
+            CreateMap<Data.Answer, Answer>().ReverseMap();
+            CreateMap<Data.UserDetails, UserDetails>().ReverseMap();
+
+            //CreateMap<QuestionDetails, Data.QuestionDetails>()
+            //.ForMember(dest => dest.AskedBy, opt => opt.MapFrom(
+            //    src => JsonConvert.SerializeObject(src.AskedBy)));
         }
     }
 }

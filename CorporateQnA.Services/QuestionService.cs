@@ -24,6 +24,7 @@ namespace CorporateQnA.Services
 
         public void PostQuestion(Question question)
         {
+            question.AskedOn = DateTime.Now;
             Db.Insert(Mapper.Map<Data.Question>(question));
         }
        

@@ -23,6 +23,7 @@ namespace CorporateQnA.Services
         }
         public void PostCategory(Category category)
         {
+            category.CreatedOn = DateTime.Now;
             Db.Insert(Mapper.Map<Data.Category>(category));
         }
 
