@@ -19,9 +19,11 @@ namespace CorporateQnA.Services
             CreateMap<Data.Answer, Answer>().ReverseMap();
             CreateMap<Data.UserDetails, UserDetails>().ReverseMap();
 
-            //CreateMap<QuestionDetails, Data.QuestionDetails>()
-            //.ForMember(dest => dest.AskedBy, opt => opt.MapFrom(
-            //    src => JsonConvert.SerializeObject(src.AskedBy)));
+            CreateMap<Data.QuestionDetails, QuestionDetails>()
+            .ForMember(dest => dest.ViewCount, opt => opt.MapFrom(
+                src => JsonConvert.DeserializeObject<List<int>>(src.ViewedBy).Count))
+            .ForMember(dest => dest.UpVoteCount, opt => opt.MapFrom(
+                src => JsonConvert.DeserializeObject<List<int>>(src.VotedBy).Count));
         }
     }
 }
