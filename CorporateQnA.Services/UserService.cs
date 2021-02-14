@@ -5,6 +5,7 @@ using Dapper;
 using Dapper.Contrib.Extensions;
 using Microsoft.Data.SqlClient;
 using Microsoft.Extensions.Configuration;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -26,7 +27,32 @@ namespace CorporateQnA.Services
 
         public IEnumerable<UserDetails> GetUsersDetails()
         {
-            throw new NotImplementedException();
+            var temp = Db.GetAll<Data.UserDetails>().ToList().GroupBy(x => new
+            {
+                x.Department,
+                x.UserImage,
+                x.Designation,
+                x.FullName,
+                x.Id,
+                x.JobLocation,
+                x.QuestionsAnswered,
+                x.QuestionsAsked,
+                x.QuestionsSolved
+            }).Select(b => new UserDetails
+            {
+                Id = b.Key.Id,
+                FullName = b.Key.FullName,
+                Likes = LikesCount(b.Select(x => x.LikedBy).ToList())
+
+            });
+            return temp;//Mapper.Map<UserDetails>(temp);
+        }
+        private static int  LikesCount(List<string> likes)
+        {
+            int likeCount = 0;
+            foreach (string like in likes)
+                likeCount += JsonConvert.DeserializeObject<List<int>>(like).Count;
+            return likeCount;
         }
     }
 }

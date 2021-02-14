@@ -21,18 +21,18 @@ namespace CorporateQnA.Services
             Mapper = mapper;
             Db = conn.GetDbConnection();
         }
-        public void PostAnswer(Models.Answer answer)
+
+        public void PostAnswer(Answer answer)
         {
             Db.Insert(answer);
         }
-        public IEnumerable<AnswerDetails> GetAnswersDetailsByQuestionId(int questionId)
-        { 
-            return Mapper.Map<IEnumerable<AnswerDetails>>(
-                Db.Query<IEnumerable<Data.StoredProcedureModels.AnswerDetails>>(
-                "GetAnswersDetailsByQuestionId", new { @QuestionId=questionId },
-                commandType:CommandType.StoredProcedure).ToList());
-          
+
+        public IEnumerable<AnswerDetails> GetAnswersDetailsByQuestionId(int id)
+        {
+            return Mapper.Map<IEnumerable<AnswerDetails>>(Db.Query<Data.StoredProcedureModels.AnswerDetails>("GetAnswersDetailsByQuestionId"
+               , new { QuestionId = id }, commandType: CommandType.StoredProcedure).ToList());
         }
+
         private void AddView(int userId,int questionId)
         {
             string query = "Select ViewedBy from Questions Where id=@Id";
