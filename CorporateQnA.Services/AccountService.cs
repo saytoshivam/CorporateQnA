@@ -20,19 +20,10 @@ namespace CorporateQnA.Services
             TokenRepository = tokenRepository;
         }
 
-            public async Task<Object> PostApplicationUser(ApplicationUser model)
-            {
-                var registerUser = Mapper.Map<Data.ApplicationUser>(model);
-                try
-                {
-                    var result = await UserManager.CreateAsync(registerUser, model.Password);
-                    return result;
-                }
-                catch (Exception)
-                {
-                    return "Issue occurs";
-                }
-            }
+        public async Task<Object> PostApplicationUser(ApplicationUser model)
+        { 
+            return await UserManager.CreateAsync(Mapper.Map<Data.ApplicationUser>(model),model.Password);
+        }
 
         public async Task<string> Login(Login login)
         {

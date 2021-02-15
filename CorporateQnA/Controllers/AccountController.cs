@@ -20,7 +20,7 @@ namespace CorporateQnA.Controllers
         [Route("register")]
         public async Task<Object> PostApplicationUser(ApplicationUser model)
         {
-            return await AccountService.PostApplicationUser(model);
+            return  await AccountService.PostApplicationUser(model);
         }
 
        
@@ -34,7 +34,7 @@ namespace CorporateQnA.Controllers
         [Route("login")]
         public async Task<string> Login(Login userCredentials)
         {
-            return await AccountService.Login(userCredentials);
+            return await  AccountService.Login(userCredentials);
         }
     }
 }

@@ -3,6 +3,7 @@ using CorporateQnA.Models;
 using CorporateQnA.Services.Interfaces;
 using Dapper;
 using Dapper.Contrib.Extensions;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -24,31 +25,34 @@ namespace CorporateQnA.Services
 
         public void PostAnswer(Answer answer)
         {
-            Db.Insert(answer);
+            Db.Insert(Mapper.Map<Data.Answer>(answer));
         }
 
-        public IEnumerable<AnswerDetails> GetAnswersDetailsByQuestionId(int id)
+        public IEnumerable<AnswerDetails> GetAnswersDetailsByQuestionId(int questionId)
         {
+            AddView(questionId);
             return Mapper.Map<IEnumerable<AnswerDetails>>(Db.Query<Data.StoredProcedureModels.AnswerDetails>("GetAnswersDetailsByQuestionId"
-               , new { QuestionId = id }, commandType: CommandType.StoredProcedure).ToList());
+               , new { QuestionId = questionId }, commandType: CommandType.StoredProcedure).ToList());
         }
 
-        private void AddView(int userId,int questionId)
+        private void AddView(int questionId)
         {
+            int userId = 12;//need to be fetch from token
             string query = "Select ViewedBy from Questions Where id=@Id";
 
-            List<int> viewedBy = StringToListConverter(Db.Query<string>(query,
-                new { Id = questionId }).Single()).ToList();
+            List<int> viewedBy= JsonConvert.DeserializeObject<List<int>>(Db.Query<string>(query, 
+                new { Id = questionId }).Single());
+
 
             if (!viewedBy.Contains(userId))
-            {
+            { 
                 viewedBy.Add(userId);
-                string viewedByString = ListToStringConverter(viewedBy);
+                string views = JsonConvert.SerializeObject(viewedBy);
                 Db.Execute(@"UPDATE [Questions] 
-                                 SET ViewedBy = @ViewedBy
-                                 WHERE Id = @QuestionId",
-                                 new { ViewedBy = viewedByString, QuestionId = questionId }
-                                 );
+                              SET ViewedBy = @ViewedBy
+                             WHERE Id = @QuestionId",
+                            new { ViewedBy = views, QuestionId = questionId }
+                );
             }
         }
 
@@ -68,10 +72,11 @@ namespace CorporateQnA.Services
                 }
             }
             else
+            {
                 likedBy.Remove(userId);
+            }
 
-            UpdateLikes(likedBy,answerId);
-            
+            UpdateLikes(likedBy,answerId);        
         }
 
         public void DislikeAnswer(int answerId)
@@ -96,44 +101,33 @@ namespace CorporateQnA.Services
         private List<int> GetLikesList(int answerId)
         {
             string query = "Select LikedBy from Answers Where id=@Id";
-            return StringToListConverter(Db.Query<string>(query,
-                 new { Id = answerId }).Single()).ToList();
+
+            return JsonConvert.DeserializeObject<List<int>>(Db.Query<string>(query,
+                 new { Id = answerId }).Single());
         }
         private List<int> GetDislikesList(int answerId)
         {
             string query = "Select dislikedBy from Answers Where id=@Id";
-            return StringToListConverter(Db.Query<string>(query,
-                new { Id = answerId }).Single()).ToList();
+            return (JsonConvert.DeserializeObject<List<int>>(Db.Query<string>(query,
+                new { Id = answerId }).Single()));
         }
         private void UpdateDislikes(List<int> dislikedBy,int answerId)
         {
-            string dislikedByString = ListToStringConverter(dislikedBy);
+            string dislikes = JsonConvert.SerializeObject(dislikedBy);
             Db.Execute(@"UPDATE [Answers] 
                                  SET dislikedBy = @dislikedBy
                                  WHERE Id = @AnswerId",
-                             new { dislikedBy = dislikedByString, AnswerId = answerId }
+                             new { dislikedBy = dislikes, AnswerId = answerId }
                              );
         }
         private void UpdateLikes(List<int> likedBy, int answerId)
         {
-            string likedByString = ListToStringConverter(likedBy);
+            string likes = JsonConvert.SerializeObject(likedBy);
             Db.Execute(@"UPDATE [Answers] 
                                  SET LikedBy = @LikedBy
                                  WHERE Id = @AnswerId",
-                             new { LikedBy = likedByString, AnswerId = answerId }
+                             new { LikedBy = likes, AnswerId = answerId }
                              );
-        }
-        private IEnumerable<int> StringToListConverter(string s)
-        {
-            if (s == null)
-                return new List<int>();
-            return s.Split(',').Select(int.Parse);
-        }
-        private string ListToStringConverter(List<int> list)
-        {
-            if (list.Count() == 0)
-                return null;
-            return string.Join(",", list.Select(x => x.ToString()));
         }
     }
 }

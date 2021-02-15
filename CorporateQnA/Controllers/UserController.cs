@@ -18,7 +18,6 @@ namespace CorporateQnA.Controllers
             UserRepository = userReository;
         }
 
-        [HttpGet]
         public IEnumerable<UserDetails> GetUsersDetails()
         {
             return UserRepository.GetUsersDetails();

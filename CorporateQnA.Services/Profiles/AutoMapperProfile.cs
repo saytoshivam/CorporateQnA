@@ -11,6 +11,7 @@ namespace CorporateQnA.Services
     {
         public AutoMapperProfile()
         {
+
             CreateMap<Data.Answer, Answer>().ReverseMap();
             CreateMap<Data.ApplicationUser, ApplicationUser>().ReverseMap();
             CreateMap<Data.Category, Category>().ReverseMap();

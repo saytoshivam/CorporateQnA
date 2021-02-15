@@ -1,5 +1,6 @@
 ﻿using CorporateQnA.Models;
 using CorporateQnA.Services.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -31,7 +32,8 @@ namespace CorporateQnA.Controllers
         {
             return AnswerRepositiory.GetAnswersDetailsByQuestionId(questionId);
         }
-       
+
+        [Authorize]
         [HttpPost]
         public void PostAnswer(Answer answer)
         {
