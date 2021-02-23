@@ -12,7 +12,7 @@ namespace CorporateQnA.Services.Interfaces
         public void PostQuestion(Question question);
         public IEnumerable<QuestionDetails> GetQuestionDetails();
         public IEnumerable<QuestionDetails> GetQuestionsByUserId(int id);
-        public bool ReportQuestion(int questionId);
-        public bool UpVoteQuestion(int questionId);
+        public bool ReportQuestion(int questionId,int userId);
+        public bool UpVoteQuestion(int questionId,int userId);
     }
 }

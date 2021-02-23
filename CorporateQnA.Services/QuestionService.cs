@@ -17,12 +17,10 @@ namespace CorporateQnA.Services
     {
         private readonly IDbConnection Db;
         private readonly IMapper Mapper;
-        private readonly ITokenService TokenService;
-        public QuestionService(IDbConnectionService conn, IMapper mapper,ITokenService tokenServie)
+        public QuestionService(IDbConnectionService conn, IMapper mapper)
         {
             Db = conn.GetDbConnection();
             Mapper = mapper;
-            TokenService = tokenServie;
         }
 
         public void PostQuestion(Question question)
@@ -42,9 +40,8 @@ namespace CorporateQnA.Services
                 , new {UserId=id }, commandType:CommandType.StoredProcedure).ToList());
         }
 
-        public bool ReportQuestion(int questionId)
+        public bool ReportQuestion(int questionId,int userId)
         {
-            int userId = 12;//need to be fetched from token
             string query = "Select ReportedBy from Questions Where id=@Id";
 
             List<int> reportedBy=JsonConvert.DeserializeObject<List<int>>(Db.Query<string>(query,
@@ -62,9 +59,9 @@ namespace CorporateQnA.Services
             return true;
         }
 
-        public bool UpVoteQuestion(int questionId)
+        public bool UpVoteQuestion(int questionId, int userId)
         {
-            int userId = 12;
+            
             string query = "Select VotedBy from Questions Where id=@Id";
 
             List<int> upVotedBy = JsonConvert.DeserializeObject<List<int>>(Db.Query<string>(query,

@@ -29,15 +29,15 @@ namespace CorporateQnA.Controllers
         {
             return QuestionRepository.GetQuestionDetails();
         }
-        [Route("report/{questionId}")]
-        public bool ReportQuestion(int questionId)
+        [Route("report/{questionId}/{userId}")]
+        public bool ReportQuestion(int questionId,int userId)
         {
-            return QuestionRepository.ReportQuestion(questionId);
+            return QuestionRepository.ReportQuestion(questionId,userId);
         }
-        [Route("upvote/{questionId}")]
-        public bool UpVoteQuestion(int questionId)
+        [Route("upvote/{questionId}/{userId}")]
+        public bool UpVoteQuestion(int questionId,int userId)
         {
-            return QuestionRepository.UpVoteQuestion(questionId);
+            return QuestionRepository.UpVoteQuestion(questionId,userId);
         }
     }
 }
