@@ -56,9 +56,8 @@ namespace CorporateQnA.Services
             }
         }
 
-        public void LikeAnswer(int answerId)
+        public void LikeAnswer(int answerId,int userId)
         {
-            int userId = 3;
             List<int> likedBy = GetLikesList(answerId);
 
             if (!likedBy.Contains(userId))
@@ -79,9 +78,8 @@ namespace CorporateQnA.Services
             UpdateLikes(likedBy,answerId);        
         }
 
-        public void DislikeAnswer(int answerId)
+        public void DislikeAnswer(int answerId,int userId)
         {
-            int userId = 3;
             List<int> dislikedBy = GetDislikesList(answerId);
             if (!dislikedBy.Contains(userId))
             {
@@ -101,15 +99,21 @@ namespace CorporateQnA.Services
         private List<int> GetLikesList(int answerId)
         {
             string query = "Select LikedBy from Answers Where id=@Id";
+            var likes = Db.Query<string>(query,
+                 new { Id = answerId }).Single();
+            if (likes == null)
+                return new List<int>();
 
-            return JsonConvert.DeserializeObject<List<int>>(Db.Query<string>(query,
-                 new { Id = answerId }).Single());
+            return JsonConvert.DeserializeObject<List<int>>(likes);
         }
         private List<int> GetDislikesList(int answerId)
         {
             string query = "Select dislikedBy from Answers Where id=@Id";
-            return (JsonConvert.DeserializeObject<List<int>>(Db.Query<string>(query,
-                new { Id = answerId }).Single()));
+            var dislikes= Db.Query<string>(query,
+                new { Id = answerId }).Single();
+            if (dislikes == null)
+                return new List<int>();
+            return (JsonConvert.DeserializeObject<List<int>>(dislikes));
         }
         private void UpdateDislikes(List<int> dislikedBy,int answerId)
         {

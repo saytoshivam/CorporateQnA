@@ -17,15 +17,15 @@ namespace CorporateQnA.Controllers
         {
             AnswerRepositiory = answerRepositiory;
         }
-        [Route("like/{answerId}")]
-        public void LikeAnswer(int answerId)
+        [Route("like/{answerId}/{userId}")]
+        public void LikeAnswer(int answerId,int userId)
         {
-            AnswerRepositiory.LikeAnswer(answerId);
+            AnswerRepositiory.LikeAnswer(answerId,userId);
         }
-        [Route("dislike/{answerId}")]
-        public void DislikeAnswer(int answerId)
+        [Route("dislike/{answerId}/{userId}")]
+        public void DislikeAnswer(int answerId,int userId)
         {
-            AnswerRepositiory.DislikeAnswer(answerId);
+            AnswerRepositiory.DislikeAnswer(answerId,userId);
         }
         [Route("{questionId}")]
         public IEnumerable<AnswerDetails> GetAnswersDetailsByQuestionId(int questionId)

@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using CorporateQnA.Services.Interfaces;
 using Microsoft.EntityFrameworkCore;
 using CorporateQnA.Models;
+using Microsoft.AspNetCore.Http;
 
 namespace CorporateQnA.Services
 {
@@ -29,7 +30,9 @@ namespace CorporateQnA.Services
         {
             var user = await UserManager.FindByNameAsync(login.UserName);
             if (user != null && await UserManager.CheckPasswordAsync(user, login.Password))
-               return  TokenRepository.CreateToken(user);
+            {
+                TokenRepository.CreateToken(user);
+            }
             return null;
         }
     }
