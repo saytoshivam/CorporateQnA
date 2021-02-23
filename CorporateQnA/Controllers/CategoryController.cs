@@ -11,22 +11,20 @@ namespace CorporateQnA.Controllers
 {
     public class CategoryController : BaseApiController
     {
-        private readonly ICategoryService CategoryRepository;
-        public CategoryController(ICategoryService categoryRepository)
+        private readonly ICategoryService CategoryService;
+        public CategoryController(ICategoryService categoryService)
         {
-            CategoryRepository = categoryRepository;
+            CategoryService = categoryService;
         }
 
-        [HttpPost]
         public void PostCategory(Category category)
         {
-            CategoryRepository.PostCategory(category);
+            CategoryService.PostCategory(category);
         }
        
-        [HttpGet]
         public IEnumerable<CategoryDetails> GetCategoryDetails()
         {
-            return CategoryRepository.GetCategoryDetails();
+            return CategoryService.GetCategoryDetails();
         }
     }
 }

@@ -11,33 +11,32 @@ namespace CorporateQnA.Controllers
 {
     public class AnswerController : BaseApiController
     {
-        private readonly IAnswerService AnswerRepositiory;
+        private readonly IAnswerService AnswerService;
        
-        public AnswerController(IAnswerService answerRepositiory)
+        public AnswerController(IAnswerService answerService)
         {
-            AnswerRepositiory = answerRepositiory;
+            AnswerService = answerService;
         }
         [Route("like/{answerId}/{userId}")]
         public void LikeAnswer(int answerId,int userId)
         {
-            AnswerRepositiory.LikeAnswer(answerId,userId);
+            AnswerService.LikeAnswer(answerId,userId);
         }
         [Route("dislike/{answerId}/{userId}")]
         public void DislikeAnswer(int answerId,int userId)
         {
-            AnswerRepositiory.DislikeAnswer(answerId,userId);
+            AnswerService.DislikeAnswer(answerId,userId);
         }
         [Route("{questionId}")]
         public IEnumerable<AnswerDetails> GetAnswersDetailsByQuestionId(int questionId)
         {
-            return AnswerRepositiory.GetAnswersDetailsByQuestionId(questionId);
+            return AnswerService.GetAnswersDetailsByQuestionId(questionId);
         }
 
         [Authorize]
-        [HttpPost]
         public void PostAnswer(Answer answer)
         {
-            AnswerRepositiory.PostAnswer(answer);
+            AnswerService.PostAnswer(answer);
         }
     }
 }

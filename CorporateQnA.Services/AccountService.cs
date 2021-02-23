@@ -11,14 +11,14 @@ namespace CorporateQnA.Services
 {
     class AccountService:IAccountService
     {
-        private readonly ITokenService TokenRepository;
+        private readonly ITokenService TokenService;
         private readonly UserManager<Data.ApplicationUser> UserManager;
         private readonly IMapper Mapper;
-        public AccountService(ITokenService tokenRepository,IMapper mapper, UserManager<Data.ApplicationUser> userManager)
+        public AccountService(ITokenService tokenService,IMapper mapper, UserManager<Data.ApplicationUser> userManager)
         {
             UserManager = userManager;
             Mapper = mapper;
-            TokenRepository = tokenRepository;
+            TokenService = tokenService;
         }
 
         public async Task<Object> PostApplicationUser(ApplicationUser model)
@@ -31,7 +31,7 @@ namespace CorporateQnA.Services
             var user = await UserManager.FindByNameAsync(login.UserName);
             if (user != null && await UserManager.CheckPasswordAsync(user, login.Password))
             {
-                TokenRepository.CreateToken(user);
+                TokenService.CreateToken(user);
             }
             return null;
         }

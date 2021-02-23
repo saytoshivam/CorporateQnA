@@ -15,7 +15,7 @@ namespace CorporateQnA.Services
         private readonly SymmetricSecurityKey Key;
         public TokenService(IConfiguration config)
         {
-            Key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(config["TokenKey"]));
+            Key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("Its 16 digit Secret Code"));
         }
         public string CreateToken(ApplicationUser user)
         {

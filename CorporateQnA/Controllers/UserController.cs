@@ -12,15 +12,15 @@ namespace CorporateQnA.Controllers
 {
     public class UserController : BaseApiController
     {
-        private readonly IUserService UserRepository;
-        public UserController(IUserService userReository)
+        private readonly IUserService UserService;
+        public UserController(IUserService userService)
         {
-            UserRepository = userReository;
+            UserService = userService;
         }
 
         public IEnumerable<UserDetails> GetUsersDetails()
         {
-            return UserRepository.GetUsersDetails();
+            return UserService.GetUsersDetails();
         }
     }
 }

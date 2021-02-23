@@ -23,14 +23,6 @@ namespace CorporateQnA.Controllers
             return  await AccountService.PostApplicationUser(model);
         }
 
-       
-        [Route("testing")]
-        [Authorize]
-        public string ForTesting()
-        {
-            return "Working Fine";
-        }
-
         [Route("login")]
         public async Task<string> Login(Login userCredentials)
         {
