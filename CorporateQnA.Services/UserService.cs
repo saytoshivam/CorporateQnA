@@ -27,16 +27,16 @@ namespace CorporateQnA.Services
 
         public IEnumerable<UserDetails> GetUsersDetails()
         {
-            IEnumerable<UserDetails> x = Mapper.Map<IEnumerable<UserDetails>>(
+            IEnumerable<UserDetails> userData = Mapper.Map<IEnumerable<UserDetails>>(
                 Db.GetAll<Data.UserDetails>().ToList());
            
 
-           var userLikeCount =  x.GroupBy(p => p.Id, p => p.Likes, (key, g) => new { id = key, likes = g.ToList().Sum(z=>z)});
-           var userDislikeCount = x.GroupBy(p => p.Id, p => p.DisLikes, (key, g) => new { id = key, dislikes = g.ToList().Sum(z => z) });
+           var userLikeCount =  userData.GroupBy(p => p.Id, p => p.Likes, (key, g) => new { id = key, likes = g.ToList().Sum(z=>z)});
+           var userDislikeCount = userData.GroupBy(p => p.Id, p => p.DisLikes, (key, g) => new { id = key, dislikes = g.ToList().Sum(z => z) });
 
             var joined = from i in userLikeCount join j in userDislikeCount on i.id equals j.id select new { Id = i.id, likes = i.likes, dislikes = j.dislikes };
 
-            var userData = from i in joined join j in x on i.Id equals j.Id select new UserDetails
+            var userDetails = from i in joined join j in userData on i.Id equals j.Id select new UserDetails
             { 
                 Id = i.Id, 
                 FullName = j.FullName, 
@@ -51,7 +51,7 @@ namespace CorporateQnA.Services
                 QuestionsAnswered = j.QuestionsAnswered 
             };
 
-            return userData.GroupBy(e=>e.Id).Select(e=>e.First());
+            return userDetails.GroupBy(e=>e.Id).Select(e=>e.First());
 
         }
     }
