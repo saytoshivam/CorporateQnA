@@ -27,8 +27,31 @@ namespace CorporateQnA.Services
 
         public IEnumerable<UserDetails> GetUsersDetails()
         {
-            return Mapper.Map<IEnumerable<UserDetails>>(
+            IEnumerable<UserDetails> x = Mapper.Map<IEnumerable<UserDetails>>(
                 Db.GetAll<Data.UserDetails>().ToList());
+           
+
+           var userLikeCount =  x.GroupBy(p => p.Id, p => p.Likes, (key, g) => new { id = key, likes = g.ToList().Sum(z=>z)});
+           var userDislikeCount = x.GroupBy(p => p.Id, p => p.DisLikes, (key, g) => new { id = key, dislikes = g.ToList().Sum(z => z) });
+
+            var joined = from i in userLikeCount join j in userDislikeCount on i.id equals j.id select new { Id = i.id, likes = i.likes, dislikes = j.dislikes };
+
+            var userData = from i in joined join j in x on i.Id equals j.Id select new UserDetails
+            { 
+                Id = i.Id, 
+                FullName = j.FullName, 
+                JobLocation = j.JobLocation,
+                Department = j.Department,
+                Designation = j.Designation,
+                UserImage = j.UserImage,
+                Likes = i.likes,
+                DisLikes = i.dislikes,
+                QuestionsAsked = j.QuestionsAsked,
+                QuestionsSolved = j.QuestionsSolved, 
+                QuestionsAnswered = j.QuestionsAnswered 
+            };
+
+            return userData.GroupBy(e=>e.Id).Select(e=>e.First());
 
         }
     }
