@@ -36,7 +36,9 @@ namespace CorporateQnA.Services
                 int askedBy = Db.QueryFirstOrDefault<int>(query);
                 if(askedBy==userId)
                 {
-                   //It is sending multiple request to data base so i wil try to make a store procedure for it 
+                    bool isBestSolution=Db.QueryFirstOrDefault<bool>($"Select [IsBestSolution] from Answers where id={answerId}");
+                    query = $"Update [Answers] SET IsBestSolution = '{!isBestSolution}' where id= {answerId}";
+                    Db.Execute(query);
                 }
 
             }
@@ -70,11 +72,8 @@ namespace CorporateQnA.Services
             { 
                 viewedBy.Add(userId);
                 views = JsonConvert.SerializeObject(viewedBy);
-                Db.Execute(@"UPDATE [Questions] 
-                              SET ViewedBy = @ViewedBy
-                             WHERE Id = @QuestionId",
-                            new { ViewedBy = views, QuestionId = questionId }
-                );
+                query = $"UPDATE [Questions]  SET ViewedBy = '{views}' WHERE Id = {questionId}";
+                Db.Execute(query);
             }
         }
 
@@ -142,20 +141,14 @@ namespace CorporateQnA.Services
         private void UpdateDislikes(List<int> dislikedBy,int answerId)
         {
             string dislikes = JsonConvert.SerializeObject(dislikedBy);
-            Db.Execute(@"UPDATE [Answers] 
-                                 SET dislikedBy = @dislikedBy
-                                 WHERE Id = @AnswerId",
-                             new { dislikedBy = dislikes, AnswerId = answerId }
-                             );
+            string query = $"UPDATE [Answers]  SET dislikedBy = '{dislikes}'  WHERE Id = {answerId}";
+            Db.Execute(query);
         }
         private void UpdateLikes(List<int> likedBy, int answerId)
         {
             string likes = JsonConvert.SerializeObject(likedBy);
-            Db.Execute(@"UPDATE [Answers] 
-                                 SET LikedBy = @LikedBy
-                                 WHERE Id = @AnswerId",
-                             new { LikedBy = likes, AnswerId = answerId }
-                             );
+            string query = $"UPDATE [Answers]  SET LikedBy = '{likes}'  WHERE Id = {answerId}";
+            Db.Execute(query);
         }
     }
 }

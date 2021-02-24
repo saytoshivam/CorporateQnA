@@ -60,7 +60,7 @@ namespace CorporateQnA.Services
             reportedBy.Add(userId);
             reports=JsonConvert.SerializeObject(reportedBy);
 
-            query = $"UPDATE [Questions]  SET ReportedBy = {reports} WHERE Id = {questionId}";
+            query = $"UPDATE [Questions]  SET ReportedBy = '{reports}' WHERE Id = {questionId}";
             Db.Execute(query);
 
             return true;
@@ -82,11 +82,9 @@ namespace CorporateQnA.Services
             upVotedBy.Add(userId);
 
             upVotes=JsonConvert.SerializeObject(upVotedBy);
-            Db.Execute(@"UPDATE [Questions] 
-                                 SET VotedBy = @UpVotedBy
-                                 WHERE Id = @QuestionId",
-                                new { UpVotedBy = upVotes, QuestionId = questionId }
-                                );
+
+             query = $"UPDATE [Questions] SET VotedBy = '{upVotes}' WHERE Id = {questionId}";
+             Db.Execute(query);
               return true;
         }
     }
