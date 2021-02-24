@@ -39,14 +39,18 @@ namespace CorporateQnA.Services
         {
             string query = "Select ViewedBy from Questions Where id=@Id";
 
-            List<int> viewedBy= JsonConvert.DeserializeObject<List<int>>(Db.Query<string>(query, 
-                new { Id = questionId }).Single());
+            string views = Db.QueryFirstOrDefault<string>(query,new { Id = questionId });
+            List<int> viewedBy = new List<int>();
+            if(views!=null)
+            {
+                viewedBy = JsonConvert.DeserializeObject<List<int>>(views);
+            }
 
 
             if (!viewedBy.Contains(userId))
             { 
                 viewedBy.Add(userId);
-                string views = JsonConvert.SerializeObject(viewedBy);
+                views = JsonConvert.SerializeObject(viewedBy);
                 Db.Execute(@"UPDATE [Questions] 
                               SET ViewedBy = @ViewedBy
                              WHERE Id = @QuestionId",
