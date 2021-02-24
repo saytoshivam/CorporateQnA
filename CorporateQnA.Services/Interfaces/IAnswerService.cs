@@ -16,5 +16,7 @@ namespace CorporateQnA.Services.Interfaces
         public void LikeAnswer(int answerId,int userId);
 
         public void DislikeAnswer(int answerId,int userId);
+
+        public void MarkAsBestSolution(int answerId, int userId);
     }
 }

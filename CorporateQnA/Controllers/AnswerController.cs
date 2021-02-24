@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 
 namespace CorporateQnA.Controllers
 {
+    [Route("api/[controller]/{userId}")]
     public class AnswerController : BaseApiController
     {
         private readonly IAnswerService AnswerService;
@@ -19,31 +20,37 @@ namespace CorporateQnA.Controllers
         }
 
         [Authorize]
-        [HttpPost("like/{answerId}/{userId}")]
+        [HttpPost("like/{answerId}")]
         public void LikeAnswer(int answerId,int userId)
         {
             AnswerService.LikeAnswer(answerId,userId);
         }
 
         [Authorize]
-        [HttpPost("dislike/{answerId}/{userId}")]
+        [HttpPost("dislike/{answerId}")]
         public void DislikeAnswer(int answerId,int userId)
         {
             AnswerService.DislikeAnswer(answerId,userId);
         }
 
         [Authorize]
-        [HttpGet("{questionId}/{userId}")]
+        [HttpGet("details/{questionId}")]
         public IEnumerable<AnswerDetails> GetAnswersDetailsByQuestionId(int questionId,int userId)
         {
             return AnswerService.GetAnswersDetailsByQuestionId(questionId,userId);
         }
 
         [Authorize]
-        [HttpPost]
+        [HttpPost("~/api/answer")]
         public void PostAnswer(Answer answer)
         {
             AnswerService.PostAnswer(answer);
+        }
+
+        [HttpPost("marksolution/{answerId}")]
+        public void MarkAsBestSolution(int userId,int answerId)
+        {
+            AnswerService.MarkAsBestSolution(userId,answerId);
         }
     }
 }

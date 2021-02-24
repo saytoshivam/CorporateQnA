@@ -44,8 +44,8 @@ namespace CorporateQnA.Services
 
         public bool ReportQuestion(int questionId,int userId)
         {
-            string query = "Select ReportedBy from Questions Where id=@Id";
-            string reports = Db.QueryFirstOrDefault<string>(query,new { Id = questionId });
+            string query = $"Select ReportedBy from Questions Where id={questionId}";
+            string reports = Db.QueryFirstOrDefault<string>(query);
 
             List<int> reportedBy = new List<int>();
 
@@ -60,8 +60,8 @@ namespace CorporateQnA.Services
             reportedBy.Add(userId);
             reports=JsonConvert.SerializeObject(reportedBy);
 
-            query = "UPDATE [Questions]  SET ReportedBy = @ReportedBy WHERE Id = @QuestionId";
-            Db.Execute(query,new { QuestionId=questionId, ReportedBy=reports });
+            query = $"UPDATE [Questions]  SET ReportedBy = {reports} WHERE Id = {questionId}";
+            Db.Execute(query);
 
             return true;
         }
@@ -69,8 +69,8 @@ namespace CorporateQnA.Services
         public bool UpVoteQuestion(int questionId, int userId)
         {
             
-            string query = "Select VotedBy from Questions Where id=@Id";
-            string upVotes=  Db.QueryFirstOrDefault<string>(query,new { Id = questionId });
+            string query = $"Select VotedBy from Questions Where id={questionId}";
+            string upVotes=  Db.QueryFirstOrDefault<string>(query);
             List<int> upVotedBy = new List<int>();
             if (upVotes != null)
             {

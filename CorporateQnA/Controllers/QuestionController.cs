@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 
 namespace CorporateQnA.Controllers
 {
+    [Route("api/[controller]/{userId}")]
     public class QuestionController : BaseApiController
     {
         private readonly IQuestionService QuestionService;
@@ -18,35 +19,35 @@ namespace CorporateQnA.Controllers
         }
 
         [Authorize]
-        [HttpPost]
+        [HttpPost("~/api/question")]
         public void PostQuestion(Question question)
         {
             QuestionService.PostQuestion(question);
         }
 
         [Authorize]
-        [HttpGet("userid/{id}")]
-        public IEnumerable<QuestionDetails> GetQuestionsByUserId(int id)
+        [HttpGet]
+        public IEnumerable<QuestionDetails> GetQuestionsByUserId(int userId)
         {
-            return QuestionService.GetQuestionsByUserId(id);
+            return QuestionService.GetQuestionsByUserId(userId);
         }
 
         [Authorize]
-        [HttpGet]
+        [HttpGet("~/api/question/details")]
         public IEnumerable<QuestionDetails> GetQuestionDetails()
         {
             return QuestionService.GetQuestionDetails();
         }
 
         [Authorize]
-        [HttpPost("report/{questionId}/{userId}")]
+        [HttpPost("report/{questionId}")]
         public bool ReportQuestion(int questionId,int userId)
         {
             return QuestionService.ReportQuestion(questionId,userId);
         }
 
         [Authorize]
-        [HttpPost("upvote/{questionId}/{userId}")]
+        [HttpPost("upvote/{questionId}")]
         public bool UpVoteQuestion(int questionId,int userId)
         {
             return QuestionService.UpVoteQuestion(questionId,userId);

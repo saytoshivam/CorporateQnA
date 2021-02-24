@@ -21,7 +21,7 @@ namespace CorporateQnA.Controllers
 
 
         [Authorize]
-        [HttpGet]
+        [HttpGet("details")]
         public IEnumerable<UserDetails> GetUsersDetails()
         {
             return UserService.GetUsersDetails();

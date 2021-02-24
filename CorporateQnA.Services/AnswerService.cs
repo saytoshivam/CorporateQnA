@@ -25,8 +25,26 @@ namespace CorporateQnA.Services
             Db = conn.GetDbConnection();
         }
 
+        public void MarkAsBestSolution(int userId,int answerId)
+        {
+            string query = $"Select questionId from Answers where id={answerId}";
+            int questionId=Db.QueryFirstOrDefault<int>(query);
+
+            if(questionId!=0)
+            {
+                query = $"Select askedBy from Questions where id={questionId}";
+                int askedBy = Db.QueryFirstOrDefault<int>(query);
+                if(askedBy==userId)
+                {
+                   //It is sending multiple request to data base so i wil try to make a store procedure for it 
+                }
+
+            }
+        }
+
         public void PostAnswer(Answer answer)
         {
+            answer.AnsweredOn = DateTime.Now;
             Db.Insert(Mapper.Map<Data.Answer>(answer));
         }
 

@@ -19,14 +19,14 @@ namespace CorporateQnA.Controllers
         }
 
         [Authorize]
-        [HttpPost("{category}")]
+        [HttpPost]
         public void PostCategory(Category category)
         {
             CategoryService.PostCategory(category);
         }
 
         [Authorize]
-        [HttpGet]
+        [HttpGet("details")]
         public IEnumerable<CategoryDetails> GetCategoryDetails()
         {
             return CategoryService.GetCategoryDetails();
