@@ -15,14 +15,21 @@ namespace CorporateQnA.Services.Extensions
         public static IServiceCollection AddApplicationService(this IServiceCollection services, IConfiguration config)
         {
             services.AddScoped<ITokenService, TokenService>();
+
             services.AddScoped<IAccountService, AccountService>();
+
             services.AddScoped<ICategoryService, CategoryService>();
+
             services.AddScoped<IQuestionService, QuestionService>();
+
             services.AddScoped<IUserService, UserService>();
+
             services.AddScoped<IDbConnectionService, DbConnectionService>();
+
             services.AddScoped<IAnswerService, AnswerService>();
          
             services.AddAutoMapper(typeof(AutoMapperProfile));
+
             services.AddDbContext<DataContext>(options =>
             {
                 options.UseSqlServer(config.GetConnectionString("CorporateQnAContext"));

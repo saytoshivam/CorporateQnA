@@ -10,9 +10,13 @@ namespace CorporateQnA.Services.Interfaces
     public interface IQuestionService
     {
         public void PostQuestion(Question question);
+
         public IEnumerable<QuestionDetails> GetQuestionDetails();
+
         public IEnumerable<QuestionDetails> GetQuestionsByUserId(int id);
+
         public bool ReportQuestion(int questionId,int userId);
+
         public bool UpVoteQuestion(int questionId,int userId);
     }
 }

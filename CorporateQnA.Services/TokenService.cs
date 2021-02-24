@@ -13,10 +13,12 @@ namespace CorporateQnA.Services
     public class TokenService : ITokenService
     {
         private readonly SymmetricSecurityKey Key;
+
         public TokenService(IConfiguration config)
         {
-            Key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("Its 16 digit Secret Code"));
+            Key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(config["AuthTokenKey"]));
         }
+
         public string CreateToken(ApplicationUser user)
         {
             var claims = new List<Claim>

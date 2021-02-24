@@ -13,9 +13,13 @@ namespace CorporateQnA.Services
         {
 
             CreateMap<Data.Answer, Answer>().ReverseMap();
+
             CreateMap<Data.ApplicationUser, ApplicationUser>().ReverseMap();
+
             CreateMap<Data.Category, Category>().ReverseMap();
+
             CreateMap<Data.CategoryDetails, CategoryDetails>().ReverseMap();
+
             CreateMap<Data.Question, Question>().ReverseMap();
 
             CreateMap<Data.StoredProcedureModels.AnswerDetails, AnswerDetails>()

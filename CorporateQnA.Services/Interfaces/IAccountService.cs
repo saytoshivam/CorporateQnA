@@ -10,6 +10,7 @@ namespace CorporateQnA.Services.Interfaces
     public interface IAccountService
     {
         public  Task<Object> PostApplicationUser(ApplicationUser model);
+
         public  Task<string> Login(Login login);
     }
 }

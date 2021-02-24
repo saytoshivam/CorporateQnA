@@ -18,7 +18,9 @@ namespace CorporateQnA.Services
     class UserService:IUserService
     {
         private readonly IDbConnection Db;
+
         private readonly IMapper Mapper;
+
         public UserService(IDbConnectionService conn, IMapper mapper)
         {
             Mapper = mapper;
@@ -52,7 +54,6 @@ namespace CorporateQnA.Services
             };
 
             return userDetails.GroupBy(e=>e.Id).Select(e=>e.First());
-
         }
     }
 }

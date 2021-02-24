@@ -10,6 +10,7 @@ namespace CorporateQnA.Services.Interfaces
     public interface ICategoryService
     {
         public void PostCategory(Category category);
+
         public IEnumerable<CategoryDetails> GetCategoryDetails();
     }
 }

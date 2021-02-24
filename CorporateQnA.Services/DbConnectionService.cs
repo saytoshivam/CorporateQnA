@@ -13,11 +13,13 @@ namespace CorporateQnA.Services
     class DbConnectionService:IDbConnectionService
     {
         private readonly IDbConnection Db;
+
         public DbConnectionService(IConfiguration config)
         {
             Db = new SqlConnection(config.GetConnectionString("CorporateQnAContext"));
             Db.Open();
         }
+
         public IDbConnection GetDbConnection()
         { 
             return Db;

@@ -12,8 +12,11 @@ namespace CorporateQnA.Services
     class AccountService:IAccountService
     {
         private readonly ITokenService TokenService;
+
         private readonly UserManager<Data.ApplicationUser> UserManager;
+
         private readonly IMapper Mapper;
+
         public AccountService(ITokenService tokenService,IMapper mapper, UserManager<Data.ApplicationUser> userManager)
         {
             UserManager = userManager;

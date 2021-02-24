@@ -16,7 +16,9 @@ namespace CorporateQnA.Services
     class QuestionService : IQuestionService
     {
         private readonly IDbConnection Db;
+
         private readonly IMapper Mapper;
+
         public QuestionService(IDbConnectionService conn, IMapper mapper)
         {
             Db = conn.GetDbConnection();

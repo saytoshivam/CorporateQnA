@@ -16,7 +16,9 @@ namespace CorporateQnA.Services
     class AnswerService : IAnswerService
     {
         private readonly IDbConnection Db;
+
         private readonly IMapper Mapper;
+
         public AnswerService(IDbConnectionService conn,IMapper mapper)
         {
             Mapper = mapper;
@@ -37,15 +39,14 @@ namespace CorporateQnA.Services
 
         private void AddView(int questionId,int userId)
         {
-            string query = "Select ViewedBy from Questions Where id=@Id";
+            string query = $"Select ViewedBy from Questions Where id={questionId}";
 
-            string views = Db.QueryFirstOrDefault<string>(query,new { Id = questionId });
+            string views = Db.QueryFirstOrDefault<string>(query);
             List<int> viewedBy = new List<int>();
             if(views!=null)
             {
                 viewedBy = JsonConvert.DeserializeObject<List<int>>(views);
             }
-
 
             if (!viewedBy.Contains(userId))
             { 
@@ -99,20 +100,22 @@ namespace CorporateQnA.Services
 
             UpdateDislikes(dislikedBy,answerId);
         }
+
         private List<int> GetLikesList(int answerId)
         {
-            string query = "Select LikedBy from Answers Where id=@Id";
-            var likes = Db.QueryFirstOrDefault<string>(query, new { Id = answerId });
+            string query = $"Select LikedBy from Answers Where id={answerId}";
+            var likes = Db.QueryFirstOrDefault<string>(query);
             if (likes == null)
                 return new List<int>();
 
             return JsonConvert.DeserializeObject<List<int>>(likes);
         }
+
         private List<int> GetDislikesList(int answerId)
         {
-            string query = "Select dislikedBy from Answers Where id=@Id";
+            string query = $"Select dislikedBy from Answers Where id={answerId}";
 
-            var dislikes = Db.QueryFirstOrDefault<string>(query, new { Id = answerId });
+            var dislikes = Db.QueryFirstOrDefault<string>(query);
 
             if (dislikes == null)
                 return new List<int>();

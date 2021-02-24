@@ -15,12 +15,15 @@ namespace CorporateQnA.Services
     class CategoryService:ICategoryService
     {
         private readonly IDbConnection Db;
+
         private readonly IMapper Mapper;
+
         public CategoryService(IDbConnectionService conn, IMapper mapper)
         {
             Db = conn.GetDbConnection();
             Mapper = mapper;
         }
+
         public void PostCategory(Category category)
         {
             category.CreatedOn = DateTime.Now;
