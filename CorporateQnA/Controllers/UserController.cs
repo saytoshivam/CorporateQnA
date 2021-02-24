@@ -1,5 +1,6 @@
 ﻿using CorporateQnA.Models;
 using CorporateQnA.Services.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -18,6 +19,9 @@ namespace CorporateQnA.Controllers
             UserService = userService;
         }
 
+
+        [Authorize]
+        [HttpGet]
         public IEnumerable<UserDetails> GetUsersDetails()
         {
             return UserService.GetUsersDetails();

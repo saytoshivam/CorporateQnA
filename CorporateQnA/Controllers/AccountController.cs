@@ -17,13 +17,13 @@ namespace CorporateQnA.Controllers
         {
             AccountService = accountService;
         }
-        [Route("register")]
+        [HttpPost("register")]
         public async Task<Object> PostApplicationUser(ApplicationUser model)
         {
             return  await AccountService.PostApplicationUser(model);
         }
 
-        [Route("login")]
+        [HttpPost("login")]
         public async Task<string> Login(Login userCredentials)
         {
             return await  AccountService.Login(userCredentials);

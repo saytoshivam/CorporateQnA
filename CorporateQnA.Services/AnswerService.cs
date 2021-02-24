@@ -28,16 +28,15 @@ namespace CorporateQnA.Services
             Db.Insert(Mapper.Map<Data.Answer>(answer));
         }
 
-        public IEnumerable<AnswerDetails> GetAnswersDetailsByQuestionId(int questionId)
+        public IEnumerable<AnswerDetails> GetAnswersDetailsByQuestionId(int questionId,int userId)
         {
-            AddView(questionId);
+            AddView(questionId,userId);
             return Mapper.Map<IEnumerable<AnswerDetails>>(Db.Query<Data.StoredProcedureModels.AnswerDetails>("GetAnswersDetailsByQuestionId"
                , new { QuestionId = questionId }, commandType: CommandType.StoredProcedure).ToList());
         }
 
-        private void AddView(int questionId)
+        private void AddView(int questionId,int userId)
         {
-            int userId = 12;//need to be fetch from token
             string query = "Select ViewedBy from Questions Where id=@Id";
 
             List<int> viewedBy= JsonConvert.DeserializeObject<List<int>>(Db.Query<string>(query, 
@@ -99,8 +98,7 @@ namespace CorporateQnA.Services
         private List<int> GetLikesList(int answerId)
         {
             string query = "Select LikedBy from Answers Where id=@Id";
-            var likes = Db.Query<string>(query,
-                 new { Id = answerId }).Single();
+            var likes = Db.QueryFirstOrDefault<string>(query, new { Id = answerId });
             if (likes == null)
                 return new List<int>();
 
@@ -109,8 +107,9 @@ namespace CorporateQnA.Services
         private List<int> GetDislikesList(int answerId)
         {
             string query = "Select dislikedBy from Answers Where id=@Id";
-            var dislikes= Db.Query<string>(query,
-                new { Id = answerId }).Single();
+
+            var dislikes = Db.QueryFirstOrDefault<string>(query, new { Id = answerId });
+
             if (dislikes == null)
                 return new List<int>();
             return (JsonConvert.DeserializeObject<List<int>>(dislikes));

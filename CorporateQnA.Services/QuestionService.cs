@@ -43,15 +43,20 @@ namespace CorporateQnA.Services
         public bool ReportQuestion(int questionId,int userId)
         {
             string query = "Select ReportedBy from Questions Where id=@Id";
+            string reports = Db.QueryFirstOrDefault<string>(query,new { Id = questionId });
 
-            List<int> reportedBy=JsonConvert.DeserializeObject<List<int>>(Db.Query<string>(query,
-                new { Id = questionId }).Single());
+            List<int> reportedBy = new List<int>();
+
+            if(reports!=null)
+            {
+                reportedBy= JsonConvert.DeserializeObject<List<int>>(reports);
+            }
 
             if (reportedBy.Contains(userId))
                 return false;
 
             reportedBy.Add(userId);
-            string reports=JsonConvert.SerializeObject(reportedBy);
+            reports=JsonConvert.SerializeObject(reportedBy);
 
             query = "UPDATE [Questions]  SET ReportedBy = @ReportedBy WHERE Id = @QuestionId";
             Db.Execute(query,new { QuestionId=questionId, ReportedBy=reports });
@@ -63,15 +68,18 @@ namespace CorporateQnA.Services
         {
             
             string query = "Select VotedBy from Questions Where id=@Id";
-
-            List<int> upVotedBy = JsonConvert.DeserializeObject<List<int>>(Db.Query<string>(query,
-                new { Id = questionId }).Single());
+            string upVotes=  Db.QueryFirstOrDefault<string>(query,new { Id = questionId });
+            List<int> upVotedBy = new List<int>();
+            if (upVotes != null)
+            {
+                upVotedBy = JsonConvert.DeserializeObject<List<int>>(upVotes);
+            }
 
             if (upVotedBy.Contains(userId))
                 return false;
             upVotedBy.Add(userId);
 
-            string upVotes=JsonConvert.SerializeObject(upVotedBy);
+            upVotes=JsonConvert.SerializeObject(upVotedBy);
             Db.Execute(@"UPDATE [Questions] 
                                  SET VotedBy = @UpVotedBy
                                  WHERE Id = @QuestionId",

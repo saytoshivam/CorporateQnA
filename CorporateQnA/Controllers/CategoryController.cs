@@ -1,5 +1,6 @@
 ﻿using CorporateQnA.Models;
 using CorporateQnA.Services.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -17,11 +18,15 @@ namespace CorporateQnA.Controllers
             CategoryService = categoryService;
         }
 
+        [Authorize]
+        [HttpPost("{category}")]
         public void PostCategory(Category category)
         {
             CategoryService.PostCategory(category);
         }
-       
+
+        [Authorize]
+        [HttpGet]
         public IEnumerable<CategoryDetails> GetCategoryDetails()
         {
             return CategoryService.GetCategoryDetails();

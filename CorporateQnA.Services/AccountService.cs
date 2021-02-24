@@ -31,7 +31,7 @@ namespace CorporateQnA.Services
             var user = await UserManager.FindByNameAsync(login.UserName);
             if (user != null && await UserManager.CheckPasswordAsync(user, login.Password))
             {
-                TokenService.CreateToken(user);
+                return TokenService.CreateToken(user);
             }
             return null;
         }

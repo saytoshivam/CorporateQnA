@@ -17,23 +17,30 @@ namespace CorporateQnA.Controllers
         {
             AnswerService = answerService;
         }
-        [Route("like/{answerId}/{userId}")]
+
+        [Authorize]
+        [HttpPost("like/{answerId}/{userId}")]
         public void LikeAnswer(int answerId,int userId)
         {
             AnswerService.LikeAnswer(answerId,userId);
         }
-        [Route("dislike/{answerId}/{userId}")]
+
+        [Authorize]
+        [HttpPost("dislike/{answerId}/{userId}")]
         public void DislikeAnswer(int answerId,int userId)
         {
             AnswerService.DislikeAnswer(answerId,userId);
         }
-        [Route("{questionId}")]
-        public IEnumerable<AnswerDetails> GetAnswersDetailsByQuestionId(int questionId)
+
+        [Authorize]
+        [HttpGet("{questionId}/{userId}")]
+        public IEnumerable<AnswerDetails> GetAnswersDetailsByQuestionId(int questionId,int userId)
         {
-            return AnswerService.GetAnswersDetailsByQuestionId(questionId);
+            return AnswerService.GetAnswersDetailsByQuestionId(questionId,userId);
         }
 
         [Authorize]
+        [HttpPost]
         public void PostAnswer(Answer answer)
         {
             AnswerService.PostAnswer(answer);

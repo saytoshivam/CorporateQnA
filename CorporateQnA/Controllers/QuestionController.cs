@@ -1,5 +1,6 @@
 ﻿using CorporateQnA.Models;
 using CorporateQnA.Services.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -15,25 +16,37 @@ namespace CorporateQnA.Controllers
         {
             QuestionService = questionService;
         }
+
+        [Authorize]
+        [HttpPost]
         public void PostQuestion(Question question)
         {
             QuestionService.PostQuestion(question);
         }
-        [Route("{id}")]
+
+        [Authorize]
+        [HttpGet("userid/{id}")]
         public IEnumerable<QuestionDetails> GetQuestionsByUserId(int id)
         {
             return QuestionService.GetQuestionsByUserId(id);
         }
+
+        [Authorize]
+        [HttpGet]
         public IEnumerable<QuestionDetails> GetQuestionDetails()
         {
             return QuestionService.GetQuestionDetails();
         }
-        [Route("report/{questionId}/{userId}")]
+
+        [Authorize]
+        [HttpPost("report/{questionId}/{userId}")]
         public bool ReportQuestion(int questionId,int userId)
         {
             return QuestionService.ReportQuestion(questionId,userId);
         }
-        [Route("upvote/{questionId}/{userId}")]
+
+        [Authorize]
+        [HttpPost("upvote/{questionId}/{userId}")]
         public bool UpVoteQuestion(int questionId,int userId)
         {
             return QuestionService.UpVoteQuestion(questionId,userId);
