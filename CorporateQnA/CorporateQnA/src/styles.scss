@@ -1,1 +1,22 @@
 /* You can add global styles to this file, and also import other style files */
+$sidebar-width: 100px;
+
+.header{
+    height:50px;
+    background-color: #76618B;
+}
+.logo{
+    background-color: #524361;
+    width: $sidebar-width;
+}
+
+.sidebar{
+    width: 100%;
+    background-color: #3E4249;
+    height: 100vh;
+}
+.main-grid{
+    display: grid;
+    grid-template-columns: $sidebar-width auto;
+    grid-template-rows: auto;
+}
