@@ -39,6 +39,8 @@ namespace CorporateQnA
                 app.UseDeveloperExceptionPage();
             }
 
+            app.UseCors();
+
             app.UseAuthentication();
 
             app.UseHttpsRedirection();
