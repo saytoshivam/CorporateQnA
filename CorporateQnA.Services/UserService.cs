@@ -15,7 +15,7 @@ using System.Threading.Tasks;
 
 namespace CorporateQnA.Services
 {
-    class UserService:IUserService
+    class UserService : IUserService
     {
         private readonly IDbConnection Db;
 
@@ -29,31 +29,23 @@ namespace CorporateQnA.Services
 
         public IEnumerable<UserDetails> GetUsersDetails()
         {
-            IEnumerable<UserDetails> userData = Mapper.Map<IEnumerable<UserDetails>>(
-                Db.GetAll<Data.UserDetails>().ToList());
-           
+            var userDetails = Mapper.Map<IEnumerable<UserDetails>>(
+                Db.GetAll<Data.UserDetails>()).ToList();
 
-           var userLikeCount =  userData.GroupBy(p => p.Id, p => p.Likes, (key, g) => new { id = key, likes = g.ToList().Sum(z=>z)});
-           var userDislikeCount = userData.GroupBy(p => p.Id, p => p.DisLikes, (key, g) => new { id = key, dislikes = g.ToList().Sum(z => z) });
 
-            var joined = from i in userLikeCount join j in userDislikeCount on i.id equals j.id select new { Id = i.id, likes = i.likes, dislikes = j.dislikes };
+            var userLikeCount = userDetails.GroupBy(p => p.Id).ToDictionary(value => value.Key,value => value.Sum(e => e.Likes));
+            var userDislikeCount = userDetails.GroupBy(p => p.Id).ToDictionary(value => value.Key, value => value.Sum(e => e.DisLikes));
 
-            var userDetails = from i in joined join j in userData on i.Id equals j.Id select new UserDetails
-            { 
-                Id = i.Id, 
-                FullName = j.FullName, 
-                JobLocation = j.JobLocation,
-                Department = j.Department,
-                Designation = j.Designation,
-                UserImage = j.UserImage,
-                Likes = i.likes,
-                DisLikes = i.dislikes,
-                QuestionsAsked = j.QuestionsAsked,
-                QuestionsSolved = j.QuestionsSolved, 
-                QuestionsAnswered = j.QuestionsAnswered 
-            };
+            return userDetails.GroupBy(user => user.Id).Select(user =>
+              {
+                  var uniqueUser = user.First();
+                  uniqueUser.Likes = userLikeCount.GetValueOrDefault(uniqueUser.Id);
+                  uniqueUser.DisLikes = userDislikeCount.GetValueOrDefault(uniqueUser.Id);
 
-            return userDetails.GroupBy(e=>e.Id).Select(e=>e.First());
+                  return uniqueUser;
+              }
+              );
+
         }
     }
 }

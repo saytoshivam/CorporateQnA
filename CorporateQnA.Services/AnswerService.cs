@@ -27,21 +27,7 @@ namespace CorporateQnA.Services
 
         public void MarkAsBestSolution(int userId,int answerId)
         {
-            string query = $"Select questionId from Answers where id={answerId}";
-            int questionId=Db.QueryFirstOrDefault<int>(query);
-
-            if(questionId!=0)
-            {
-                query = $"Select askedBy from Questions where id={questionId}";
-                int askedBy = Db.QueryFirstOrDefault<int>(query);
-                if(askedBy==userId)
-                {
-                    bool isBestSolution=Db.QueryFirstOrDefault<bool>($"Select [IsBestSolution] from Answers where id={answerId}");
-                    query = $"Update [Answers] SET IsBestSolution = '{!isBestSolution}' where id= {answerId}";
-                    Db.Execute(query);
-                }
-
-            }
+            Db.Query("MarkSolution" , new { UserId = userId, AnswerId = answerId }, commandType: CommandType.StoredProcedure);
         }
 
         public void PostAnswer(Answer answer)
@@ -61,12 +47,9 @@ namespace CorporateQnA.Services
         {
             string query = $"Select ViewedBy from Questions Where id={questionId}";
 
-            string views = Db.QueryFirstOrDefault<string>(query);
-            List<int> viewedBy = new List<int>();
-            if(views!=null)
-            {
-                viewedBy = JsonConvert.DeserializeObject<List<int>>(views);
-            }
+            var views = Db.QueryFirstOrDefault<string>(query);
+
+            var viewedBy = JsonConvert.DeserializeObject<List<int>>(views??"[]");
 
             if (!viewedBy.Contains(userId))
             { 
@@ -79,12 +62,12 @@ namespace CorporateQnA.Services
 
         public void LikeAnswer(int answerId,int userId)
         {
-            List<int> likedBy = GetLikesList(answerId);
+            var likedBy = GetLikesList(answerId);
 
             if (!likedBy.Contains(userId))
             {
                 likedBy.Add(userId);
-                List<int> dislikeList = GetDislikesList(answerId);
+                var dislikeList = GetDislikesList(answerId);
                 if (dislikeList.Contains(userId))
                 {
                     dislikeList.Remove(userId);
@@ -101,11 +84,11 @@ namespace CorporateQnA.Services
 
         public void DislikeAnswer(int answerId,int userId)
         {
-            List<int> dislikedBy = GetDislikesList(answerId);
+            var dislikedBy = GetDislikesList(answerId);
             if (!dislikedBy.Contains(userId))
             {
                 dislikedBy.Add(userId);
-                List<int> likeList = GetLikesList(answerId);
+                var likeList = GetLikesList(answerId);
                 if (likeList.Contains(userId))
                 {
                     likeList.Remove(userId);
@@ -122,10 +105,8 @@ namespace CorporateQnA.Services
         {
             string query = $"Select LikedBy from Answers Where id={answerId}";
             var likes = Db.QueryFirstOrDefault<string>(query);
-            if (likes == null)
-                return new List<int>();
 
-            return JsonConvert.DeserializeObject<List<int>>(likes);
+            return JsonConvert.DeserializeObject<List<int>>(likes??"[]");
         }
 
         private List<int> GetDislikesList(int answerId)
@@ -134,9 +115,7 @@ namespace CorporateQnA.Services
 
             var dislikes = Db.QueryFirstOrDefault<string>(query);
 
-            if (dislikes == null)
-                return new List<int>();
-            return (JsonConvert.DeserializeObject<List<int>>(dislikes));
+            return (JsonConvert.DeserializeObject<List<int>>(dislikes??"[]"));
         }
         private void UpdateDislikes(List<int> dislikedBy,int answerId)
         {

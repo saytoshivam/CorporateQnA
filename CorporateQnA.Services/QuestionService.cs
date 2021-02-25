@@ -47,13 +47,8 @@ namespace CorporateQnA.Services
             string query = $"Select ReportedBy from Questions Where id={questionId}";
             string reports = Db.QueryFirstOrDefault<string>(query);
 
-            List<int> reportedBy = new List<int>();
-
-            if(reports!=null)
-            {
-                reportedBy= JsonConvert.DeserializeObject<List<int>>(reports);
-            }
-
+            var reportedBy= JsonConvert.DeserializeObject<List<int>>(reports ?? "[]");
+          
             if (reportedBy.Contains(userId))
                 return false;
 
@@ -71,14 +66,12 @@ namespace CorporateQnA.Services
             
             string query = $"Select VotedBy from Questions Where id={questionId}";
             string upVotes=  Db.QueryFirstOrDefault<string>(query);
-            List<int> upVotedBy = new List<int>();
-            if (upVotes != null)
-            {
-                upVotedBy = JsonConvert.DeserializeObject<List<int>>(upVotes);
-            }
+          
+            List<int> upVotedBy = JsonConvert.DeserializeObject<List<int>>(upVotes??"[]");
 
             if (upVotedBy.Contains(userId))
                 return false;
+
             upVotedBy.Add(userId);
 
             upVotes=JsonConvert.SerializeObject(upVotedBy);
