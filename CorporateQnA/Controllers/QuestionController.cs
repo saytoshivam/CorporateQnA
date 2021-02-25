@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace CorporateQnA.Controllers
 {
-    [Route("api/[controller]/{userId}")]
+    [Route("api/question/{userId}")]
     public class QuestionController : BaseApiController
     {
         private readonly IQuestionService QuestionService;
@@ -26,7 +26,7 @@ namespace CorporateQnA.Controllers
         }
 
         [Authorize]
-        [HttpGet]
+        [HttpGet("all")]
         public IEnumerable<QuestionDetails> GetQuestionsByUserId(int userId)
         {
             return QuestionService.GetQuestionsByUserId(userId);

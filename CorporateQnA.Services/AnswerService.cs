@@ -117,12 +117,14 @@ namespace CorporateQnA.Services
 
             return (JsonConvert.DeserializeObject<List<int>>(dislikes??"[]"));
         }
+
         private void UpdateDislikes(List<int> dislikedBy,int answerId)
         {
             string dislikes = JsonConvert.SerializeObject(dislikedBy);
             string query = $"UPDATE [Answers]  SET dislikedBy = '{dislikes}'  WHERE Id = {answerId}";
             Db.Execute(query);
         }
+
         private void UpdateLikes(List<int> likedBy, int answerId)
         {
             string likes = JsonConvert.SerializeObject(likedBy);

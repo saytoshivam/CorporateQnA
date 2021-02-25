@@ -44,8 +44,7 @@ namespace CorporateQnA.Services
 
                   return uniqueUser;
               }
-              );
-
+            );
         }
     }
 }

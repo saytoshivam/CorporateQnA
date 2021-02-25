@@ -19,7 +19,7 @@ namespace CorporateQnA.Controllers
         }
 
         [Authorize]
-        [HttpPost]
+        [HttpPost("add")]
         public void PostCategory(Category category)
         {
             CategoryService.PostCategory(category);

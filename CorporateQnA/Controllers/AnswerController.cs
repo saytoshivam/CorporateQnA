@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace CorporateQnA.Controllers
 {
-    [Route("api/[controller]/{userId}")]
+    [Route("api/answer/{userId}")]
     public class AnswerController : BaseApiController
     {
         private readonly IAnswerService AnswerService;
@@ -41,7 +41,7 @@ namespace CorporateQnA.Controllers
         }
 
         [Authorize]
-        [HttpPost("~/api/answer")]
+        [HttpPost("~/api/answer/add")]
         public void PostAnswer(Answer answer)
         {
             AnswerService.PostAnswer(answer);

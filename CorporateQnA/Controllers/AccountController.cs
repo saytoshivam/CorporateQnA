@@ -13,10 +13,12 @@ namespace CorporateQnA.Controllers
     public class AccountController : BaseApiController
     {
         private readonly IAccountService AccountService;
+
         public AccountController(IAccountService accountService)
         {
             AccountService = accountService;
         }
+
         [HttpPost("register")]
         public async Task<Object> PostApplicationUser(ApplicationUser model)
         {
