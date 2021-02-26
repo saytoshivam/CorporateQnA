@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { QuestionDetails } from '../shared/models';
+import { QuestionService } from '../shared/services';
 
 @Component({
   selector: 'app-question',
@@ -8,9 +10,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class QuestionComponent implements OnInit {
 
-  constructor() { }
+  quesionDetailsList: QuestionDetails[];
+  constructor(private questionService: QuestionService) { }
 
   ngOnInit(): void {
+    this.questionService.getAllQuestions().subscribe(res => {
+      this.quesionDetailsList = <QuestionDetails[]>res;
+      console.log(this.quesionDetailsList);
+
+    })
   }
 
 }

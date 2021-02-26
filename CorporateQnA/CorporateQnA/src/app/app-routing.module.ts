@@ -4,11 +4,17 @@ import { AccountComponent } from './account/account.component';
 import { LoginComponent } from './account/login/login.component';
 import { RegistrationComponent } from './account/registration/registration.component';
 import { AuthGuard } from './auth/auth.guard';
-import { HomeComponent } from './home/home.component';
+import { CategoryComponent } from './category';
+import { HomeComponent } from './home';
+import { QuestionComponent } from './question';
+import { UserComponent } from './user';
 
 const routes: Routes = [
-  { path: '', redirectTo: 'account/login', pathMatch: 'full' },
+  { path: '', redirectTo: 'questions', pathMatch: 'full' },
   { path: 'home', component: HomeComponent, canActivate: [AuthGuard] },
+  { path: 'questions', component: QuestionComponent },
+  { path: 'users', component: UserComponent },
+  { path: 'categories', component: CategoryComponent },
   {
     path: 'account', component: AccountComponent,
     children: [

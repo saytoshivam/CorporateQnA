@@ -18,35 +18,35 @@ namespace CorporateQnA.Controllers
             QuestionService = questionService;
         }
 
-        [Authorize]
+        //[Authorize]
         [HttpPost("~/api/question")]
         public void PostQuestion(Question question)
         {
             QuestionService.PostQuestion(question);
         }
 
-        [Authorize]
+        //[Authorize]
         [HttpGet("all")]
         public IEnumerable<QuestionDetails> GetQuestionsByUserId(int userId)
         {
             return QuestionService.GetQuestionsByUserId(userId);
         }
 
-        [Authorize]
+        //[Authorize]
         [HttpGet("~/api/question/details")]
         public IEnumerable<QuestionDetails> GetQuestionDetails()
         {
             return QuestionService.GetQuestionDetails();
         }
 
-        [Authorize]
+        //[Authorize]
         [HttpPost("report/{questionId}")]
         public bool ReportQuestion(int questionId,int userId)
         {
             return QuestionService.ReportQuestion(questionId,userId);
         }
 
-        [Authorize]
+        //[Authorize]
         [HttpPost("upvote/{questionId}")]
         public bool UpVoteQuestion(int questionId,int userId)
         {
