@@ -26,9 +26,12 @@ namespace CorporateQnA.Controllers
         }
 
         [HttpPost("login")]
-        public async Task<string> Login(Login userCredentials)
+        public async Task<IActionResult> Login(Login userCredentials)
         {
-            return await  AccountService.Login(userCredentials);
+            var token= await  AccountService.Login(userCredentials);
+            if(token==null)
+                return BadRequest(new { message = "Username or password is incorrect." });
+            return Ok(new { token });
         }
     }
 }

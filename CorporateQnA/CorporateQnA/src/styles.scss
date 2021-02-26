@@ -1,22 +1,110 @@
 /* You can add global styles to this file, and also import other style files */
 $sidebar-width: 100px;
 
-.header{
-    height:50px;
-    background-color: #76618B;
+.header {
+  height: 50px;
+  background-color: #76618b;
 }
-.logo{
-    background-color: #524361;
-    width: $sidebar-width;
+.logo {
+  background-color: #524361;
+  width: $sidebar-width;
 }
 
-.sidebar{
-    width: 100%;
-    background-color: #3E4249;
-    height: 100vh;
+.sidebar {
+  width: 100%;
+  background-color: #3e4249;
+  height: 100vh;
 }
-.main-grid{
-    display: grid;
-    grid-template-columns: $sidebar-width auto;
-    grid-template-rows: auto;
+.main-grid {
+  display: grid;
+  grid-template-columns: $sidebar-width auto;
+  grid-template-rows: auto;
+}
+
+.w-350px {
+  width: 350px;
+}
+body {
+  // background-color: lightcoral; // #ffc107;
+  /*bricks bg*/
+  // background-color: #141114;
+  // background-image: linear-gradient(335deg, black 23px, transparent 23px),
+  //   linear-gradient(155deg, black 23px, transparent 23px),
+  //   linear-gradient(335deg, black 23px, transparent 23px),
+  //   linear-gradient(155deg, black 23px, transparent 23px);
+  // background-size: 58px 58px;
+  // background-position: 0px 2px, 4px 35px, 29px 31px, 34px 6px;
+}
+.bg-bisque {
+  background-color: bisque;
+}
+input.form-control,
+input.form-control:focus {
+  color: black;
+  border-color: black;
+  border-radius: 0px;
+  border-width: 2px;
+}
+
+input.form-control:focus {
+  box-shadow: none;
+  border-bottom-color: black;
+}
+button {
+  background-color: #dc3545;
+}
+
+button[type="submit"].btn {
+  border-radius: 20px;
+  background-color: rgb(141, 55, 55);
+  color: #fff;
+}
+
+div.form-group label {
+  color: black;
+  font-weight: bold;
+}
+
+div.form-group.required > label:first-child:after {
+  content: "*";
+  color: #dc3545;
+  padding-left: 5px;
+}
+
+#toast-container > div {
+  opacity: 1;
+}
+
+form {
+  margin: 0px 16px;
+}
+
+div.side-header {
+  border: 3px solid black;
+}
+
+.movie-container {
+  width: 250px;
+  height: 450px;
+  img {
+    height: 300px;
+  }
+}
+
+.seat {
+  height: 50px;
+  width: 50px;
+  background-color: gray;
+  border: solid black 5px;
+  border-bottom: none;
+  color: White;
+  font-size: large;
+  text-align: center;
+  .seat-booked {
+    background-color: brown;
+  }
+}
+.btn-lg {
+  padding: 5px 14px;
+  font-size: 20px;
 }
