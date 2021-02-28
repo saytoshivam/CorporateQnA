@@ -19,6 +19,7 @@ import { HeaderComponent } from './shared/header/header.component';
 import { RegistrationComponent } from './account/registration/registration.component';
 import { LoginComponent } from './account/login/login.component';
 import { AuthInterceptor } from './auth/auth.intercepter';
+import { SectionsNavComponent } from './sections-nav/sections-nav.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import { AuthInterceptor } from './auth/auth.intercepter';
     EditorComponent,
     HeaderComponent,
     RegistrationComponent,
-    LoginComponent
+    LoginComponent,
+    SectionsNavComponent
   ],
   imports: [
     BrowserModule,

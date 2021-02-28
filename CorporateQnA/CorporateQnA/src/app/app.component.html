@@ -1,7 +1,21 @@
 <app-header></app-header>
 <div class="main-grid">
-  <div class="sidebar"></div>
+  <div class="sidebar">
+    <div class="forum justify-content-center py-2 pt-3">
+      <img
+        src="../../assets/img/forum_logo.png"
+        alt=""
+        class="side-bar-logos d-block m-auto"
+      />
+      <div class="text-light text-sm d-flex justify-content-center">Forum</div>
+    </div>
+  </div>
   <div class="main-content">
-    <router-outlet></router-outlet>
+    <div class="sections-nav">
+      <app-sections-nav></app-sections-nav>
+    </div>
+    <div>
+      <router-outlet></router-outlet>
+    </div>
   </div>
 </div>

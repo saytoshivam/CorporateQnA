@@ -1,4 +1,48 @@
 /* You can add global styles to this file, and also import other style files */
+//COLORS
+.br {
+  border: solid red 2px;
+}
+$violet-dark: #524361;
+$violet-light: #76618b;
+$grey: #3e4249;
+$grey-light: #505661;
+$text-muted: #757575;
+$body-color: #f4f5f8;
+$text-light-brown: #2d2d2d;
+$sidebar-width: 100px;
+$modal-header-bg: #515968;
+$checkbox-color: #86c06a;
+
+//MEASUREMENTS
+$checkbox-size: 18px;
+$logo-img-width: 64px;
+$nav-height: 61.3720929952px;
+$profile-right-margin: 19.0705788944px;
+$profile-pic-regular-width: 40px;
+$profile-pic-sm-width: 20px;
+$profile-pic-lg-width: 52px;
+$sun-img-width: 20px;
+$sidebar-logos-width: 25px;
+$form-select-flex: 160px;
+$form-reset-flex: 200px;
+$keywords-input-flex: 318px;
+$categories-flex: 450px;
+$show-categories-flex: 220px;
+$default-grid-gap: 20px;
+$custom-modal-width: 700px;
+$modal-input-width: 450px;
+
+//GRID
+$home-grid-width: 58%;
+
+//BIG EDITOR
+$big-editor-height: 30rem;
+$big-editor-width: 45rem;
+$big-editor-top: -375%;
+$big-editor-left: -30%;
+$big-editor-head: 45px;
+
 $sidebar-width: 100px;
 
 .header {
@@ -13,28 +57,31 @@ $sidebar-width: 100px;
 .sidebar {
   width: 100%;
   background-color: #3e4249;
-  height: 100vh;
+  min-height: 100vh;
+  height: 100%;
 }
 .main-grid {
   display: grid;
   grid-template-columns: $sidebar-width auto;
   grid-template-rows: auto;
 }
+.side-bar-logos {
+  width: $sidebar-logos-width;
+}
 
+.text-sm {
+  font-size: small;
+}
+.forum {
+  height: 4.5rem;
+  width: 100%;
+  background-color: #505661;
+  align-items: center;
+}
 .w-350px {
   width: 350px;
 }
-body {
-  // background-color: lightcoral; // #ffc107;
-  /*bricks bg*/
-  // background-color: #141114;
-  // background-image: linear-gradient(335deg, black 23px, transparent 23px),
-  //   linear-gradient(155deg, black 23px, transparent 23px),
-  //   linear-gradient(335deg, black 23px, transparent 23px),
-  //   linear-gradient(155deg, black 23px, transparent 23px);
-  // background-size: 58px 58px;
-  // background-position: 0px 2px, 4px 35px, 29px 31px, 34px 6px;
-}
+
 .bg-bisque {
   background-color: bisque;
 }
@@ -91,20 +138,29 @@ div.side-header {
   }
 }
 
-.seat {
-  height: 50px;
-  width: 50px;
-  background-color: gray;
-  border: solid black 5px;
-  border-bottom: none;
-  color: White;
-  font-size: large;
-  text-align: center;
-  .seat-booked {
-    background-color: brown;
-  }
+//---------------- Categories ---------------------------------
+.categories {
+  flex-basis: $categories-flex;
 }
-.btn-lg {
-  padding: 5px 14px;
-  font-size: 20px;
+
+.show-category {
+  flex-basis: $show-categories-flex;
+  margin-left: 20px;
+}
+
+.standard-grid {
+  display: grid;
+  grid-gap: $default-grid-gap;
+  grid-template-columns: 1fr 1fr 1fr;
+}
+
+.category-card {
+  border: 1px solid lightgrey;
+  padding: 18px;
+  border-radius: 5px;
+  background-color: white;
+}
+
+.categories-content {
+  background-color: $body-color;
 }
