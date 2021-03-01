@@ -9,7 +9,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { AccountComponent } from './account/account.component';
-import { UserComponent } from './user/user.component';
+import { UserComponent } from './corporate-qn-a/user/user.component';
 import { QuestionComponent } from './question/question.component';
 import { AnswerComponent } from './question/answer/answer.component';
 import { HomeComponent } from './corporate-qn-a/home/home.component';
