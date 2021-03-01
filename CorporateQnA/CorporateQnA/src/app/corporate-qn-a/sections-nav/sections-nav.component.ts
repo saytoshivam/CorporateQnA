@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { AccountService } from '../shared/services';
+import { AccountService } from '../../shared/services';
 
 @Component({
   selector: 'app-sections-nav',

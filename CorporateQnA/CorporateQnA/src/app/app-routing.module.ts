@@ -4,8 +4,8 @@ import { AccountComponent } from './account/account.component';
 import { LoginComponent } from './account/login/login.component';
 import { RegistrationComponent } from './account/registration/registration.component';
 import { AuthGuard } from './auth/auth.guard';
-import { CategoryComponent } from './category';
-import { HomeComponent } from './home';
+import { CategoryComponent } from './corporate-qn-a/category';
+import { HomeComponent } from './corporate-qn-a/home';
 import { QuestionComponent } from './question';
 import { UserComponent } from './user';
 

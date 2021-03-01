@@ -43,6 +43,7 @@ export class AccountService {
   }
   getUserProfile() {
     var tokenData = JSON.parse(window.atob(localStorage.getItem('token').split('.')[1]));
+    console.log("hello" + tokenData);
     return new UserProfile(tokenData.UserId, tokenData.UserName, tokenData.UserImage);
   }
   isUserLoggedIn() {
