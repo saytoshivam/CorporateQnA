@@ -11,7 +11,7 @@
       alt="sun logo"
       class="sun-img"
     />
-    <div class="d-inline-block" *ngIf="loggedIn">
+    <div class="d-inline-block" *ngIf="isLoggedIn">
       <a class="text-white mr-3" href="#" (click)="logout()">Logout</a>
       <span class="user-name mr-3">{{ userProfile.userName }}</span>
       <img
@@ -21,7 +21,11 @@
         class="profile-pic"
       />
     </div>
-    <button class="btn text-white" *ngIf="loggedIn == false" (click)="login()">
+    <button
+      class="btn text-white"
+      *ngIf="isLoggedIn == false"
+      [routerLink]="['account/login']"
+    >
       Login
     </button>
   </div>

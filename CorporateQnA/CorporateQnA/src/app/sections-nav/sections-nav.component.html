@@ -1,5 +1,8 @@
 <ul class="nav nav-tabs keka-section-nav">
-  <li class="nav-item" [ngClass]="{ 'current-section': getRoute() == '/' }">
+  <li
+    class="nav-item"
+    [ngClass]="{ 'current-section': getRoute() == '/questions' }"
+  >
     <a class="nav-link" href="/" [routerLink]="['/']">Home</a>
   </li>
   <li

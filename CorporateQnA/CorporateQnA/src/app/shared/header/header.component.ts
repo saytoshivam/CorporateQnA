@@ -10,7 +10,7 @@ import { UserService } from '../services';
   ]
 })
 export class HeaderComponent implements OnInit {
-  loggedIn = false;
+  isLoggedIn = false;
   userProfile: UserProfile;
 
   constructor(private userService: UserService) { }
