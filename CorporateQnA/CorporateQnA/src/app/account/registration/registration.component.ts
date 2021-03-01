@@ -21,28 +21,30 @@ export class RegistrationComponent implements OnInit {
     userName: ['', Validators.required],
     email: ['', Validators.email],
     fullName: [''],
-
-    passwords: this.fb.group({
-      password: ['', [Validators.required, Validators.minLength(4)]],
-      confirmPassword: ['', Validators.required]
-    }, { validator: this.comparePasswords })
+    designation: [''],
+    department: [''],
+    jobLocation: [''],
+    userImage: ['', Validators.required],
+    password: ['', [Validators.required, Validators.minLength(4)]],
 
   });
 
-  comparePasswords(fb: FormGroup) {
-    let confirmPswrdCtrl = fb.get('confirmPassword');
-    if (confirmPswrdCtrl.errors == null || 'passwordMismatch' in confirmPswrdCtrl.errors) {
-      if (fb.get('password').value != confirmPswrdCtrl.value)
-        confirmPswrdCtrl.setErrors({ passwordMismatch: true });
-      else
-        confirmPswrdCtrl.setErrors(null);
-
+  onPosterChange(event: any) {
+    const reader = new FileReader();
+    if (event.target.files && event.target.files.length) {
+      const [image] = event.target.files;
+      reader.readAsDataURL(image);
+      reader.onload = () => {
+        this.signInForm.patchValue({
+          userImage: reader.result as string
+        })
+      }
     }
-    return null;
   }
 
+
   onSubmit() {
-    this.service.register(this.signInForm).subscribe(
+    this.service.register(this.signInForm.value).subscribe(
       (res: any) => {
         if (res.succeeded) {
           this.signInForm.reset();

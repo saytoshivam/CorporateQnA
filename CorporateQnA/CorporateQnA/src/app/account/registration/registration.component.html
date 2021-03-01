@@ -47,56 +47,65 @@
         <label>Full Name</label>
         <input class="form-control" formControlName="fullName" />
       </div>
-      <div formGroupName="passwords">
-        <div class="form-group required">
-          <label>Password</label>
-          <input
-            type="password"
-            class="form-control"
-            formControlName="password"
-          />
-          <label
-            class="text-danger"
-            *ngIf="
-              this.signInForm.get('passwords.password').touched &&
-              this.signInForm.get('passwords.password').errors?.required
-            "
-            >This field is mandatory.</label
-          >
-          <label
-            class="text-danger"
-            *ngIf="
-              this.signInForm.get('passwords.password').touched &&
-              this.signInForm.get('passwords.password').errors?.minlength
-            "
-            >Minimum 4 characters required.</label
-          >
-        </div>
-        <div class="form-group required">
-          <label>Confirm Password</label>
-          <input
-            type="password"
-            class="form-control"
-            formControlName="confirmPassword"
-          />
-          <label
-            class="text-danger"
-            *ngIf="
-              this.signInForm.get('passwords.confirmPassword').touched &&
-              this.signInForm.get('passwords.confirmPassword').errors?.required
-            "
-            >This field is mandatory.</label
-          >
-          <label
-            class="text-danger"
-            *ngIf="
-              this.signInForm.get('passwords.confirmPassword').touched &&
-              this.signInForm.get('passwords.confirmPassword').errors
-                ?.passwordMismatch
-            "
-            >Confirm Password does not match.</label
-          >
-        </div>
+      <div class="form-group">
+        <label>Designation</label>
+        <input class="form-control" formControlName="designation" />
+      </div>
+      <div class="form-group">
+        <label>Department</label>
+        <input class="form-control" formControlName="department" />
+      </div>
+      <div class="form-group">
+        <label>Job Location</label>
+        <input class="form-control" formControlName="jobLocation" />
+      </div>
+      <div class="form-group">
+        <label for="userImage">userImage</label>
+        <input
+          type="file"
+          [class.is-invalid]="
+            signInForm.get('userImage').invalid &&
+            signInForm.get('userImage').touched
+          "
+          accept="image/*"
+          (change)="onPosterChange($event)"
+          class="form-control w-80"
+          formControlName="userImage"
+        />
+        <small
+          [class.d-none]="
+            !(
+              signInForm.get('userImage').invalid &&
+              signInForm.get('userImage').touched
+            )
+          "
+          class="text-danger"
+          >userImage is Required</small
+        >
+      </div>
+      <div class="form-group">
+        <label>Password</label>
+        <input
+          type="password"
+          class="form-control"
+          formControlName="password"
+        />
+        <label
+          class="text-danger"
+          *ngIf="
+            this.signInForm.get('password').touched &&
+            this.signInForm.get('password').errors?.required
+          "
+          >This field is mandatory.</label
+        >
+        <label
+          class="text-danger"
+          *ngIf="
+            this.signInForm.get('password').touched &&
+            this.signInForm.get('password').errors?.minlength
+          "
+          >Minimum 4 characters required.</label
+        >
       </div>
       <div class="form-row">
         <div class="form-group col-md-8 offset-md-2">

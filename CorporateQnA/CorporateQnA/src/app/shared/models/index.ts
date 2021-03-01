@@ -4,3 +4,4 @@ export * from './category-details.model';
 export * from './user-details.model';
 export * from './question-details.models';
 export * from './user-profile.model';
+export * from './register-user.model';

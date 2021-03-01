@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { HttpClient, HttpHandler, HttpHeaders } from '@angular/common/http';
-import { UserProfile } from '../models';
+import { RegisterUser, UserProfile } from '../models';
 
 @Injectable({
   providedIn: 'root'
@@ -11,14 +11,10 @@ export class AccountService {
   constructor(private http: HttpClient) { }
   readonly BaseURI = 'https://localhost:44399/api';
 
-  register(formModel) {
-    var body = {
-      userName: formModel.value.userName,
-      email: formModel.value.email,
-      fullName: formModel.value.fullName,
-      password: formModel.value.passwords.password
-    };
-    return this.http.post(this.BaseURI + '/account/register', body);
+  register(user: RegisterUser) {
+    console.log(user);
+    console.log("Hello nshivam");
+    return this.http.post(this.BaseURI + '/account/register', user);
   }
   login(loginData) {
     return this.http.post(this.BaseURI + '/account/login', loginData);
