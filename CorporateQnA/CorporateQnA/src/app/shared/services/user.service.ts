@@ -13,8 +13,4 @@ export class UserService {
   getAllUsers(): Observable<any> {
     return this.http.get(this.baseUrl + '/details');
   }
-  getUserProfile() {
-    var tokenData = JSON.parse(window.atob(localStorage.getItem('token').split('.')[1]));
-    return new UserProfile(tokenData.UserId, tokenData.UserName, tokenData.UserImage);
-  }
 }

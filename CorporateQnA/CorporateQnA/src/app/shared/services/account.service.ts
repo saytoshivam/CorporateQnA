@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { HttpClient, HttpHandler, HttpHeaders } from '@angular/common/http';
+import { UserProfile } from '../models';
 
 @Injectable({
   providedIn: 'root'
@@ -23,10 +24,6 @@ export class AccountService {
     return this.http.post(this.BaseURI + '/account/login', loginData);
   }
 
-  getUserProfile() {
-    return this.http.get(this.BaseURI + '/userprofile');
-  }
-
   roleMatch(allowedRoles): boolean {
     var isMatch = false;
     var payLoad = JSON.parse(window.atob(localStorage.getItem('token').split('.')[1]));
@@ -43,5 +40,15 @@ export class AccountService {
   }
   getUserId() {
     return JSON.parse(window.atob(localStorage.getItem('token').split('.')[1])).UserID;
+  }
+  getUserProfile() {
+    var tokenData = JSON.parse(window.atob(localStorage.getItem('token').split('.')[1]));
+    return new UserProfile(tokenData.UserId, tokenData.UserName, tokenData.UserImage);
+  }
+  isUserLoggedIn() {
+    if (localStorage.getItem('token'))
+      return true;
+
+    return false;
   }
 }

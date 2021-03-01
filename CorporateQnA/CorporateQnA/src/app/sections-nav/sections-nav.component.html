@@ -1,4 +1,4 @@
-<ul class="nav nav-tabs keka-section-nav">
+<ul class="nav nav-tabs keka-section-nav" *ngIf="isLoggedIn">
   <li
     class="nav-item"
     [ngClass]="{ 'current-section': getRoute() == '/questions' }"

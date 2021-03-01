@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { AccountService } from '../shared/services';
 
 @Component({
   selector: 'app-sections-nav',
@@ -8,9 +9,12 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class SectionsNavComponent implements OnInit {
 
-  constructor(private router: Router, private activatedRoute: ActivatedRoute) { }
+  isLoggedIn = false;
+  constructor(private accountService: AccountService, private router: Router, private activatedRoute: ActivatedRoute) { }
 
-  ngOnInit() { }
+  ngOnInit() {
+    this.isLoggedIn = this.accountService.isUserLoggedIn();
+  }
 
   getRoute() {
     return this.router.url;
