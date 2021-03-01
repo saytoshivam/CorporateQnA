@@ -11,22 +11,17 @@ import { AccountService, UserService } from '../services';
   ]
 })
 export class HeaderComponent implements OnInit {
-  isLoggedIn = false;
   userProfile: UserProfile;
 
   constructor(private accountService: AccountService, private router: Router) { }
 
   ngOnInit() {
-    if (this.isLoggedIn) {
-      this.userProfile = this.accountService.getUserProfile();
-      console.log(this.userProfile);
-    }
-    this.isLoggedIn = this.accountService.isUserLoggedIn();
+    this.userProfile = this.accountService.getUserProfile();
+    console.log(this.userProfile);
   }
 
   logout() {
     localStorage.removeItem('token');
-    this.isLoggedIn = false;
     this.router.navigate(['/account/login']);
   }
 
