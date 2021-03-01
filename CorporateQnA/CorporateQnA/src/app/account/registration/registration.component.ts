@@ -10,6 +10,7 @@ import { AccountService } from 'src/app/shared/services/account.service';
   styles: []
 })
 export class RegistrationComponent implements OnInit {
+  userImage: string;
   constructor(private fb: FormBuilder, public service: AccountService, private toastr: ToastrService, private router: Router) { }
 
   ngOnInit() {
@@ -35,8 +36,10 @@ export class RegistrationComponent implements OnInit {
       const [image] = event.target.files;
       reader.readAsDataURL(image);
       reader.onload = () => {
+        this.userImage = reader.result as string;
+
         this.signInForm.patchValue({
-          userImage: reader.result as string
+          userImage: this.userImage
         })
       }
     }
