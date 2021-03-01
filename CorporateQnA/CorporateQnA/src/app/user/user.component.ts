@@ -20,5 +20,4 @@ export class UserComponent implements OnInit {
       console.log(this.userDetailsList);
     })
   }
-
 }

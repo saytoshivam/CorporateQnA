@@ -45,15 +45,58 @@ $big-editor-head: 45px;
 
 $sidebar-width: 100px;
 
-.header {
-  height: 50px;
-  background-color: #76618b;
-}
-.logo {
-  background-color: #524361;
-  width: $sidebar-width;
+body {
+  height: 100vh;
+  background-color: $body-color;
 }
 
+input:focus,
+input:active {
+  outline: none;
+}
+
+nav {
+  height: $nav-height;
+  background-color: $violet-light;
+}
+
+.logo {
+  width: $sidebar-width;
+  background-color: $violet-dark;
+
+  &-img {
+    width: $logo-img-width;
+  }
+}
+.profile {
+  &-controls {
+    color: white;
+
+    & > * {
+      margin-right: $profile-right-margin;
+    }
+  }
+
+  &-pic {
+    width: $profile-pic-regular-width;
+    border-radius: 100%;
+
+    &-sm {
+      border-radius: 100%;
+      width: $profile-pic-sm-width;
+    }
+
+    &-lg {
+      border-radius: 100%;
+      width: $profile-pic-lg-width;
+      height: $profile-pic-lg-width;
+    }
+  }
+}
+
+.sun-img {
+  width: $sun-img-width;
+}
 .sidebar {
   width: 100%;
   background-color: #3e4249;
@@ -164,3 +207,43 @@ div.side-header {
 .categories-content {
   background-color: $body-color;
 }
+//------------------------ SECTION NAV-------------------------
+.keka-section-nav > li {
+  position: relative;
+  margin-bottom: 0px !important;
+  text-transform: uppercase;
+}
+
+.current-section {
+  font-weight: bold;
+  color: black;
+
+  &::before {
+    content: "";
+    display: inline-block;
+    width: 10px;
+    background-color: #6e6c7b;
+    height: 10px;
+    position: absolute;
+    left: 45%;
+    top: 88%;
+    transform: rotate(45deg);
+  }
+
+  a {
+    color: black !important;
+  }
+}
+
+.keka-section-nav a {
+  display: inline-block;
+  font-size: 12px;
+  color: #818181;
+}
+
+.keka-section-nav {
+  overflow: hidden;
+  padding-top: 8px;
+}
+
+//-----------------------SECTION Nav-------------------------

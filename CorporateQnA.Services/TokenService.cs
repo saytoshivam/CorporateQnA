@@ -23,8 +23,9 @@ namespace CorporateQnA.Services
         {
             var claims = new List<Claim>
             {
-               new Claim(JwtRegisteredClaimNames.NameId,user.UserName),
-               new Claim("UserID",user.Id.ToString())
+               new Claim("UserName",user.UserName),
+               new Claim("UserID",user.Id.ToString()),
+                new Claim("UserImage",user.UserImage)
             };
             var creds = new SigningCredentials(Key, SecurityAlgorithms.HmacSha512Signature);
 

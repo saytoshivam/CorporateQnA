@@ -13,7 +13,7 @@ const routes: Routes = [
   { path: '', redirectTo: 'questions', pathMatch: 'full' },
   { path: 'home', component: HomeComponent, canActivate: [AuthGuard] },
   { path: 'questions', component: QuestionComponent },
-  { path: 'users', component: UserComponent },
+  { path: 'users/all', component: UserComponent },
   { path: 'categories', component: CategoryComponent },
   {
     path: 'account', component: AccountComponent,
