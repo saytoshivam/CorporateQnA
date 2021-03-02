@@ -1,0 +1,26 @@
+<div class="search-form-container">
+  <form [formGroup]="searchForm" class="search-form">
+    <div class="form-input user-search">
+      <label for="">Users</label>
+      <div class="search-bar">
+        <!-- <fa-icon [icon]="faSearch"></fa-icon> -->
+        <input
+          type="text"
+          name=""
+          id=""
+          placeholder="Search"
+          formControlName="search"
+        />
+      </div>
+    </div>
+  </form>
+</div>
+<div class="users-content p-20">
+  <div class="standard-grid m-4">
+    <app-user-card
+      *ngFor="let i of showUsers"
+      [userDetail]="i"
+      (click)="GetUserDetails(i)"
+    ></app-user-card>
+  </div>
+</div>

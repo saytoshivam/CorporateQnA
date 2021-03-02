@@ -1,0 +1,39 @@
+<div class="user-card">
+  <div class="user-card-content p-20">
+    <div class="user-card-head d-flex">
+      <img class="profile-pic-lg" src="https://i.pravatar.cc/300" alt="" />
+      <div class="user-data ml-3">
+        <h5 class="fnt-16">{{ userDetail.fullName }}</h5>
+        <span class="text-muted fnt-14 mt-1 d-block">{{
+          userDetail.designation
+        }}</span>
+        <span class="text-muted fnt-14">{{ userDetail.department }}, </span>
+        <span class="text-muted fnt-14">{{ userDetail.jobLocation }}</span>
+        <div class="d-flex align-items-center mt-2">
+          <button class="btn mr-1 btn-response">
+            <!-- <fa-icon [icon]="thumbsUp" class="mr-2 like"></fa-icon> -->
+            <span class="mr-2">{{ userDetail.likes }}</span>
+          </button>
+          <button class="btn mr-1 btn-response">
+            <!-- <fa-icon [icon]="thumbsDown" class="mr-2 dislike"></fa-icon> -->
+            <span>{{ userDetail.disLikes }}</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="user-card-footer">
+    <div class="user-stat">
+      <span class="user-stat-value">{{ userDetail.questionsAsked }}</span>
+      <span class="d-block text-muted fnt-12">Questions Asked</span>
+    </div>
+    <div class="user-stat">
+      <span class="user-stat-value">{{ userDetail.questionsAnswered }}</span>
+      <span class="d-block text-muted fnt-12">Questions Answered</span>
+    </div>
+    <div class="user-stat">
+      <span class="user-stat-value">{{ userDetail.questionsSolved }}</span>
+      <span class="d-block text-muted fnt-12">Questions Solved</span>
+    </div>
+  </div>
+</div>

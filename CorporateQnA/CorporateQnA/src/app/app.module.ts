@@ -9,7 +9,6 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { AccountComponent } from './account/account.component';
-import { UserComponent } from './corporate-qn-a/user/user.component';
 import { QuestionComponent } from './question/question.component';
 import { AnswerComponent } from './question/answer/answer.component';
 import { HomeComponent } from './corporate-qn-a/home/home.component';
@@ -21,12 +20,16 @@ import { LoginComponent } from './account/login/login.component';
 import { AuthInterceptor } from './auth/auth.intercepter';
 import { SectionsNavComponent } from './corporate-qn-a/sections-nav/sections-nav.component';
 import { CorporateQnAComponent } from './corporate-qn-a/corporate-qn-a.component';
+import { UsersComponent } from './corporate-qn-a/users/users.component';
+import { AllUsersComponent } from './corporate-qn-a/users/all-users/all-users.component';
+import { UserCardComponent } from './corporate-qn-a/users/user-card/user-card.component';
+import { UserDetailsComponent } from './corporate-qn-a/users/user-details/user-details.component';
+import { QuestionCardComponent } from './shared/question-card/question-card.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     AccountComponent,
-    UserComponent,
     QuestionComponent,
     AnswerComponent,
     HomeComponent,
@@ -36,7 +39,12 @@ import { CorporateQnAComponent } from './corporate-qn-a/corporate-qn-a.component
     RegistrationComponent,
     LoginComponent,
     SectionsNavComponent,
-    CorporateQnAComponent
+    CorporateQnAComponent,
+    UsersComponent,
+    AllUsersComponent,
+    UserCardComponent,
+    UserDetailsComponent,
+    QuestionCardComponent
   ],
   imports: [
     BrowserModule,

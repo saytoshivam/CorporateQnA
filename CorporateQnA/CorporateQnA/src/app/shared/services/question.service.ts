@@ -13,7 +13,7 @@ export class QuestionService {
     return this.http.get(this.baseUrl + '/details');
   }
 
-  getQuestionByUserId(userId: number) {
+  getQuestionsByUserId(userId: number) {
     return this.http.get(this.baseUrl + `/${userId}/all`);
   }
 }
