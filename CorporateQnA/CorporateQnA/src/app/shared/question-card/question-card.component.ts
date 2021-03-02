@@ -21,7 +21,7 @@ export class QuestionCardComponent implements OnInit {
 
   ngOnInit() {
     console.log("in question card" + this.question);
-    this.user = 2;//logged in usser id from token
+    this.user = 2;//logged in user id from token
 
     this.timeAgo = moment(this.question.askedOn).fromNow()
   }

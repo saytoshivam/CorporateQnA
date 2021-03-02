@@ -24,7 +24,8 @@ import { AllUsersComponent } from './corporate-qn-a/users/all-users/all-users.co
 import { UserCardComponent } from './corporate-qn-a/users/user-card/user-card.component';
 import { UserDetailsComponent } from './corporate-qn-a/users/user-details/user-details.component';
 import { QuestionCardComponent } from './shared/question-card/question-card.component';
-
+import { AnswerPanelComponent } from './shared/answer-panel/answer-panel.component';
+import { NgxEditorModule } from 'ngx-editor';
 @NgModule({
   declarations: [
     AppComponent,
@@ -41,7 +42,8 @@ import { QuestionCardComponent } from './shared/question-card/question-card.comp
     AllUsersComponent,
     UserCardComponent,
     UserDetailsComponent,
-    QuestionCardComponent
+    QuestionCardComponent,
+    AnswerPanelComponent
   ],
   imports: [
     BrowserModule,
@@ -50,7 +52,8 @@ import { QuestionCardComponent } from './shared/question-card/question-card.comp
     ReactiveFormsModule,
     FormsModule,
     ToastrModule.forRoot(),
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    NgxEditorModule
   ],
   providers: [{
     provide: HTTP_INTERCEPTORS,

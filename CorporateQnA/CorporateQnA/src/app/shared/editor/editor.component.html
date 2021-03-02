@@ -1,1 +1,10 @@
-<p>editor works!</p>
+<div class="editor-container">
+    <div class="NgxEditor__Wrapper"  [formGroup]="formGroup">
+        <ngx-editor
+        [editor]="editor"
+        formControlName={{controlName}}
+        ></ngx-editor>
+        <ngx-editor-menu [editor]="editor" [toolbar]="toolbar"> </ngx-editor-menu>
+    </div>
+    {{html}}
+</div>
