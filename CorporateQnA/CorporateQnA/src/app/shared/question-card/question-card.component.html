@@ -1,1 +1,51 @@
-<p>question-card works!</p>
+<div
+  class="question-card"
+  [ngClass]="{ 'question-solved': this.question.isResolved }"
+  (click)="viewAnswers()"
+>
+  <div class="question-flag"></div>
+  <div class="question-card-grid">
+    <div class="d-flex flex-column align-items-center">
+      <img
+        src="https://i.pravatar.cc/300
+            "
+        alt=""
+        class="profile-pic-sm mb-3"
+      />
+      <button class="btn upvote-btn" (click)="upvoteQuestion()">
+        <!-- <fa-icon [icon]="faChevronUp" class="text-muted"></fa-icon> -->
+      </button>
+      <span class="fnt-15">{{ question.upVoteCount }}</span>
+    </div>
+    <div class="question">
+      <h5 class="fnt-15">{{ question.title }}</h5>
+      <p class="text-muted question-content fnt-13">
+        {{ question.description }}
+      </p>
+      <div class="mt-4 d-flex align-items-center justify-content-between">
+        <div>
+          <!-- <fa-icon [icon]="faEye" class="text-muted fnt-11" ></fa-icon> -->
+          <span class="question-views ml-2 text-muted fnt-11"
+            >{{ question.viewCount }} Views</span
+          >
+          <span class="question-ans-count fnt-11"
+            >{{ question.answerCount }} Answers</span
+          >
+        </div>
+        <div>
+          <span
+            class="question-time text-success fnt-13"
+            *ngIf="this.question.isResolved"
+            >Resolved</span
+          >
+          <span
+            class="text-muted"
+            class="question-time fnt-13"
+            *ngIf="!this.question.isResolved"
+            >{{ timeAgo }}</span
+          >
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

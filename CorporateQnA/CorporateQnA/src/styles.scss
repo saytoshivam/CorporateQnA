@@ -476,3 +476,79 @@ div.side-header {
     margin-top: -2px;
   }
 }
+//----------------- Question Card -----------------------------
+
+.question-card {
+  padding: 20px 15px 20px 20px;
+  background-color: #fff;
+  overflow: hidden;
+  position: relative;
+  cursor: pointer;
+  &:hover {
+    background-color: #fcfaf8;
+  }
+}
+
+.app-question {
+  border-right: 5px solid white;
+  border-bottom: 1px solid lightgrey;
+  background-color: white;
+}
+
+.question-solved {
+  .question-flag {
+    background-color: #86c06a;
+  }
+}
+
+.question-flag {
+  position: absolute;
+  width: 20px;
+  height: 60px;
+  background-color: transparent;
+  top: -20px;
+  left: -10px;
+  transform: rotate(45deg);
+}
+
+.upvote-btn {
+  padding-bottom: 0px;
+}
+
+.current-question {
+  border-right: 5px solid $violet-dark;
+
+  .question-card {
+    background-color: #f2f1f0;
+  }
+}
+
+.question-card-grid {
+  display: grid;
+  grid-template-columns: 40px auto;
+  grid-gap: 5px;
+}
+
+.question-content {
+  font-size: 14px;
+}
+
+.question-views {
+  font-size: 12px;
+}
+
+.question-ans-count {
+  font-size: 12px;
+  background-color: $body-color;
+  margin-left: 20px;
+  border: 1px solid #d4d7dc;
+  padding: 3px 5px;
+  border-radius: 5px;
+  color: #777777;
+}
+
+.question-time {
+  font-size: 12px;
+}
+
+//>----------------- Question Card -----------------------------

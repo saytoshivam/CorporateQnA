@@ -28,7 +28,6 @@ export class UserDetailsComponent implements OnInit {
     this.activatedRoute.params.subscribe(routeId => {
       this.questionService.getQuestionsByUserId(Number(routeId['id'])).subscribe(res => {
         this.userQuestions = <QuestionDetails[]>res
-        console.log(this.userQuestions);
       });
       this.userAnsweredQuestions = null;
 
