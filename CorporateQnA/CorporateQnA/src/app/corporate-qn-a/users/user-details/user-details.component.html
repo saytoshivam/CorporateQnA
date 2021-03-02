@@ -5,47 +5,44 @@
       <span class="ml-2 dark-violet-color">Back to users</span>
     </a>
   </div>
-  <div>for testing</div>
   <div *ngIf="userDetails != null">
     <div class="user-details-container mt-3">
       <div class="d-flex p-20 user-details-content">
         <div class="user-info d-flex user-info-detailed">
           <img class="profile-pic-lg" src="https://i.pravatar.cc/300" alt="" />
           <div class="user-data ml-3">
-            <h5>{{ userDetails.name }}</h5>
+            <h5>{{ userDetails.fullName }}</h5>
             <span class="text-muted fnt-14 mt-1 d-block">{{
-              userDetails.position
+              userDetails.designation
             }}</span>
             <span class="text-muted fnt-14"
               >{{ userDetails.department }},
             </span>
-            <span class="text-muted fnt-14">{{ userDetails.location }}</span>
+            <span class="text-muted fnt-14">{{ userDetails.jobLocation }}</span>
             <div class="d-flex align-items-center mt-2">
               <button class="btn mr-1 btn-response">
                 <!-- <fa-icon [icon]="thumbsUp" class="like"></fa-icon> -->
-                <span class="mr-2">{{ userDetails.totalLikes }}</span>
+                <span class="mr-2">{{ userDetails.likes }}</span>
               </button>
               <button class="btn mr-1 btn-response">
                 <!-- <fa-icon [icon]="thumbsDown" class="dislike"></fa-icon> -->
-                <span>{{ userDetails.totalDislikes }}</span>
+                <span>{{ userDetails.disLikes }}</span>
               </button>
             </div>
           </div>
         </div>
         <div class="user-stat-2 asked">
-          <span class="user-stat-value">{{ userDetails.questionAsked }}</span>
+          <span class="user-stat-value">{{ userDetails.questionsAsked }}</span>
           <span class="d-block text-muted fnt-12">Questions Asked</span>
         </div>
         <div class="user-stat-2 answered">
           <span class="user-stat-value">{{
-            userDetails.questionAnswered
+            userDetails.questionsAnswered
           }}</span>
           <span class="d-block text-muted fnt-12">Questions Answered</span>
         </div>
         <div class="user-stat-2 solved">
-          <span class="user-stat-value">{{
-            userDetails.questionResolved
-          }}</span>
+          <span class="user-stat-value">{{ userDetails.questionsSolved }}</span>
           <span class="d-block text-muted fnt-12">Questions Solved</span>
         </div>
       </div>

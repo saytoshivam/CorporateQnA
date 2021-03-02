@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
+import { Router } from '@angular/router';
 import { UserDetails } from 'src/app/shared/models';
 import { EventService, UserService } from 'src/app/shared/services';
 
@@ -17,7 +18,7 @@ export class AllUsersComponent implements OnInit {
   allUsers: UserDetails[] = []
   showUsers: UserDetails[] = []
 
-  constructor(private userService: UserService, private eventService: EventService) {
+  constructor(private router: Router, private userService: UserService, private eventService: EventService) {
     this.searchForm = new FormGroup({
       search: new FormControl()
     })
@@ -36,7 +37,10 @@ export class AllUsersComponent implements OnInit {
     })
   }
 
-  GetUserDetails(userDetails) {
+  GetUserDetails(userDetails: UserDetails) {
+    console.log("Source" + userDetails.fullName);
     this.eventService.emit<UserDetails>(userDetails);
+    this.router.navigateByUrl(`qna/users/view/${userDetails.id}`);
+
   }
 }
