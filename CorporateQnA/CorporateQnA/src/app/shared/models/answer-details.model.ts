@@ -14,4 +14,14 @@ export class AnswerDetails {
     public totalDislikes: number;
 
     public isBestSolution: boolean;
+
+    constructor(args: {}) {
+        this.id = args['id']
+        this.totalLikes = args['totalLikes']
+        this.totalDislikes = args['totalDislikes']
+        this.answer = args['answer']
+        this.answeredOn = args['answeredOn']
+        this.fullName = args['fullname']
+        this.isBestSolution = args['isBestSolution']
+    }
 }
