@@ -10,7 +10,6 @@ import { CorporateQnAComponent } from './corporate-qn-a/corporate-qn-a.component
 import { HomeComponent } from './corporate-qn-a/home';
 import { AllUsersComponent } from './corporate-qn-a/users/all-users/all-users.component';
 import { UserDetailsComponent } from './corporate-qn-a/users/user-details/user-details.component';
-import { QuestionComponent } from './question';
 import { UserDetails } from './shared/models';
 
 const routes: Routes = [
@@ -25,7 +24,6 @@ const routes: Routes = [
     path: 'qna', component: CorporateQnAComponent,
     children: [
       { path: 'home', component: HomeComponent, canActivate: [AuthGuard] },
-      { path: 'questions', component: QuestionComponent },
       {
         path: 'users', component: UsersComponent,
         children: [

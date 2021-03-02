@@ -75,13 +75,13 @@
           >
             <div class="font-italic text-muted">No questions</div>
           </div>
-          <app-question
+          <app-question-card
             class="d-block app-question"
             [ngClass]="{ 'current-question': currentQuestion == i }"
             *ngFor="let i of currentQuestions"
             [question]="i"
             (click)="viewQuestion(i)"
-          ></app-question>
+          ></app-question-card>
         </div>
         <div class="user-answer-pane">
           <div

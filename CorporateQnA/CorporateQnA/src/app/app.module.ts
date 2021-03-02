@@ -9,8 +9,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { AccountComponent } from './account/account.component';
-import { QuestionComponent } from './question/question.component';
-import { AnswerComponent } from './question/answer/answer.component';
+
 import { HomeComponent } from './corporate-qn-a/home/home.component';
 import { CategoryComponent } from './corporate-qn-a/category/category.component';
 import { EditorComponent } from './shared/editor/editor.component';
@@ -30,8 +29,6 @@ import { QuestionCardComponent } from './shared/question-card/question-card.comp
   declarations: [
     AppComponent,
     AccountComponent,
-    QuestionComponent,
-    AnswerComponent,
     HomeComponent,
     CategoryComponent,
     EditorComponent,

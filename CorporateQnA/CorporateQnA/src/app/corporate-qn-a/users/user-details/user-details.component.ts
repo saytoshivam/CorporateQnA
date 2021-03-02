@@ -25,10 +25,10 @@ export class UserDetailsComponent implements OnInit {
   constructor(private eventService: EventService, private questionService: QuestionService, private router: Router, private activatedRoute: ActivatedRoute, private userService: UserService) { }
 
   ngOnInit() {
-    console.log("in");
     this.activatedRoute.params.subscribe(routeId => {
       this.questionService.getQuestionsByUserId(Number(routeId['id'])).subscribe(res => {
         this.userQuestions = <QuestionDetails[]>res
+        console.log(this.userQuestions);
       });
       this.userAnsweredQuestions = null;
 
