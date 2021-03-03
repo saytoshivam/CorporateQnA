@@ -24,7 +24,7 @@
 </div>
 <div class="d-flex flex-column justifiy-content-between">
   <div class="answers">
-    <!-- <app-answer *ngFor="let i of answers" [answer]= i (setQuestionResolvedState)="questionEvent($event)" [isQuestionResolved]="this.question.resolved"></app-answer> -->
+    <app-answer *ngFor="let i of answers" [answer]= i (setQuestionResolvedState)="questionEvent($event)" [isQuestionResolved]="this.question.isResolved"></app-answer>
   </div>
   <div class="editor mt-3">
     <div class="big-editor" *ngIf="toggleFlyoutEditor">

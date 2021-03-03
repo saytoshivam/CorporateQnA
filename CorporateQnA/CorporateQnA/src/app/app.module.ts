@@ -30,6 +30,7 @@ import { AnswerPanelComponent } from './shared/answer-panel/answer-panel.compone
 import { NgxEditorModule } from 'ngx-editor';
 import { ModalModule } from 'ngx-bootstrap/modal';
 import { NgSelectModule } from '@ng-select/ng-select';
+import { AnswerComponent } from './shared/answer/answer.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -47,7 +48,8 @@ import { NgSelectModule } from '@ng-select/ng-select';
     UserCardComponent,
     UserDetailsComponent,
     QuestionCardComponent,
-    AnswerPanelComponent
+    AnswerPanelComponent,
+    AnswerComponent
   ],
   imports: [
     BrowserModule,
