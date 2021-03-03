@@ -28,6 +28,8 @@ import { UserDetailsComponent } from './corporate-qn-a/users/user-details/user-d
 import { QuestionCardComponent } from './shared/question-card/question-card.component';
 import { AnswerPanelComponent } from './shared/answer-panel/answer-panel.component';
 import { NgxEditorModule } from 'ngx-editor';
+import { ModalModule } from 'ngx-bootstrap/modal';
+import { NgSelectModule } from '@ng-select/ng-select';
 @NgModule({
   declarations: [
     AppComponent,
@@ -56,7 +58,9 @@ import { NgxEditorModule } from 'ngx-editor';
     ToastrModule.forRoot(),
     BrowserAnimationsModule,
     NgxEditorModule,
-    FontAwesomeModule
+    FontAwesomeModule,
+    NgSelectModule,
+    ModalModule.forChild()
   ],
   providers: [{
     provide: HTTP_INTERCEPTORS,

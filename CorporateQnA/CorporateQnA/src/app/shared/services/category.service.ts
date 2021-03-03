@@ -12,6 +12,7 @@ export class CategoryService {
 
 
   postCategory(category: Category): Observable<any> {
+    console.log(category);
     return this.http.post(`${this.baseUrl}/add`, category);
   }
 
