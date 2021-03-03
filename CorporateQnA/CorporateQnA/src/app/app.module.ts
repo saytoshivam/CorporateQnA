@@ -10,6 +10,8 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { AccountComponent } from './account/account.component';
 
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+
 import { HomeComponent } from './corporate-qn-a/home/home.component';
 import { CategoryComponent } from './corporate-qn-a/category/category.component';
 import { EditorComponent } from './shared/editor/editor.component';
@@ -53,7 +55,8 @@ import { NgxEditorModule } from 'ngx-editor';
     FormsModule,
     ToastrModule.forRoot(),
     BrowserAnimationsModule,
-    NgxEditorModule
+    NgxEditorModule,
+    FontAwesomeModule
   ],
   providers: [{
     provide: HTTP_INTERCEPTORS,

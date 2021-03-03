@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
+import { faSearch, faThumbsDown, faThumbsUp } from '@fortawesome/free-solid-svg-icons';
 import { UserDetails } from 'src/app/shared/models';
 import { EventService, UserService } from 'src/app/shared/services';
 
@@ -11,9 +12,9 @@ import { EventService, UserService } from 'src/app/shared/services';
 })
 export class AllUsersComponent implements OnInit {
   searchForm: FormGroup;
-  // faSearch = faSearch
-  // thumbsUp = faThumbsUp
-  // thumbsDown = faThumbsDown
+   faSearch = faSearch
+   thumbsUp = faThumbsUp
+   thumbsDown = faThumbsDown
 
   allUsers: UserDetails[] = []
   showUsers: UserDetails[] = []

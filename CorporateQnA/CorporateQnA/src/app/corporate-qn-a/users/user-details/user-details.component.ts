@@ -4,6 +4,8 @@ import { forkJoin } from 'rxjs';
 import { QuestionDetails, UserDetails } from 'src/app/shared/models';
 import { EventService, QuestionService, UserService } from 'src/app/shared/services';
 
+import { faArrowLeft, faThumbsDown, faThumbsUp } from '@fortawesome/free-solid-svg-icons';
+
 @Component({
   selector: 'app-user-details',
   templateUrl: './user-details.component.html',
@@ -11,9 +13,9 @@ import { EventService, QuestionService, UserService } from 'src/app/shared/servi
   ]
 })
 export class UserDetailsComponent implements OnInit {
-  // faArrowLeft = faArrowLeft
-  // thumbsUp = faThumbsUp
-  // thumbsDown = faThumbsDown
+  faArrowLeft = faArrowLeft
+  thumbsUp = faThumbsUp
+  thumbsDown = faThumbsDown
   userDetails: UserDetails;
   userQuestions: QuestionDetails[] = []
   userAnsweredQuestions: QuestionDetails[] = []
@@ -28,16 +30,15 @@ export class UserDetailsComponent implements OnInit {
     this.activatedRoute.params.subscribe(routeId => {
       this.questionService.getQuestionsByUserId(Number(routeId['id'])).subscribe(res => {
         this.userQuestions = <QuestionDetails[]>res
+        this.currentQuestions = this.userQuestions
+        console.log(this.currentQuestions);
       });
-      this.userAnsweredQuestions = null;
 
-      this.currentQuestions = this.userQuestions
 
       this.eventService.on<UserDetails>().subscribe(res => {
         this.userDetails = res
         console.log("destination" + this.userDetails.fullName);
       })
-
     })
   }
 
