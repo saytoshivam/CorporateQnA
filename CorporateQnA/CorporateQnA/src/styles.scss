@@ -435,7 +435,7 @@ div.side-header {
   border-radius: 3px;
 
   &:hover {
-    // background-color: rgb(9, 24, 43);
+    background-color: rgb(9, 24, 43);
   }
 
   input {
@@ -552,3 +552,113 @@ div.side-header {
 }
 
 //>----------------- Question Card -----------------------------
+
+//---------------- HOME Main content---------------------------
+
+.home-container {
+  padding: 20px;
+  background-color: $body-color;
+}
+
+.home-grid {
+  display: grid;
+  grid-template-columns: $home-grid-width auto;
+  grid-template-rows: auto;
+  border-radius: 5px;
+  overflow: hidden;
+  border: 1px solid lightgrey;
+}
+
+.home-questions {
+  min-height: 50rem;
+  padding-bottom: 30px;
+  background-color: white;
+}
+
+.home-answer-panel {
+  border-left: 1px solid lightgrey;
+}
+
+.view-answer {
+  padding: 20px;
+  background-color: #f2f1f0;
+}
+
+.answer-count {
+  padding: 8px 20px;
+  background-color: #e4e6e9;
+  border: 1px solid lightgrey;
+}
+
+.answer-icons {
+  width: 20px;
+  margin-right: 3px;
+}
+
+.dislike {
+  margin-top: 6px;
+  color: #ef6868;
+}
+
+.like {
+  color: #86c06a;
+}
+
+.like-active {
+  border-bottom: 3px solid #86c06a;
+  border-bottom-left-radius: 0px;
+  border-bottom-right-radius: 0px;
+}
+
+.dislike-active {
+  border-bottom: 3px solid #ef6868;
+  border-bottom-left-radius: 0px;
+  border-bottom-right-radius: 0px;
+}
+
+.answer {
+  background-color: #f8f8f9;
+  padding: 12px 20px;
+
+  &-content {
+    margin-left: 27px;
+  }
+}
+
+.editor {
+  background-color: white;
+  padding: 10px;
+  margin: 0px 12px;
+  border-radius: 5px;
+  border: 1px solid lightgrey;
+  position: relative;
+}
+
+.editor-expand {
+  // position: absolute;
+  padding: 0px;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  z-index: 1;
+}
+
+.view-hint-container {
+  width: 210px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+
+  img {
+    width: 60px;
+  }
+
+  span {
+    margin-top: 22px;
+    color: #777;
+    font-size: 18px;
+  }
+}
+
+//>---------------- HOME Main content---------------------------

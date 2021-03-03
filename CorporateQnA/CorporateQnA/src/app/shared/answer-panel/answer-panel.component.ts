@@ -1,5 +1,6 @@
 import { Component, Input, OnInit, SimpleChanges } from '@angular/core';
 import { AbstractControl, FormControl, FormGroup, ValidatorFn, Validators } from '@angular/forms';
+import { faCompressAlt, faExpandAlt } from '@fortawesome/free-solid-svg-icons';
 import * as moment from 'moment';
 import { QuestionDetails } from '../models';
 import { AnswerDetails } from '../models/answer-details.model';
@@ -16,8 +17,8 @@ export class AnswerPanelComponent implements OnInit {
   @Input() question: QuestionDetails
 
   //ICONS
-  // faExpandAlt = faExpandAlt
-  // faCompressAlt = faCompressAlt;
+   faExpandAlt = faExpandAlt
+   faCompressAlt = faCompressAlt;
 
   //FORM
   newAnswer: FormGroup;

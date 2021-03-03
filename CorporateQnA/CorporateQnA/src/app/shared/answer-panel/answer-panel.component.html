@@ -1,4 +1,3 @@
-<div>answer panel works</div>
 <div class="view-answer">
   <div class="d-flex justify-content-between">
     <div class="user-info pb-2">
@@ -9,7 +8,7 @@
       </div>
     </div>
     <div class="d-flex align-items-center">
-      <img src="../../assets/report.png" alt="" class="answer-icons mr-2" />
+      <img src="../../assets/img/report.png" alt="" class="answer-icons mr-2" />
       <span class="fnt-14">Report this</span>
     </div>
   </div>
@@ -36,7 +35,7 @@
           class="btn big-editor-close"
           (click)="toggleFlyoutEditor = false"
         >
-          <!-- <fa-icon [icon]="faCompressAlt"></fa-icon> -->
+          <fa-icon [icon]="faCompressAlt"></fa-icon>
         </button>
       </div>
       <div class="big-editor-container">
@@ -57,7 +56,7 @@
     </div>
     <div class="small-editor">
       <button class="btn editor-expand" (click)="toggleFlyoutEditor = true">
-        <!-- <fa-icon [icon]="faExpandAlt"></fa-icon> -->
+        <fa-icon [icon]="faExpandAlt"></fa-icon>
       </button>
       <form [formGroup]="newAnswer" class="h-100">
         <app-editor
