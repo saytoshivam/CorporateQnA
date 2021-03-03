@@ -13,7 +13,7 @@ import { UserDetailsComponent } from './corporate-qn-a/users/user-details/user-d
 import { UserDetails } from './shared/models';
 
 const routes: Routes = [
-  { path: '', redirectTo: 'qna/users/all', pathMatch: 'full' },
+  { path: '', redirectTo: 'account/login', pathMatch: 'full' },
   {
     path: 'account', component: AccountComponent,
     children: [
