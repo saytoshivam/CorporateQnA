@@ -26,7 +26,10 @@ export class AnswerComponent implements OnInit {
   constructor(private answerService: AnswerService, private questionService: QuestionService) { }
 
   ngOnInit() {
-    
+
+  }
+  createAnswerActivity(x) {
+
   }
 }
 
