@@ -20,4 +20,18 @@ export class QuestionDetails {
     public answerCount: number;
 
     public isResolved: boolean;
+
+    constructor(args: {}) {
+        this.id = args['id']
+        // this.userName = args['userName']
+        this.title = args['title']
+        this.description = args['description']
+        this.askedBy = args['askedBy']
+        this.askedOn = args['askedOn']
+        this.categoryId = args['categoryId']
+        this.upVoteCount = args['upthis.upVoteCount']
+        this.viewCount = args['viewCount']
+        this.isResolved = args['isResolved']
+        this.answerCount = args['answerCount']
+    }
 }

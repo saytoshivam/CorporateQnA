@@ -1,1 +1,135 @@
-<p>home works!</p>
+<div class="search-form-container">
+    <form [formGroup]="searchForm" class="w-100 h-100 search-form">
+      <div class="keywords form-input">
+        <label for="">Keywords</label>
+        <div class="search-bar">
+          <fa-icon [icon]="faSearch"></fa-icon>
+          <input
+            type="text"
+            name=""
+            id=""
+            placeholder="Search"
+            formControlName="searchInput"
+          />
+        </div>
+      </div>
+      <div class="category form-select ml-3">
+        <label for="">Category</label>
+        <ng-select formControlName="categoryId"  [clearable]="false" [searchable]="false">
+          <ng-option [value]="0">All</ng-option>
+          <ng-option *ngFor="let i of categoryOptions" [value]="i.id">{{i.name}}</ng-option>
+        </ng-select>
+  
+      </div>
+      <div class="show form-select ml-3">
+        <label for="">Show</label>
+        <ng-select formControlName="show"  [clearable]="false" [searchable]="false">
+          <ng-option  [value]="0">All</ng-option>
+          <ng-option  [value]="1">My Questions</ng-option>
+          <ng-option  [value]="2">My Participation</ng-option>
+          <ng-option  [value]="3">Hot</ng-option>
+          <ng-option  [value]="4">Solved</ng-option>
+          <ng-option  [value]="5">Unsolved</ng-option>
+        </ng-select>
+  
+      </div>
+      <div class="recent form-select ml-3">
+        <label for="">Sort By</label>
+        <ng-select formControlName="sortBy"  [clearable]="false" [searchable]="false">
+          <ng-option  [value]="0">All</ng-option>
+          <ng-option  [value]="1">Recent</ng-option>
+          <ng-option  [value]="2">Last 10 days</ng-option>
+          <ng-option  [value]="3">Last 30 days</ng-option>
+        </ng-select>
+  
+      </div>
+      <div class="recent form-reset">
+        <button class="reset-btn btn ml-2" (click)="this.resetSearch()">
+          <fa-icon [icon]="faRedo"></fa-icon>Reset
+        </button>
+        <button class="btn btn-add" (click)="openModal(template)">
+          <fa-icon [icon]="faPlus"></fa-icon>
+          Question
+        </button>
+      </div>
+    </form>
+  </div>
+  <div class="home-container">
+    <div class="home-grid">
+      <div class="home-questions">
+        <div class="d-flex justify-content-center align-items-center h-100" *ngIf="allQuestions.length == 0">
+          <div class="font-italic text-muted">
+            No questions
+          </div>
+        </div>
+        <app-question-card
+          class="d-block app-question"
+          [ngClass]="{ 'current-question': currentQuestion == i }"
+          *ngFor="let i of allQuestions"
+          [question]="i"
+          (click)="viewQuestion(i)"
+        ></app-question-card>
+      </div>
+      <div class="home-answer-panel">
+        <div class="d-flex justify-content-center align-items-center h-100" *ngIf="currentQuestion==null">
+          <div class="view-hint-container">
+            <img src="../../assets/back.svg" alt="" class="d-block">
+            <span> Click on a Question to see all the details</span>
+          </div>
+        </div>
+        <ng-container *ngIf="currentQuestion != null">
+          <app-answer-panel [question]="currentQuestion"></app-answer-panel>
+        </ng-container>
+      </div>
+    </div>
+  </div>
+  
+  <ng-template #template>
+    <div class="modal-header">
+      <h4 class="modal-title pull-left fnt-20">Add Question</h4>
+      <button type="button" class="close modal-close pull-right" aria-label="Close" (click)="modalRef.hide()">
+        <span class="span-1"></span>
+        <span class="span-2"></span>
+      </button>
+    </div>
+    <div class="modal-body p-20">
+      <form [formGroup]="newQuestionForm">
+        <div class="form-input modal-form-input">
+          <label for="">Question</label>
+          <div class="input-bar">
+            <input
+              type="text"
+              name=""
+              id=""
+              placeholder="Enter your question"
+              formControlName="title"
+            />
+          </div>
+        </div>
+        <div class="mt-3 form-input">
+          <label for="">Description</label>
+          <div class="new-question-desc">
+            <app-editor
+              [formGroup]="newQuestionForm"
+              [controlName]="'content'"
+            ></app-editor>
+          </div>
+        </div>
+        <div class="form-select new-question-select mt-3">
+          <label for="">Category</label>
+            <ng-select formControlName="questionCategory"  [clearable]="false" [searchable]="false">
+              <ng-option [value]="0">--Select Category--</ng-option>
+              <ng-option *ngFor="let i of categoryOptions" [value]="i.id">{{i.name}}</ng-option>
+            </ng-select>
+  
+        </div>
+      </form>
+      <div class="d-flex justify-content-end mt-4">
+        <button class="btn btn-cancel mr-2" (click)="resetNewQuestion()" >
+          Cancel
+        </button>
+        <button [disabled]="this.newQuestionForm.invalid" class="btn btn-post" (click)="createQuestion()">Post</button>
+      </div>
+    </div>
+  </ng-template>
+  
