@@ -36,8 +36,8 @@
       <div
         class="d-flex align-items-center"
         *ngIf="
-          answer == user['userId'] &&
-          (answer.isBestSolution || isQuestionResolved == false)
+          question.askedBy == loggedInUserId &&
+          (answer.isBestSolution || question.isResolved == false)
         "
       >
         <form [formGroup]="setAsSolution">

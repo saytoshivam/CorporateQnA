@@ -24,7 +24,12 @@
 </div>
 <div class="d-flex flex-column justifiy-content-between">
   <div class="answers">
-    <app-answer *ngFor="let i of answers" [answer]= i (setQuestionResolvedState)="questionEvent($event)" [isQuestionResolved]="this.question.isResolved"></app-answer>
+    <app-answer
+      *ngFor="let i of answers"
+      [answer]="i"
+      (setQuestionResolvedState)="questionEvent($event)"
+      [question]="this.question"
+    ></app-answer>
   </div>
   <div class="editor mt-3">
     <div class="big-editor" *ngIf="toggleFlyoutEditor">
@@ -50,7 +55,7 @@
           (click)="postAnswer()"
           [disabled]="this.newAnswer.invalid"
         >
-          <img src="../../assets/send-plane.svg" alt="" class="" />
+          <img src="../../../assets/img/send-plane.svg" alt="" class="" />
         </button>
       </div>
     </div>

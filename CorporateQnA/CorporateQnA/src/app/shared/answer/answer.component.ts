@@ -2,8 +2,9 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { faThumbsDown, faThumbsUp } from '@fortawesome/free-solid-svg-icons';
 import * as moment from 'moment';
+import { QuestionDetails } from '../models';
 import { AnswerDetails } from '../models/answer-details.model';
-import { AnswerService, QuestionService } from '../services';
+import { AccountService, AnswerService, QuestionService } from '../services';
 
 @Component({
   selector: 'app-answer',
@@ -12,7 +13,7 @@ import { AnswerService, QuestionService } from '../services';
 })
 export class AnswerComponent implements OnInit {
   @Input() answer: AnswerDetails;
-  @Input() isQuestionResolved: boolean = false;
+  @Input() question: QuestionDetails;
   @Output() setQuestionResolvedState: EventEmitter<{ answerId: number, questionId: number, resolveState: boolean }> = new EventEmitter();
   //ICONS
   thumbsUp = faThumbsUp
@@ -20,13 +21,13 @@ export class AnswerComponent implements OnInit {
 
   timeAgo: string;
 
-  user: any
+  loggedInUserId: number;
   setAsSolution: FormGroup;
 
-  constructor(private answerService: AnswerService, private questionService: QuestionService) { }
+  constructor(private accountService: AccountService) { }
 
   ngOnInit() {
-
+    this.loggedInUserId = this.accountService.getUserId();
   }
   createAnswerActivity(x) {
 

@@ -6,7 +6,7 @@ import { QuestionDetails } from '../models';
 import { AnswerDetails } from '../models/answer-details.model';
 import { Answer } from '../models/answer.model';
 import { GetAnswersModel } from '../models/get-answers.model';
-import { AnswerService } from '../services';
+import { AccountService, AnswerService } from '../services';
 
 @Component({
   selector: 'app-answer-panel',
@@ -17,8 +17,8 @@ export class AnswerPanelComponent implements OnInit {
   @Input() question: QuestionDetails
 
   //ICONS
-   faExpandAlt = faExpandAlt
-   faCompressAlt = faCompressAlt;
+  faExpandAlt = faExpandAlt
+  faCompressAlt = faCompressAlt;
 
   //FORM
   newAnswer: FormGroup;
@@ -34,17 +34,17 @@ export class AnswerPanelComponent implements OnInit {
   fetchquery: GetAnswersModel
 
   toggleFlyoutEditor = false
+  loggedInUserId: number;
 
-  constructor(private answerService: AnswerService) { }
+  constructor(private answerService: AnswerService, private accountService: AccountService) { }
 
   ngOnInit() {
-    this.fetchquery = new GetAnswersModel({ questionId: this.question.id, userId: Number(this.userData['userId']) })
 
+    this.loggedInUserId = this.accountService.getUserId();
     this.newAnswer = new FormGroup({
       content: new FormControl("", [Validators.required, this.editorValidator()]),
     })
-
-    this.answerService.getAnswersForQuestion(2, this.question.id).subscribe(answers => {
+    this.answerService.getAnswersForQuestion(this.loggedInUserId, this.question.id).subscribe(answers => {
       this.answers = answers;
       this.answerCount = answers.length
     })
@@ -55,9 +55,6 @@ export class AnswerPanelComponent implements OnInit {
   ngOnChanges(changes: SimpleChanges) {
 
     if (this.userData != null) {
-
-      this.fetchquery = new GetAnswersModel({ questionId: this.question.id, userId: Number(this.userData['userId']) })
-
       this.answerService.getAnswersForQuestion(2, this.question.id).subscribe(values => {
         this.answers = values;
         this.answerCount = values.length
