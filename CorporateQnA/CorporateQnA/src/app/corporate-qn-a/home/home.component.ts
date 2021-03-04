@@ -1,11 +1,12 @@
 import { Component, OnInit, TemplateRef } from '@angular/core';
 import { AbstractControl, FormControl, FormGroup, ValidatorFn, Validators } from '@angular/forms';
 import { faCompressAlt, faExpandAlt, faPlus, faRedo, faSearch } from '@fortawesome/free-solid-svg-icons';
+import * as moment from 'moment';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { debounceTime } from 'rxjs/operators';
 import { Category, QuestionDetails } from 'src/app/shared/models';
 import { Question } from 'src/app/shared/models/question.model';
-import { SearchFilterModel } from 'src/app/shared/models/search-filter.model';
+import { SearchFilter } from 'src/app/shared/models/search-filter.model';
 import { AccountService, CategoryService, QuestionService } from 'src/app/shared/services';
 
 @Component({
@@ -40,6 +41,7 @@ export class HomeComponent implements OnInit {
     currentQuestion: QuestionDetails;
     categoryOptions: Category[] = []
     allQuestions: QuestionDetails[] = []
+    showQuestions: QuestionDetails[] = []
 
     constructor(private accountService: AccountService, private modalService: BsModalService, private categoryService: CategoryService, private questionService: QuestionService) {
 
@@ -72,9 +74,10 @@ export class HomeComponent implements OnInit {
 
         this.questionService.getAllQuestions().subscribe(questions => {
             this.allQuestions = [...questions];
+            this.showQuestions = questions;
         });
 
-        this.searchForm.valueChanges.pipe(debounceTime(420)).subscribe((filter: SearchFilterModel) => {
+        this.searchForm.valueChanges.pipe(debounceTime(420)).subscribe((filter: SearchFilter) => {
 
             filter.userId = this.userId
             filter.categoryId = Number(filter.categoryId);
@@ -84,6 +87,12 @@ export class HomeComponent implements OnInit {
             this.questionService.searchQuestion(filter).subscribe(questions => {
                 this.allQuestions = questions;
                 this.currentQuestion = null;
+            })
+        })
+
+        this.searchForm.get("searchInput").valueChanges.subscribe(input => {
+            this.showQuestions = this.allQuestions.filter((e, i, a) => {
+                return new RegExp((input ?? "").replace(".", "\\."), "ig").exec(e.title) != null
             })
         })
     }
@@ -104,8 +113,8 @@ export class HomeComponent implements OnInit {
             let questionData = new QuestionDetails({
                 id: value,
                 userName: this.userName,
-                title: title,
-                description:description,
+                title,
+                description,
                 askedBy,
                 categoryId,
                 upvoteCount: 0,

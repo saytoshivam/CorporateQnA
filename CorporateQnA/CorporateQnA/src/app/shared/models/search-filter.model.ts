@@ -1,10 +1,10 @@
-export class SearchFilterModel {
+export class SearchFilter {
 
     searchInput: string;
     categoryId: number;
     show: number;
-    sortBy: number
-    userId: number
+    sortBy: number;
+    userId: number;
 
     constructor(args: {}) {
         this.searchInput = args['searchInput']
