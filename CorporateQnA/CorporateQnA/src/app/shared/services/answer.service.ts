@@ -12,7 +12,6 @@ export class AnswerService {
 
 
   postAnswer(answer: Answer): Observable<any> {
-    console.log(answer);
     return this.http.post(`${this.baseUrl}/add`, answer);
   }
 
@@ -20,11 +19,13 @@ export class AnswerService {
     return this.http.get(`${this.baseUrl}/${userId}/details/${questionId}`);
   }
   likeAnswer(userId, answerId) {
-    console.log(`user id ${userId} likes ${answerId}`);
     return this.http.post(`${this.baseUrl}/${userId}/like/${answerId}`, '');
   }
   dislikeAnswer(userId, answerId) {
-    console.log(`user id ${userId} likes ${answerId}`);
     return this.http.post(`${this.baseUrl}/${userId}/like/${answerId}`, '');
+  }
+  markAsSolution(userId, answerId) {
+    console.log(`user id ${userId} marked as solution to answerId ${answerId}`);
+    return this.http.post(`${this.baseUrl}/${userId}/markAsSolution/${answerId}`, '');
   }
 }

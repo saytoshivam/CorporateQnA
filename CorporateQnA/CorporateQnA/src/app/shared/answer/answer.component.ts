@@ -48,5 +48,13 @@ export class AnswerComponent implements OnInit {
         this.answer.totalDislikes--;
     })
   }
+
+  markAsSolution() {
+    this.answerService.markAsSolution(this.loggedInUserId, this.answer.id).subscribe(isMarked => {
+      //if(isMarked)
+      console.log(isMarked);
+
+    });
+  }
 }
 

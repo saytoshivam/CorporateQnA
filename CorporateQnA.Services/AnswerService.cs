@@ -25,9 +25,9 @@ namespace CorporateQnA.Services
             Db = conn.GetDbConnection();
         }
 
-        public void MarkAsBestSolution(int userId,int answerId)
+        public bool MarkAsBestSolution(int userId,int answerId)
         {
-            Db.Query("MarkSolution" , new { UserId = userId, AnswerId = answerId }, commandType: CommandType.StoredProcedure);
+            return Db.QueryFirst<bool>("MarkSolution" , new { UserId = userId, AnswerId = answerId }, commandType: CommandType.StoredProcedure);
         }
 
         public int PostAnswer(Answer answer)

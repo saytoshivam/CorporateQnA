@@ -48,9 +48,9 @@ namespace CorporateQnA.Controllers
         }
 
         [HttpPost("marksolution/{answerId}")]
-        public void MarkAsBestSolution(int userId,int answerId)
+        public bool MarkAsBestSolution(int userId,int answerId)
         {
-            AnswerService.MarkAsBestSolution(userId,answerId);
+            return AnswerService.MarkAsBestSolution(userId,answerId);
         }
     }
 }

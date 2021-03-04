@@ -17,6 +17,6 @@ namespace CorporateQnA.Services.Interfaces
 
         public bool DislikeAnswer(int answerId,int userId);
 
-        public void MarkAsBestSolution(int answerId, int userId);
+        public bool MarkAsBestSolution(int answerId, int userId);
     }
 }

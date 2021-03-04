@@ -26,7 +26,6 @@ export class QuestionCardComponent implements OnInit {
     this.timeAgo = moment(this.question.askedOn).fromNow()
   }
   upvoteQuestion() {
-    console.log("upvote question");
     this.questionService.upvoteQuestion(this.loggedInUserId, this.question.id).subscribe(isupvoted => {
       if (isupvoted)
         this.question.upVoteCount++;
