@@ -14,7 +14,6 @@
       <button
         class="btn mr-1 btn-response"
         (click)="likeAnswer()"
-        [ngClass]="{ 'like-active': answer }"
       >
         <fa-icon [icon]="thumbsUp" class="like"></fa-icon>
         <span class="mr-2">{{ answer.totalLikes }}</span>
@@ -23,7 +22,6 @@
       <button
         class="btn mr-1 btn-response"
         (click)="dislikeAnswer()"
-        [ngClass]="{ 'dislike-active': answer }"
       >
         <fa-icon [icon]="thumbsDown" class="dislike"></fa-icon>
         <span>{{ answer.totalDislikes }}</span>

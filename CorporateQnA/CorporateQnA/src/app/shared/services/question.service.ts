@@ -10,7 +10,7 @@ export class QuestionService {
   constructor(private http: HttpClient) { }
   readonly baseUrl = 'https://localhost:44399/api/question';
 
-  reportQuestion(userId,questionId){
+  reportQuestion(userId, questionId) {
     return this.http.post(this.baseUrl + `/${userId}/report/${questionId}`, '');
   }
   postQuestion(question: Question): Observable<any> {
@@ -25,9 +25,6 @@ export class QuestionService {
     return this.http.get(this.baseUrl + `/${userId}/all`);
   }
 
-  searchQuestion(x) {
-    return x;
-  }
   upvoteQuestion(userId, questionId) {
     console.log(`user id ${userId} upvotes ${questionId}`);
     return this.http.post(this.baseUrl + `/${userId}/upvote/${questionId}`, '');

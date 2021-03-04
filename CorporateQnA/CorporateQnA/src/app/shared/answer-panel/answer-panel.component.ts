@@ -5,7 +5,6 @@ import * as moment from 'moment';
 import { QuestionDetails } from '../models';
 import { AnswerDetails } from '../models/answer-details.model';
 import { Answer } from '../models/answer.model';
-import { GetAnswersModel } from '../models/get-answers.model';
 import { AccountService, AnswerService, QuestionService } from '../services';
 
 @Component({
@@ -31,7 +30,6 @@ export class AnswerPanelComponent implements OnInit {
 
   answerCount = 0;
   answers: AnswerDetails[] = []
-  fetchquery: GetAnswersModel
 
   toggleFlyoutEditor = false
   loggedInUserId: number;
@@ -57,9 +55,9 @@ export class AnswerPanelComponent implements OnInit {
   ngOnChanges(changes: SimpleChanges) {
 
     if (this.userData != null) {
-      this.answerService.getAnswersForQuestion(2, this.question.id).subscribe(values => {
-        this.answers = values;
-        this.answerCount = values.length
+      this.answerService.getAnswersForQuestion(2, this.question.id).subscribe(answers => {
+        this.answers = answers;
+        this.answerCount = answers.length
       })
     }
   }
@@ -77,7 +75,6 @@ export class AnswerPanelComponent implements OnInit {
   }
 
   postAnswer() {
-    console.log("in answer panel");
     let answeredBy = this.loggedInUserId
     let questionId = this.question.id;
     let questionsAnswer = this.removeTags(this.newAnswer.get('content').value);

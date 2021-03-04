@@ -28,10 +28,13 @@ export class AnswerComponent implements OnInit {
 
   ngOnInit() {
     this.loggedInUserId = this.accountService.getUserId();
-  }
-  createAnswerActivity(x) {
+    this.setAsSolution = new FormGroup({
+      isBestSolution: new FormControl()
+  })
 
+  this.setAsSolution.get('isBestSolution').patchValue(this.answer.isBestSolution)  
   }
+
   likeAnswer() {
     this.answerService.likeAnswer(this.loggedInUserId, this.answer.id).subscribe(isLiked => {
       if (isLiked)
@@ -50,6 +53,7 @@ export class AnswerComponent implements OnInit {
   }
 
   markAsSolution() {
+    console.log("in method");
     this.answerService.markAsSolution(this.loggedInUserId, this.answer.id).subscribe(isMarked => {
       //if(isMarked)
       console.log(isMarked);

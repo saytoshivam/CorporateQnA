@@ -6,7 +6,6 @@ import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { debounceTime } from 'rxjs/operators';
 import { Category, QuestionDetails } from 'src/app/shared/models';
 import { Question } from 'src/app/shared/models/question.model';
-import { SearchFilter } from 'src/app/shared/models/search-filter.model';
 import { AccountService, CategoryService, QuestionService } from 'src/app/shared/services';
 
 @Component({
