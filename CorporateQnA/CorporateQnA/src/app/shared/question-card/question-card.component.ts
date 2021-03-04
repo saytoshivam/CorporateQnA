@@ -2,7 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { faChevronUp, faEye } from '@fortawesome/free-solid-svg-icons';
 import * as moment from 'moment';
 import { QuestionDetails } from '../models';
-import { QuestionService } from '../services';
+import { AccountService, QuestionService } from '../services';
 
 @Component({
   selector: 'app-question-card',
@@ -13,19 +13,24 @@ export class QuestionCardComponent implements OnInit {
   @Input() question: QuestionDetails
   //Icons
   faChevronUp = faChevronUp
-   faEye = faEye
+  faEye = faEye
 
-  user: any;
+  loggedInUserId: number
   timeAgo = ""
 
-  constructor(private questionService: QuestionService) { }
+  constructor(private questionService: QuestionService, private accountService: AccountService) { }
 
   ngOnInit() {
-    console.log("in question card" + this.question);
-    this.user = 2;//logged in user id from token
+    this.loggedInUserId = this.accountService.getUserId();
 
     this.timeAgo = moment(this.question.askedOn).fromNow()
   }
-  viewAnswers() { }
-  upvoteQuestion() { }
+  upvoteQuestion() {
+    console.log("upvote question");
+    this.questionService.upvoteQuestion(this.loggedInUserId, this.question.id).subscribe(isupvoted => {
+      if (isupvoted)
+        this.question.upVoteCount++;
+
+    });
+  }
 }

@@ -24,13 +24,29 @@ export class AnswerComponent implements OnInit {
   loggedInUserId: number;
   setAsSolution: FormGroup;
 
-  constructor(private accountService: AccountService) { }
+  constructor(private answerService: AnswerService, private accountService: AccountService) { }
 
   ngOnInit() {
     this.loggedInUserId = this.accountService.getUserId();
   }
   createAnswerActivity(x) {
 
+  }
+  likeAnswer() {
+    this.answerService.likeAnswer(this.loggedInUserId, this.answer.id).subscribe(isLiked => {
+      if (isLiked)
+        this.answer.totalLikes++;
+      else
+        this.answer.totalLikes--;
+    });
+  }
+  dislikeAnswer() {
+    this.answerService.dislikeAnswer(this.loggedInUserId, this.answer.id).subscribe(isDisliked => {
+      if (isDisliked)
+        this.answer.totalDislikes++;
+      else
+        this.answer.totalDislikes--;
+    })
   }
 }
 

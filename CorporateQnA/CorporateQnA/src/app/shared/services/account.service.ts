@@ -40,9 +40,11 @@ export class AccountService {
     console.log("hello" + tokenData);
     return new UserProfile(tokenData.UserId, tokenData.UserName, tokenData.UserImage);
   }
-  getUserName()
-  {
+  getUserName() {
     return JSON.parse(window.atob(localStorage.getItem('token').split('.')[1])).UserName;
+  }
+  getUserFullName() {
+    return JSON.parse(window.atob(localStorage.getItem('token').split('.')[1])).FullName;
   }
   isUserLoggedIn() {
     if (localStorage.getItem('token'))

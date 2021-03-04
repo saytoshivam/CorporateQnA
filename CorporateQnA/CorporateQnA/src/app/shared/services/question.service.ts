@@ -25,4 +25,8 @@ export class QuestionService {
   searchQuestion(x) {
     return x;
   }
+  upvoteQuestion(userId, questionId) {
+    console.log(`user id ${userId} upvotes ${questionId}`);
+    return this.http.post(this.baseUrl + `/${userId}/upvote/${questionId}`, '');
+  }
 }

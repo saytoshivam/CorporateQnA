@@ -19,4 +19,12 @@ export class AnswerService {
   getAnswersForQuestion(userId: number, questionId: number): Observable<any> {
     return this.http.get(`${this.baseUrl}/${userId}/details/${questionId}`);
   }
+  likeAnswer(userId, answerId) {
+    console.log(`user id ${userId} likes ${answerId}`);
+    return this.http.post(`${this.baseUrl}/${userId}/like/${answerId}`, '');
+  }
+  dislikeAnswer(userId, answerId) {
+    console.log(`user id ${userId} likes ${answerId}`);
+    return this.http.post(`${this.baseUrl}/${userId}/like/${answerId}`, '');
+  }
 }

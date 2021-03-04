@@ -21,16 +21,16 @@ namespace CorporateQnA.Controllers
 
         [Authorize]
         [HttpPost("like/{answerId}")]
-        public void LikeAnswer(int answerId,int userId)
+        public bool LikeAnswer(int answerId,int userId)
         {
-            AnswerService.LikeAnswer(answerId,userId);
+           return  AnswerService.LikeAnswer(answerId,userId);
         }
 
         [Authorize]
         [HttpPost("dislike/{answerId}")]
-        public void DislikeAnswer(int answerId,int userId)
+        public bool DislikeAnswer(int answerId,int userId)
         {
-            AnswerService.DislikeAnswer(answerId,userId);
+            return AnswerService.DislikeAnswer(answerId,userId);
         }
 
         [Authorize]

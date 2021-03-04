@@ -35,12 +35,14 @@ export class AnswerPanelComponent implements OnInit {
 
   toggleFlyoutEditor = false
   loggedInUserId: number;
+  loggedInUserFullName: string;
 
   constructor(private answerService: AnswerService, private accountService: AccountService) { }
 
   ngOnInit() {
 
     this.loggedInUserId = this.accountService.getUserId();
+    this.loggedInUserFullName = this.accountService.getUserFullName();
     this.newAnswer = new FormGroup({
       content: new FormControl("", [Validators.required, this.editorValidator()]),
     })
@@ -85,14 +87,12 @@ export class AnswerPanelComponent implements OnInit {
     this.answerService.postAnswer(answerModel).subscribe(answerId => {
 
       let answerDetail: AnswerDetails = new AnswerDetails({
-        answerId,
-        likeCount: 0,
-        dislikeCount: 0,
-        questionsAnswer,
-        answeredBy: this.loggedInUserId,
+        id: answerId,
+        totalDislikes: 0,
+        totalLikes: 0,
+        answer:questionsAnswer,
         answeredOn: moment(),
-        questionId,
-        fullName: this.userData['name'],
+        fullName: this.loggedInUserFullName,
         askedBy: this.question.askedBy,
         isBestSolution: false
       })

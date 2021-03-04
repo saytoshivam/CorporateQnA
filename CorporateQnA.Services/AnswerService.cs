@@ -60,7 +60,7 @@ namespace CorporateQnA.Services
             }
         }
 
-        public void LikeAnswer(int answerId,int userId)
+        public bool LikeAnswer(int answerId,int userId)
         {
             var likedBy = GetLikesList(answerId);
 
@@ -73,16 +73,19 @@ namespace CorporateQnA.Services
                     dislikeList.Remove(userId);
                     UpdateDislikes(dislikeList, answerId);
                 }
+                UpdateLikes(likedBy, answerId);
+                return true;
             }
             else
             {
-                likedBy.Remove(userId);
-            }
 
-            UpdateLikes(likedBy,answerId);        
+                likedBy.Remove(userId);
+                UpdateLikes(likedBy, answerId);
+            }
+            return false;
         }
 
-        public void DislikeAnswer(int answerId,int userId)
+        public bool DislikeAnswer(int answerId,int userId)
         {
             var dislikedBy = GetDislikesList(answerId);
             if (!dislikedBy.Contains(userId))
@@ -94,11 +97,17 @@ namespace CorporateQnA.Services
                     likeList.Remove(userId);
                     UpdateLikes(likeList, answerId);
                 }
+                UpdateDislikes(dislikedBy, answerId);
+                return true;
             }
             else
+            { 
                 dislikedBy.Remove(userId);
+                UpdateDislikes(dislikedBy, answerId);
+            }
+            return false;
 
-            UpdateDislikes(dislikedBy,answerId);
+
         }
 
         private List<int> GetLikesList(int answerId)
