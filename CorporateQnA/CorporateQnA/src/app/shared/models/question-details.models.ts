@@ -23,7 +23,6 @@ export class QuestionDetails {
 
     constructor(args: {}) {
         this.id = args['id']
-        // this.userName = args['userName']
         this.title = args['title']
         this.description = args['description']
         this.askedBy = args['askedBy']

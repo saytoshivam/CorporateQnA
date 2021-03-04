@@ -17,7 +17,6 @@ export class HeaderComponent implements OnInit {
 
   ngOnInit() {
     this.userProfile = this.accountService.getUserProfile();
-    console.log(this.userProfile);
   }
 
   logout() {

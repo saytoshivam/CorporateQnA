@@ -49,7 +49,7 @@
         [searchable]="false"
       >
         <ng-option [value]="0">All</ng-option>
-        <ng-option [value]="1">Recent</ng-option>
+        <ng-option [value]="2">Recent</ng-option>
         <ng-option [value]="10">Last 10 days</ng-option>
         <ng-option [value]="30">Last 30 days</ng-option>
       </ng-select>
@@ -70,14 +70,14 @@
     <div class="home-questions">
       <div
         class="d-flex justify-content-center align-items-center h-100"
-        *ngIf="showQuestions.length == 0"
+        *ngIf="filteredQuestions.length == 0"
       >
         <div class="font-italic text-muted">No questions</div>
       </div>
       <app-question-card
         class="d-block app-question"
         [ngClass]="{ 'current-question': currentQuestion == i }"
-        *ngFor="let i of showQuestions"
+        *ngFor="let i of filteredQuestions"
         [question]="i"
         (click)="viewQuestion(i)"
       ></app-question-card>

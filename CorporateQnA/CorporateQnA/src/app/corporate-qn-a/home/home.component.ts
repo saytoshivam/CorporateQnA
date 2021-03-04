@@ -40,8 +40,13 @@ export class HomeComponent implements OnInit {
     //Models
     currentQuestion: QuestionDetails;
     categoryOptions: Category[] = []
-    allQuestions: QuestionDetails[] = []
-    showQuestions: QuestionDetails[] = []
+    filteredQuestions: QuestionDetails[] = []
+    searchInputValue: string;
+    selectedCategory: number;
+    selectedShow: number;
+    selectedSortBy: number;
+    questions: QuestionDetails[] = []
+    loggedInUserID = this.accountService.getUserId();
 
     constructor(private accountService: AccountService, private modalService: BsModalService, private categoryService: CategoryService, private questionService: QuestionService) {
 
@@ -55,7 +60,7 @@ export class HomeComponent implements OnInit {
         this.newQuestionForm = new FormGroup({
             title: new FormControl("", [Validators.required]),
             content: new FormControl("", [Validators.required, this.editorValidator()]),
-            questionCategory: new FormControl(0, [Validators.required, this.categoryIdValidator()])
+            questionCategory: new FormControl(0, [Validators.required])
         })
 
         this.newAnswer = new FormGroup({
@@ -73,29 +78,84 @@ export class HomeComponent implements OnInit {
         this.userName = this.accountService.getUserName();
 
         this.questionService.getAllQuestions().subscribe(questions => {
-            this.allQuestions = [...questions];
-            this.showQuestions = questions;
+            this.questions = <QuestionDetails[]>questions;
+            this.filteredQuestions = questions;
         });
 
-        this.searchForm.valueChanges.pipe(debounceTime(420)).subscribe((filter: SearchFilter) => {
-
-            filter.userId = this.userId
-            filter.categoryId = Number(filter.categoryId);
-            filter.show = Number(filter.show);
-            filter.sortBy = Number(filter.sortBy)
-
-            this.questionService.searchQuestion(filter).subscribe(questions => {
-                this.allQuestions = questions;
-                this.currentQuestion = null;
-            })
-        })
-
         this.searchForm.get("searchInput").valueChanges.subscribe(input => {
-            this.showQuestions = this.allQuestions.filter((e, i, a) => {
-                return new RegExp((input ?? "").replace(".", "\\."), "ig").exec(e.title) != null
-            })
+            this.searchInputValue = input;
+            this.filterQuestions();
         })
+        this.searchForm.get("categoryId").valueChanges.subscribe(value => {
+            this.selectedCategory = value;
+            this.filterQuestions();
+        })
+        this.searchForm.get("show").valueChanges.subscribe(value => {
+            this.selectedShow = value;
+            this.filterQuestions();
+        })
+        this.searchForm.get("sortBy").valueChanges.subscribe(value => {
+            this.selectedSortBy = value;
+            this.filterQuestions();
+        })
+
     }
+
+    filterQuestions() {
+
+        //filter on input value
+        this.filteredQuestions = this.questions.filter(ques => ques.title.toLowerCase().indexOf(this.searchInputValue ?? "".toLowerCase()) !== -1);
+
+        //filter on category dropdown
+        if (this.selectedCategory == 0)
+            this.filteredQuestions = this.filteredQuestions;
+        else
+            this.filteredQuestions = this.filteredQuestions.filter(ques => ques.categoryId == this.selectedCategory);
+
+
+        //filter on show value
+        if (this.selectedShow == 0) {
+            this.filteredQuestions = this.filteredQuestions
+        }
+        else if (this.selectedShow == 1) {
+            this.filteredQuestions = this.filteredQuestions.filter(ques => ques.askedBy == this.loggedInUserID);
+        }
+        else if (this.selectedShow == 3) {
+            this.filteredQuestions = this.filteredQuestions.sort(
+                function (a, b) {
+                    return b.viewCount - a.viewCount;
+                }).slice(0, 5);
+        }
+        else if (this.selectedShow == 2) {
+            this.filteredQuestions = this.filteredQuestions.filter(ques => ques.askedBy == this.loggedInUserID);
+        }
+        else if (this.selectedShow == 4) {
+            this.filteredQuestions = this.filteredQuestions.filter(ques => ques.isResolved == true)
+        }
+        else if (this.selectedShow == 5) {
+            this.filteredQuestions = this.filteredQuestions.filter(ques => ques.isResolved == false)
+        }
+
+        //filter Sort by :time
+        if (this.selectedSortBy == 0) {
+            this.filteredQuestions = this.filteredQuestions
+        }
+        else if (this.selectedSortBy == 2) {
+            this.filterQuestionsBasesOnDaysCount(2);
+        }
+        else if (this.selectedSortBy ==  10) {
+            this.filterQuestionsBasesOnDaysCount(10);
+        }
+        else if (this.selectedSortBy ==  30 ) {
+            this.filterQuestionsBasesOnDaysCount(30);
+        }
+    }
+
+    filterQuestionsBasesOnDaysCount(noOfDays: number) {
+        this.filteredQuestions = this.filteredQuestions.filter(ques => moment(new Date()).diff(ques.askedOn, 'days') < noOfDays);
+
+    }
+
 
     openModal(template: TemplateRef<any>) {
         this.modalRef = this.modalService.show(template, { class: "custom-modal" });
@@ -112,7 +172,6 @@ export class HomeComponent implements OnInit {
         this.questionService.postQuestion(question).subscribe(value => {
             let questionData = new QuestionDetails({
                 id: value,
-                userName: this.userName,
                 title,
                 description,
                 askedBy,
@@ -123,7 +182,7 @@ export class HomeComponent implements OnInit {
                 answerCount: 0
             });
 
-            this.allQuestions.push(questionData)
+            this.questions.push(questionData)
             this.modalRef.hide();
         })
     }
@@ -156,12 +215,6 @@ export class HomeComponent implements OnInit {
         this.newQuestionForm.get("content").patchValue("")
         this.newQuestionForm.get("questionCategory").patchValue(0);
         this.modalRef.hide()
-    }
-
-    categoryIdValidator(): ValidatorFn {
-        return (control: AbstractControl): { [key: string]: any } | null => {
-            return control.value == 0 ? { "categoryId": "invalid category id" } : null;
-        };
     }
 
     editorValidator(): ValidatorFn {
