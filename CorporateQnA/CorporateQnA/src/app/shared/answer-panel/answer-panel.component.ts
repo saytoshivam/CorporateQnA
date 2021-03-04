@@ -6,7 +6,7 @@ import { QuestionDetails } from '../models';
 import { AnswerDetails } from '../models/answer-details.model';
 import { Answer } from '../models/answer.model';
 import { GetAnswersModel } from '../models/get-answers.model';
-import { AccountService, AnswerService } from '../services';
+import { AccountService, AnswerService, QuestionService } from '../services';
 
 @Component({
   selector: 'app-answer-panel',
@@ -37,7 +37,7 @@ export class AnswerPanelComponent implements OnInit {
   loggedInUserId: number;
   loggedInUserFullName: string;
 
-  constructor(private answerService: AnswerService, private accountService: AccountService) { }
+  constructor(private questionService: QuestionService, private answerService: AnswerService, private accountService: AccountService) { }
 
   ngOnInit() {
 
@@ -90,7 +90,7 @@ export class AnswerPanelComponent implements OnInit {
         id: answerId,
         totalDislikes: 0,
         totalLikes: 0,
-        answer:questionsAnswer,
+        answer: questionsAnswer,
         answeredOn: moment(),
         fullName: this.loggedInUserFullName,
         askedBy: this.question.askedBy,
@@ -116,4 +116,12 @@ export class AnswerPanelComponent implements OnInit {
     this.solutionAnswerId = event.answerId
   }
 
+  reportQuestion() {
+    this.questionService.reportQuestion(this.loggedInUserId, this.question.id).subscribe(isReported => {
+      if (isReported)
+        alert("You have successfully reported this question");
+      else
+        alert("Question is already reported by you , Our team is looking into it");
+    })
+  }
 }
