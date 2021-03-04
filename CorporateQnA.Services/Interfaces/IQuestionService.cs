@@ -9,7 +9,7 @@ namespace CorporateQnA.Services.Interfaces
 {
     public interface IQuestionService
     {
-        public void PostQuestion(Question question);
+        public int PostQuestion(Question question);
 
         public IEnumerable<QuestionDetails> GetQuestionDetails();
 

@@ -12,8 +12,6 @@ export class AccountService {
   readonly BaseURI = 'https://localhost:44399/api';
 
   register(user: RegisterUser) {
-    console.log(user);
-    console.log("Hello nshivam");
     return this.http.post(this.BaseURI + '/account/register', user);
   }
   login(loginData) {
@@ -35,12 +33,16 @@ export class AccountService {
     return JSON.parse(window.atob(localStorage.getItem('token').split('.')[1])).role;
   }
   getUserId() {
-    return JSON.parse(window.atob(localStorage.getItem('token').split('.')[1])).UserID;
+    return <number>JSON.parse(window.atob(localStorage.getItem('token').split('.')[1])).UserID;
   }
   getUserProfile() {
     var tokenData = JSON.parse(window.atob(localStorage.getItem('token').split('.')[1]));
     console.log("hello" + tokenData);
     return new UserProfile(tokenData.UserId, tokenData.UserName, tokenData.UserImage);
+  }
+  getUserName()
+  {
+    return JSON.parse(window.atob(localStorage.getItem('token').split('.')[1])).UserName;
   }
   isUserLoggedIn() {
     if (localStorage.getItem('token'))

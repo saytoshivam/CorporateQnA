@@ -20,9 +20,9 @@ namespace CorporateQnA.Controllers
 
         //[Authorize]
         [HttpPost("~/api/question")]
-        public void PostQuestion(Question question)
+        public int PostQuestion(Question question)
         {
-            QuestionService.PostQuestion(question);
+            return QuestionService.PostQuestion(question);
         }
 
         //[Authorize]

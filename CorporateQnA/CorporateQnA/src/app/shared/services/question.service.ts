@@ -11,7 +11,7 @@ export class QuestionService {
   readonly baseUrl = 'https://localhost:44399/api/question';
 
   postQuestion(question: Question): Observable<any> {
-    return this.http.post(`${this.baseUrl}/add`, question);
+    return this.http.post(`${this.baseUrl}`, question);
   }
 
   getAllQuestions(): Observable<any> {

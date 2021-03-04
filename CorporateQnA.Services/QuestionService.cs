@@ -25,10 +25,10 @@ namespace CorporateQnA.Services
             Mapper = mapper;
         }
 
-        public void PostQuestion(Question question)
+        public int PostQuestion(Question question)
         {
             question.AskedOn = DateTime.Now;
-            Db.Insert(Mapper.Map<Data.Question>(question));
+            return (int)Db.Insert(Mapper.Map<Data.Question>(question));
         }
        
         public IEnumerable<QuestionDetails> GetQuestionDetails()
