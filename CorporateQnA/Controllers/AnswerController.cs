@@ -42,9 +42,9 @@ namespace CorporateQnA.Controllers
 
         [Authorize]
         [HttpPost("~/api/answer/add")]
-        public void PostAnswer(Answer answer)
+        public int PostAnswer(Answer answer)
         {
-            AnswerService.PostAnswer(answer);
+            return AnswerService.PostAnswer(answer);
         }
 
         [HttpPost("marksolution/{answerId}")]

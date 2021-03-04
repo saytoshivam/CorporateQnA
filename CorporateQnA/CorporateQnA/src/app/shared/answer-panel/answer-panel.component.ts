@@ -76,11 +76,11 @@ export class AnswerPanelComponent implements OnInit {
 
   postAnswer() {
     console.log("in answer panel");
-    let answeredBy = this.userData['userId']
+    let answeredBy = this.loggedInUserId
     let questionId = this.question.id;
-    let content = this.removeTags(this.newAnswer.get('content').value);
+    let questionsAnswer = this.removeTags(this.newAnswer.get('content').value);
 
-    let answerModel: Answer = new Answer({ answeredBy, questionId, content })
+    let answerModel: Answer = new Answer({ answeredBy, questionId, questionsAnswer })
 
     this.answerService.postAnswer(answerModel).subscribe(answerId => {
 
@@ -88,11 +88,11 @@ export class AnswerPanelComponent implements OnInit {
         answerId,
         likeCount: 0,
         dislikeCount: 0,
-        content,
-        answeredBy: this.userData['userId'],
+        questionsAnswer,
+        answeredBy: this.loggedInUserId,
         answeredOn: moment(),
         questionId,
-        answeredByName: this.userData['name'],
+        fullName: this.userData['name'],
         askedBy: this.question.askedBy,
         isBestSolution: false
       })

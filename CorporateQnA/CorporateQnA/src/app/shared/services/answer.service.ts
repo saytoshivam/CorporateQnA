@@ -12,10 +12,11 @@ export class AnswerService {
 
 
   postAnswer(answer: Answer): Observable<any> {
+    console.log(answer);
     return this.http.post(`${this.baseUrl}/add`, answer);
   }
 
-  getAnswersForQuestion(userId:number,questionId:number): Observable<any> {
+  getAnswersForQuestion(userId: number, questionId: number): Observable<any> {
     return this.http.get(`${this.baseUrl}/${userId}/details/${questionId}`);
   }
 }

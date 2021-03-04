@@ -30,10 +30,10 @@ namespace CorporateQnA.Services
             Db.Query("MarkSolution" , new { UserId = userId, AnswerId = answerId }, commandType: CommandType.StoredProcedure);
         }
 
-        public void PostAnswer(Answer answer)
+        public int PostAnswer(Answer answer)
         {
             answer.AnsweredOn = DateTime.Now;
-            Db.Insert(Mapper.Map<Data.Answer>(answer));
+            return (int)Db.Insert(Mapper.Map<Data.Answer>(answer));
         }
 
         public IEnumerable<AnswerDetails> GetAnswersDetailsByQuestionId(int questionId,int userId)

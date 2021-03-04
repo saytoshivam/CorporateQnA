@@ -11,7 +11,7 @@ namespace CorporateQnA.Services.Interfaces
     {
         public IEnumerable<AnswerDetails> GetAnswersDetailsByQuestionId(int questionId,int userId);
 
-        public void PostAnswer(Answer answer);
+        public int PostAnswer(Answer answer);
 
         public void LikeAnswer(int answerId,int userId);
 
