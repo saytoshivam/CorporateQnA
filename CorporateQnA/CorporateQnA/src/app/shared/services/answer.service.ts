@@ -9,7 +9,7 @@ import { Answer } from '../models';
 })
 export class AnswerService {
   constructor(private http: HttpClient) { }
-  readonly baseUrl = 'https://localhost:44399/api/answer';
+  readonly baseUrl = 'api/answer';
 
 
   postAnswer(answer: Answer): Observable<any> {

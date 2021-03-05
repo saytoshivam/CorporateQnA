@@ -9,7 +9,7 @@ import { Question } from '../models';
 })
 export class QuestionService {
   constructor(private http: HttpClient) { }
-  readonly baseUrl = 'https://localhost:44399/api/question';
+  readonly baseUrl = 'api/question';
 
   reportQuestion(userId, questionId) {
     return this.http.post(this.baseUrl + `/${userId}/report/${questionId}`, '');

@@ -10,7 +10,7 @@ import { RegisterUser, UserProfile } from '../models';
 export class AccountService {
 
   constructor(private http: HttpClient) { }
-  readonly baseUrl = 'https://localhost:44399/api';
+  readonly baseUrl = 'api';
 
   register(user: RegisterUser) {
     return this.http.post(this.baseUrl + '/account/register', user);

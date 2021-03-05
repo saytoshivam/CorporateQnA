@@ -9,7 +9,7 @@ import { Category } from '../models';
 })
 export class CategoryService {
   constructor(private http: HttpClient) { }
-  readonly baseUrl = 'https://localhost:44399/api/category';
+  readonly baseUrl = 'api/category';
 
 
   postCategory(category: Category): Observable<any> {
