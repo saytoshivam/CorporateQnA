@@ -2,9 +2,8 @@ import { Component, Input, OnInit, SimpleChanges } from '@angular/core';
 import { AbstractControl, FormControl, FormGroup, ValidatorFn, Validators } from '@angular/forms';
 import { faCompressAlt, faExpandAlt } from '@fortawesome/free-solid-svg-icons';
 import * as moment from 'moment';
-import { QuestionDetails } from '../models';
-import { AnswerDetails } from '../models/answer-details.model';
-import { Answer } from '../models/answer.model';
+
+import { QuestionDetails, Answer, AnswerDetails } from '../models';
 import { AccountService, AnswerService, QuestionService } from '../services';
 
 @Component({
@@ -46,6 +45,7 @@ export class AnswerPanelComponent implements OnInit {
     this.newAnswer = new FormGroup({
       content: new FormControl("", [Validators.required, this.editorValidator()]),
     })
+
     this.answerService.getAnswersForQuestion(this.loggedInUserId, this.question.id).subscribe(answers => {
       this.answers = answers;
       this.answerCount = answers.length
@@ -109,17 +109,16 @@ export class AnswerPanelComponent implements OnInit {
     };
   }
 
-  questionEvent(event: {answerId: number }) {
-    this.answerService.markAsSolution(this.loggedInUserId, event.answerId).subscribe(value=>{
+  questionEvent(event: { answerId: number }) {
+    this.answerService.markAsSolution(this.loggedInUserId, event.answerId).subscribe(value => {
       this.question.isResolved = <boolean>value
     })
   }
 
   reportQuestion() {
     this.questionService.reportQuestion(this.loggedInUserId, this.question.id).subscribe(isReported => {
-      if (isReported)
-        alert("You have successfully reported this question");
-      else
+      (isReported) ?
+        alert("You have successfully reported this question") :
         alert("Question is already reported by you , Our team is looking into it");
     })
   }

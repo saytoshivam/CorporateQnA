@@ -1,10 +1,9 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { faThumbsDown, faThumbsUp } from '@fortawesome/free-solid-svg-icons';
-import * as moment from 'moment';
-import { QuestionDetails } from '../models';
-import { AnswerDetails } from '../models/answer-details.model';
-import { AccountService, AnswerService, QuestionService } from '../services';
+
+import { QuestionDetails, AnswerDetails } from '../models';
+import { AccountService, AnswerService } from '../services';
 
 @Component({
   selector: 'app-answer',

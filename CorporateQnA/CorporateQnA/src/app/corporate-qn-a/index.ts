@@ -1,1 +1,1 @@
-export * from './users/users.component';
+export * from './corporate-qn-a.component';

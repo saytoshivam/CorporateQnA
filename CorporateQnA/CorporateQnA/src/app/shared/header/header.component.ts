@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import * as moment from 'moment';
+
 import { UserProfile } from '../models';
-import { AccountService, UserService } from '../services';
+import { AccountService } from '../services';
 
 @Component({
   selector: 'app-header',

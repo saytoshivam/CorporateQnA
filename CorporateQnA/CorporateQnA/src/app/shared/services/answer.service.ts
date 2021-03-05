@@ -1,7 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Answer } from '../models/answer.model';
+
+import { Answer } from '../models';
 
 @Injectable({
   providedIn: 'root'
@@ -16,6 +17,7 @@ export class AnswerService {
   }
 
   getAnswersForQuestion(userId: number, questionId: number): Observable<any> {
+    console.log("userId = " + userId + "questionId = " + questionId)
     return this.http.get(`${this.baseUrl}/${userId}/details/${questionId}`);
   }
   likeAnswer(userId, answerId) {
