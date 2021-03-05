@@ -31,13 +31,11 @@ export class UserDetailsComponent implements OnInit {
       this.questionService.getQuestionsByUserId(Number(routeId['id'])).subscribe(res => {
         this.userQuestions = <QuestionDetails[]>res
         this.currentQuestions = this.userQuestions
-        console.log(this.currentQuestions);
       });
 
 
       this.eventService.on<UserDetails>().subscribe(res => {
         this.userDetails = res
-        console.log("destination" + this.userDetails.fullName);
       })
     })
   }

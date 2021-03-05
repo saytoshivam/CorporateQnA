@@ -32,6 +32,10 @@ export class AnswerComponent implements OnInit {
     })
 
     this.setAsSolution.get('isBestSolution').patchValue(this.answer.isBestSolution)
+
+    this.setAsSolution.get('isBestSolution').valueChanges.subscribe(value => {
+      this.markAsSolution();
+    })
   }
 
   likeAnswer() {

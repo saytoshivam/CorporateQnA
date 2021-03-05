@@ -17,7 +17,6 @@ export class AnswerService {
   }
 
   getAnswersForQuestion(userId: number, questionId: number): Observable<any> {
-    console.log("userId = " + userId + "questionId = " + questionId)
     return this.http.get(`${this.baseUrl}/${userId}/details/${questionId}`);
   }
   likeAnswer(userId, answerId) {
@@ -27,7 +26,6 @@ export class AnswerService {
     return this.http.post(`${this.baseUrl}/${userId}/like/${answerId}`, '');
   }
   markAsSolution(userId, answerId) {
-    console.log(`user id ${userId} marked as solution to answerId ${answerId}`);
-    return this.http.post(`${this.baseUrl}/${userId}/markAsSolution/${answerId}`, '');
+    return this.http.post(`${this.baseUrl}/${userId}/markSolution/${answerId}`, '');
   }
 }

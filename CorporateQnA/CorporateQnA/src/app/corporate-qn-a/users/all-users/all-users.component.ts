@@ -12,9 +12,9 @@ import { EventService, UserService } from 'src/app/shared/services';
 })
 export class AllUsersComponent implements OnInit {
   searchForm: FormGroup;
-   faSearch = faSearch
-   thumbsUp = faThumbsUp
-   thumbsDown = faThumbsDown
+  faSearch = faSearch
+  thumbsUp = faThumbsUp
+  thumbsDown = faThumbsDown
 
   allUsers: UserDetails[] = []
   showUsers: UserDetails[] = []
@@ -39,7 +39,6 @@ export class AllUsersComponent implements OnInit {
   }
 
   GetUserDetails(userDetails: UserDetails) {
-    console.log("Source" + userDetails.fullName);
     this.eventService.emit<UserDetails>(userDetails);
     this.router.navigateByUrl(`qna/users/view/${userDetails.id}`);
 
