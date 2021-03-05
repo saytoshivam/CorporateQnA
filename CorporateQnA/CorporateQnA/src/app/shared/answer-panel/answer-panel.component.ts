@@ -32,6 +32,8 @@ export class AnswerPanelComponent implements OnInit {
   answers: AnswerDetails[] = []
 
   toggleFlyoutEditor = false
+
+  //logged in user Details
   loggedInUserId: number;
   loggedInUserFullName: string;
 
@@ -107,9 +109,10 @@ export class AnswerPanelComponent implements OnInit {
     };
   }
 
-  questionEvent(event: { questionId: number, resolveState: boolean, answerId: number }) {
-    this.question.isResolved = event.resolveState
-    this.solutionAnswerId = event.answerId
+  questionEvent(event: {answerId: number }) {
+    this.answerService.markAsSolution(this.loggedInUserId, event.answerId).subscribe(value=>{
+      this.question.isResolved = <boolean>value
+    })
   }
 
   reportQuestion() {

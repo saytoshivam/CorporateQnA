@@ -9,13 +9,13 @@ import { RegisterUser, UserProfile } from '../models';
 export class AccountService {
 
   constructor(private http: HttpClient) { }
-  readonly BaseURI = 'https://localhost:44399/api';
+  readonly baseUrl = 'https://localhost:44399/api';
 
   register(user: RegisterUser) {
-    return this.http.post(this.BaseURI + '/account/register', user);
+    return this.http.post(this.baseUrl + '/account/register', user);
   }
   login(loginData) {
-    return this.http.post(this.BaseURI + '/account/login', loginData);
+    return this.http.post(this.baseUrl + '/account/login', loginData);
   }
 
   roleMatch(allowedRoles): boolean {

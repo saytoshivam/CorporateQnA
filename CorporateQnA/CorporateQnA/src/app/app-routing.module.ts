@@ -21,9 +21,9 @@ const routes: Routes = [
       { path: 'login', component: LoginComponent }]
   },
   {
-    path: 'qna', component: CorporateQnAComponent,
+    path: 'qna', component: CorporateQnAComponent, canActivate: [AuthGuard],
     children: [
-      { path: 'home', component: HomeComponent, canActivate: [AuthGuard] },
+      { path: 'home', component: HomeComponent },
       {
         path: 'users', component: UsersComponent,
         children: [

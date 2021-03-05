@@ -14,7 +14,7 @@ import { AccountService, AnswerService, QuestionService } from '../services';
 export class AnswerComponent implements OnInit {
   @Input() answer: AnswerDetails;
   @Input() question: QuestionDetails;
-  @Output() setQuestionResolvedState: EventEmitter<{ answerId: number, questionId: number, resolveState: boolean }> = new EventEmitter();
+  @Output() setQuestionResolvedState: EventEmitter<{ answerId: number }> = new EventEmitter();
   //ICONS
   thumbsUp = faThumbsUp
   thumbsDown = faThumbsDown;
@@ -30,9 +30,9 @@ export class AnswerComponent implements OnInit {
     this.loggedInUserId = this.accountService.getUserId();
     this.setAsSolution = new FormGroup({
       isBestSolution: new FormControl()
-  })
+    })
 
-  this.setAsSolution.get('isBestSolution').patchValue(this.answer.isBestSolution)  
+    this.setAsSolution.get('isBestSolution').patchValue(this.answer.isBestSolution)
   }
 
   likeAnswer() {
@@ -53,12 +53,7 @@ export class AnswerComponent implements OnInit {
   }
 
   markAsSolution() {
-    console.log("in method");
-    this.answerService.markAsSolution(this.loggedInUserId, this.answer.id).subscribe(isMarked => {
-      //if(isMarked)
-      console.log(isMarked);
-
-    });
+    this.setQuestionResolvedState.emit({ answerId: this.answer.id });
   }
 }
 

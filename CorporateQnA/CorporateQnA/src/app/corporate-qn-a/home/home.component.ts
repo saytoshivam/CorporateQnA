@@ -3,9 +3,8 @@ import { AbstractControl, FormControl, FormGroup, ValidatorFn, Validators } from
 import { faCompressAlt, faExpandAlt, faPlus, faRedo, faSearch } from '@fortawesome/free-solid-svg-icons';
 import * as moment from 'moment';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
-import { debounceTime } from 'rxjs/operators';
-import { Category, QuestionDetails } from 'src/app/shared/models';
-import { Question } from 'src/app/shared/models/question.model';
+
+import { Category, QuestionDetails, Question } from 'src/app/shared/models';
 import { AccountService, CategoryService, QuestionService } from 'src/app/shared/services';
 
 @Component({
@@ -33,7 +32,7 @@ export class HomeComponent implements OnInit {
     modalRef: BsModalRef;
 
     //Logged In UserId
-    userId: number
+    loggedInUserID :number
     userName: string
 
     //Models
@@ -45,8 +44,7 @@ export class HomeComponent implements OnInit {
     selectedShow: number;
     selectedSortBy: number;
     questions: QuestionDetails[] = []
-    loggedInUserID = this.accountService.getUserId();
-
+   
     constructor(private accountService: AccountService, private modalService: BsModalService, private categoryService: CategoryService, private questionService: QuestionService) {
 
         this.searchForm = new FormGroup({
@@ -72,8 +70,7 @@ export class HomeComponent implements OnInit {
             this.categoryOptions = [...this.categoryOptions, ...categories]
         })
 
-
-        this.userId = this.accountService.getUserId();
+        this.loggedInUserID = this.accountService.getUserId();
         this.userName = this.accountService.getUserName();
 
         this.questionService.getAllQuestions().subscribe(questions => {
@@ -142,10 +139,10 @@ export class HomeComponent implements OnInit {
         else if (this.selectedSortBy == 2) {
             this.filterQuestionsBasesOnDaysCount(2);
         }
-        else if (this.selectedSortBy ==  10) {
+        else if (this.selectedSortBy == 10) {
             this.filterQuestionsBasesOnDaysCount(10);
         }
-        else if (this.selectedSortBy ==  30 ) {
+        else if (this.selectedSortBy == 30) {
             this.filterQuestionsBasesOnDaysCount(30);
         }
     }
@@ -161,7 +158,7 @@ export class HomeComponent implements OnInit {
     }
 
     postQuestion() {
-        let askedBy = this.userId
+        let askedBy = this.loggedInUserID
         let categoryId = this.newQuestionForm.get("questionCategory").value;
         let description = this.removeTags(this.newQuestionForm.get("content").value);
         let title = this.newQuestionForm.get("title").value;
