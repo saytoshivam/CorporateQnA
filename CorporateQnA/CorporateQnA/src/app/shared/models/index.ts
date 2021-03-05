@@ -5,3 +5,6 @@ export * from './user-details.model';
 export * from './question-details.models';
 export * from './user-profile.model';
 export * from './register-user.model';
+export * from './question.model';
+export * from './answer.model';
+export * from './answer-details.model';
