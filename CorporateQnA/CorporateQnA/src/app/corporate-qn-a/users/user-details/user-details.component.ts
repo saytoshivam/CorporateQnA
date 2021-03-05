@@ -1,10 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { forkJoin } from 'rxjs';
+
 import { QuestionDetails, UserDetails } from 'src/app/shared/models';
 import { EventService, QuestionService, UserService } from 'src/app/shared/services';
-
-import { faArrowLeft, faThumbsDown, faThumbsUp } from '@fortawesome/free-solid-svg-icons';
+import { arrowLeftIcon, thumbsUpIcon, thumbsDownIcon } from '../../../shared/constants';
 
 @Component({
   selector: 'app-user-details',
@@ -13,9 +12,9 @@ import { faArrowLeft, faThumbsDown, faThumbsUp } from '@fortawesome/free-solid-s
   ]
 })
 export class UserDetailsComponent implements OnInit {
-  faArrowLeft = faArrowLeft
-  thumbsUp = faThumbsUp
-  thumbsDown = faThumbsDown
+  faArrowLeft = arrowLeftIcon
+  thumbsUp = thumbsUpIcon
+  thumbsDown = thumbsDownIcon
   userDetails: UserDetails;
   userQuestions: QuestionDetails[] = []
   userAnsweredQuestions: QuestionDetails[] = []

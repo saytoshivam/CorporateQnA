@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
-import { faThumbsDown, faThumbsUp } from '@fortawesome/free-solid-svg-icons';
 
+import { thumbsDownIcon, thumbsUpIcon } from '../../shared/constants';
 import { QuestionDetails, AnswerDetails } from '../models';
 import { AccountService, AnswerService } from '../services';
 
@@ -15,8 +15,8 @@ export class AnswerComponent implements OnInit {
   @Input() question: QuestionDetails;
   @Output() setQuestionResolvedState: EventEmitter<{ answerId: number }> = new EventEmitter();
   //ICONS
-  thumbsUp = faThumbsUp
-  thumbsDown = faThumbsDown;
+  thumbsUp = thumbsUpIcon
+  thumbsDown = thumbsDownIcon
 
   timeAgo: string;
 

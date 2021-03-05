@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { faThumbsDown, faThumbsUp } from '@fortawesome/free-solid-svg-icons';
+
+import { thumbsUpIcon, thumbsDownIcon } from '../../../shared/constants';
 import { UserDetails } from 'src/app/shared/models';
 
 @Component({
@@ -11,8 +12,8 @@ export class UserCardComponent implements OnInit {
 
   @Input() userDetail: UserDetails;
 
-  thumbsUp = faThumbsUp
-  thumbsDown = faThumbsDown
+  thumbsUp = thumbsUpIcon
+  thumbsDown = thumbsDownIcon
   constructor() { }
 
   ngOnInit(): void {

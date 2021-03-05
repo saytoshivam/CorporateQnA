@@ -1,6 +1,7 @@
 import { Component, OnInit, TemplateRef } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { faPlus, faRedo, faSearch } from '@fortawesome/free-solid-svg-icons';
+
+import { redoIcon, plusIcon, searchIcon } from '../../shared/constants';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { Category, CategoryDetails } from '../../shared/models';
 import { CategoryService } from '../../shared/services';
@@ -13,9 +14,9 @@ import { CategoryService } from '../../shared/services';
 export class CategoryComponent implements OnInit {
 
     //ICONS
-    faRedo = faRedo;
-    faPlus = faPlus;
-    faSearch = faSearch;
+    faRedo = redoIcon;
+    faPlus = plusIcon;
+    faSearch = searchIcon;
 
     searchForm: FormGroup;
     newCategoryForm: FormGroup

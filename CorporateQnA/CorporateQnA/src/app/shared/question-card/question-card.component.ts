@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { faChevronUp, faEye } from '@fortawesome/free-solid-svg-icons';
 import * as moment from 'moment';
+import { chevronUpIcon, eyeIcon } from '../constants';
 
 import { QuestionDetails } from '../models';
 import { AccountService, QuestionService } from '../services';
@@ -13,8 +13,8 @@ import { AccountService, QuestionService } from '../services';
 export class QuestionCardComponent implements OnInit {
   @Input() question: QuestionDetails
   //Icons
-  faChevronUp = faChevronUp
-  faEye = faEye
+  faChevronUp = chevronUpIcon
+  faEye = eyeIcon
 
   loggedInUserId: number
   timeAgo = ""

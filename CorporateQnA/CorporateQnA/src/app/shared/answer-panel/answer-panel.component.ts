@@ -3,6 +3,7 @@ import { AbstractControl, FormControl, FormGroup, ValidatorFn, Validators } from
 import { faCompressAlt, faExpandAlt } from '@fortawesome/free-solid-svg-icons';
 import * as moment from 'moment';
 
+import { compressAltIcon, expandAltIcon } from '../../shared/constants';
 import { QuestionDetails, Answer, AnswerDetails } from '../models';
 import { AccountService, AnswerService, QuestionService } from '../services';
 
@@ -15,8 +16,8 @@ export class AnswerPanelComponent implements OnInit {
   @Input() question: QuestionDetails
 
   //ICONS
-  faExpandAlt = faExpandAlt
-  faCompressAlt = faCompressAlt;
+  faExpandAlt = expandAltIcon
+  faCompressAlt = compressAltIcon
 
   //FORM
   newAnswer: FormGroup;

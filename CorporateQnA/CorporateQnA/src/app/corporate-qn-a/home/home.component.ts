@@ -1,12 +1,11 @@
 import { Component, OnInit, TemplateRef } from '@angular/core';
 import { AbstractControl, FormControl, FormGroup, ValidatorFn, Validators } from '@angular/forms';
-import { faCompressAlt, faExpandAlt, faPlus, faRedo, faSearch } from '@fortawesome/free-solid-svg-icons';
 import * as moment from 'moment';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 
 import { Category, QuestionDetails, Question } from 'src/app/shared/models';
 import { AccountService, CategoryService, QuestionService } from 'src/app/shared/services';
-
+import { redoIcon, plusIcon, searchIcon, expandAltIcon, compressAltIcon } from '../../shared/constants';
 @Component({
     selector: 'app-home',
     templateUrl: './home.component.html',
@@ -16,11 +15,11 @@ import { AccountService, CategoryService, QuestionService } from 'src/app/shared
 export class HomeComponent implements OnInit {
 
     //Icons
-    faSearch = faSearch;
-    faPlus = faPlus;
-    faRedo = faRedo;
-    faExpandAlt = faExpandAlt
-    faCompressAlt = faCompressAlt
+    faSearch = searchIcon
+    faPlus = plusIcon
+    faRedo = redoIcon
+    faExpandAlt = expandAltIcon
+    faCompressAlt = compressAltIcon
 
     //Form groups
     searchForm: FormGroup;
@@ -32,7 +31,7 @@ export class HomeComponent implements OnInit {
     modalRef: BsModalRef;
 
     //Logged In UserId
-    loggedInUserID :number
+    loggedInUserID: number
     userName: string
 
     //Models
@@ -44,7 +43,7 @@ export class HomeComponent implements OnInit {
     selectedShow: number;
     selectedSortBy: number;
     questions: QuestionDetails[] = []
-   
+
     constructor(private accountService: AccountService, private modalService: BsModalService, private categoryService: CategoryService, private questionService: QuestionService) {
 
         this.searchForm = new FormGroup({
