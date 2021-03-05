@@ -119,10 +119,6 @@ export class AnswerPanelComponent implements OnInit {
   }
 
   reportQuestion() {
-    this.questionService.reportQuestion(this.loggedInUserId, this.question.id).subscribe(isReported => {
-      (isReported) ?
-        alert("You have successfully reported this question") :
-        alert("Question is already reported by you , Our team is looking into it");
-    })
+    this.questionService.reportQuestion(this.loggedInUserId, this.question.id).subscribe();
   }
 }

@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 
-import { thumbsDownIcon, thumbsUpIcon } from '../../shared/constants';
+import { starIcon, thumbsDownIcon, thumbsUpIcon } from '../../shared/constants';
 import { QuestionDetails, AnswerDetails } from '../models';
 import { AccountService, AnswerService } from '../services';
 
@@ -17,6 +17,7 @@ export class AnswerComponent implements OnInit {
   //ICONS
   thumbsUp = thumbsUpIcon
   thumbsDown = thumbsDownIcon
+  faStar=starIcon
 
   timeAgo: string;
 
