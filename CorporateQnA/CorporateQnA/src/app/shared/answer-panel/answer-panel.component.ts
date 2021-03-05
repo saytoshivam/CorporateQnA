@@ -41,6 +41,7 @@ export class AnswerPanelComponent implements OnInit {
   ngOnInit() {
 
     this.loggedInUserId = this.accountService.getUserId();
+    console.log("init log", this.loggedInUserId)
     this.loggedInUserFullName = this.accountService.getUserFullName();
     this.newAnswer = new FormGroup({
       content: new FormControl("", [Validators.required, this.editorValidator()]),
@@ -56,10 +57,11 @@ export class AnswerPanelComponent implements OnInit {
 
   ngOnChanges(changes: SimpleChanges) {
 
-    this.answerService.getAnswersForQuestion(this.loggedInUserId, this.question.id).subscribe(answers => {
-      this.answers = answers;
-      this.answerCount = answers.length
-    })
+    if (this.loggedInUserId)
+      this.answerService.getAnswersForQuestion(this.loggedInUserId, this.question.id).subscribe(answers => {
+        this.answers = answers;
+        this.answerCount = answers.length
+      })
 
   }
 
