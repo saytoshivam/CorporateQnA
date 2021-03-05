@@ -54,12 +54,11 @@ export class AnswerPanelComponent implements OnInit {
 
   ngOnChanges(changes: SimpleChanges) {
 
-    if (this.userData != null) {
-      this.answerService.getAnswersForQuestion(2, this.question.id).subscribe(answers => {
-        this.answers = answers;
-        this.answerCount = answers.length
-      })
-    }
+    this.answerService.getAnswersForQuestion(this.loggedInUserId, this.question.id).subscribe(answers => {
+      this.answers = answers;
+      this.answerCount = answers.length
+    })
+
   }
 
   removeTags(str) {
