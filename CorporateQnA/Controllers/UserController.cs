@@ -20,7 +20,7 @@ namespace CorporateQnA.Controllers
         }
 
 
-       // [Authorize]
+        [Authorize]
         [HttpGet("details")]
         public IEnumerable<UserDetails> GetUsersDetails()
         {

@@ -47,6 +47,7 @@ namespace CorporateQnA.Controllers
             return AnswerService.PostAnswer(answer);
         }
 
+        [Authorize]
         [HttpPost("marksolution/{answerId}")]
         public bool MarkAsBestSolution(int userId,int answerId)
         {

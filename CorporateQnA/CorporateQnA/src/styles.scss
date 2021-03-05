@@ -1,3 +1,7 @@
+.br {
+  border: solid red 1px;
+}
+
 //COLORS
 $violet-dark: #524361;
 $violet-light: #76618b;
@@ -281,12 +285,9 @@ nav {
   }
 }
 
-
-
 //>--------------- HOME SEARCH FROM----------------------------
 
 //---------------- SELECT------------------------
-
 
 .ng-arrow {
   border-color: #999999 transparent transparent;
@@ -294,32 +295,31 @@ nav {
   border-width: 5px 5px 2.5px;
 }
 
-.ng-dropdown-panel-items{
+.ng-dropdown-panel-items {
   border: 1px solid lightgrey;
   background-color: #fafafa;
   margin-top: -5px;
-  box-shadow: 0 0 8px 0 rgba(0,0,0,0.12), 0 8px 8px 0 rgba(0,0,0,0.24);
+  box-shadow: 0 0 8px 0 rgba(0, 0, 0, 0.12), 0 8px 8px 0 rgba(0, 0, 0, 0.24);
   max-height: unset !important;
   border-radius: 3px;
 }
 
-.ng-dropdown-panel{
- 
+.ng-dropdown-panel {
 }
 
-.ng-select-container{
+.ng-select-container {
   border: 1px solid lightgrey;
   padding: 6px 10px;
   border-radius: 3px;
   background-color: #fff;
 }
 
-.ng-option{
+.ng-option {
   padding: 10px 15px;
   font-size: 15px;
-  color:  #2d2d2d;
-  &:hover{
-    background-color: #EAEEF1;
+  color: #2d2d2d;
+  &:hover {
+    background-color: #eaeef1;
   }
 }
 
@@ -470,7 +470,7 @@ nav {
   overflow: hidden;
   position: relative;
   cursor: pointer;
-  &:hover{
+  &:hover {
     background-color: #fcfaf8;
   }
 }
@@ -722,8 +722,7 @@ nav {
     font-size: 20px;
   }
 
-  .modal-close{
-
+  .modal-close {
     display: flex;
     justify-content: space-between;
     padding: 0;
@@ -731,20 +730,19 @@ nav {
     height: 20px;
     width: 26px;
 
-    span{
+    span {
       width: 100%;
       height: 2px;
       background-color: lightgrey;
       display: block;
-  
     }
 
-    .span-1{
+    .span-1 {
       transform: rotate(45deg);
       transform-origin: left;
     }
 
-    .span-2{
+    .span-2 {
       transform: rotate(-45deg);
       transform-origin: left;
     }
@@ -1113,4 +1111,8 @@ div.side-header {
   img {
     height: 300px;
   }
+}
+
+.min-height-100vh {
+  min-height: 100vh;
 }

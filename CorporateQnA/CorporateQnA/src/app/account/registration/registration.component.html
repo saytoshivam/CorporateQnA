@@ -1,19 +1,10 @@
-<div class="row p-2 mt-4 bg-bisque">
-  <div class="col-md-6">
-    <div class="row" style="height: 450px">
-      <div class="bg-light col-md-12 my-auto side-header">
-        <img src="/assets/img/add_user.png" class="mx-auto d-block" />
-        <h1>User Registration</h1>
-        <p>
-          <strong
-            >if already an user then
-            <a routerLink="/account/login">Login</a> please</strong
-          >
-        </p>
-      </div>
-    </div>
+<div class="p-2 mt-4">
+  <div class="font-weight-bold m-2 ml-3">
+    Already a User
+    <a routerLink="/account/login">Login</a>
+    Here
   </div>
-  <div class="col-md-6">
+  <div>
     <form
       [formGroup]="this.signInForm"
       autocomplete="off"
