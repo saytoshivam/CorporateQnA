@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using CorporateQnA.Models;
+using CorporateQnA.Models.Enum;
 using CorporateQnA.Services.Interfaces;
 using Dapper;
 using Dapper.Contrib.Extensions;
@@ -79,6 +80,21 @@ namespace CorporateQnA.Services
              query = $"UPDATE [Questions] SET VotedBy = '{upVotes}' WHERE Id = {questionId}";
              Db.Execute(query);
               return true;
+        }
+
+        public IEnumerable<QuestionDetails> GetFilteredQuestions(List<Filter> filters)
+        {
+
+            var sql = "SELECT * FROM QuestionsView";
+            bool isWhereUsed = false;
+
+            filters.ForEach(filter =>
+            {
+                sql = $"{sql} {(isWhereUsed ? "AND" : "WHERE")} {filter.ColumnName} {(filter.Type == filterType.Date ? $"BETWEEN '{DateTime.Now.AddDays(-Convert.ToInt64(filter.Id))}' AND '{DateTime.Now}'" : (filter.Type == filterType.Boolean ? (filter.IsNullCheck ? "IS NULL" : " IS NOT NULL") : (filter.Type == filterType.Integer ? $"= {filter.Id}" : $"={ filter.Id}")))}";
+                isWhereUsed = true;
+            });
+
+            return this.Mapper.Map<List<QuestionDetails>>(this.Db.Query<Data.QuestionDetails>(sql).ToList());
         }
     }
 }

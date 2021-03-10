@@ -19,6 +19,13 @@ namespace CorporateQnA.Controllers
         }
 
         [Authorize]
+        [HttpPost("~/api/question/filter")]
+        public IEnumerable<QuestionDetails> GetFilteredQuestions(List<Filter> filter)
+        {
+            return QuestionService.GetFilteredQuestions(filter);
+        }
+
+        [Authorize]
         [HttpPost("~/api/question")]
         public int PostQuestion(Question question)
         {

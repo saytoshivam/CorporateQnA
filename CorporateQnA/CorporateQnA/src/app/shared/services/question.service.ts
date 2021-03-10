@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
-import { Question } from '../models';
+import { Filter, Question } from '../models';
 
 @Injectable({
   providedIn: 'root'
@@ -28,5 +28,9 @@ export class QuestionService {
 
   upvoteQuestion(userId, questionId) {
     return this.http.post(this.baseUrl + `/${userId}/upvote/${questionId}`, '');
+  }
+
+  filterQuestion(filter:Filter) {
+    return this.http.post(this.baseUrl + `/filter`,filter);
   }
 }

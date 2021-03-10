@@ -8,3 +8,4 @@ export * from './register-user.model';
 export * from './question.model';
 export * from './answer.model';
 export * from './answer-details.model';
+export * from './filter.model';

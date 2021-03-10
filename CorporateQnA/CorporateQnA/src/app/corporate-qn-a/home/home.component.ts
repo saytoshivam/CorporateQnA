@@ -93,7 +93,6 @@ export class HomeComponent implements OnInit {
             this.selectedSortBy = value;
             this.filterQuestions();
         })
-
     }
 
     filterQuestions() {

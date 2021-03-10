@@ -18,5 +18,7 @@ namespace CorporateQnA.Services.Interfaces
         public bool ReportQuestion(int questionId,int userId);
 
         public bool UpVoteQuestion(int questionId,int userId);
+
+        public IEnumerable<QuestionDetails> GetFilteredQuestions(List<Filter> filter);
     }
 }
